@@ -91,7 +91,7 @@ void LeggedRobotVisualizer::launchVisualizerNode(ros::NodeHandle& nodeHandle) {
     kdl_parser::treeFromUrdfModel(urdfModel, kdlTree);
 
     robotStatePublisherPtr_.reset(new robot_state_publisher::RobotStatePublisher(kdlTree));
-    robotStatePublisherPtr_->publishFixedTransforms(true);
+    robotStatePublisherPtr_->publishFixedTransforms("", true);
   }
 }
 
@@ -144,7 +144,7 @@ void LeggedRobotVisualizer::publishJointTransforms(ros::Time timeStamp, const ve
                                                    {"LH_HAA", jointAngles[3]}, {"LH_HFE", jointAngles[4]},  {"LH_KFE", jointAngles[5]},
                                                    {"RF_HAA", jointAngles[6]}, {"RF_HFE", jointAngles[7]},  {"RF_KFE", jointAngles[8]},
                                                    {"RH_HAA", jointAngles[9]}, {"RH_HFE", jointAngles[10]}, {"RH_KFE", jointAngles[11]}};
-    robotStatePublisherPtr_->publishTransforms(jointPositions, timeStamp);
+    robotStatePublisherPtr_->publishTransforms(jointPositions, timeStamp, "");
   }
 }
 
