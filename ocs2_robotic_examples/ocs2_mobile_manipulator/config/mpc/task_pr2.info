@@ -1,6 +1,6 @@
 ; robot model meta-information
 model_information {
-  manipulatorModelType     1      // 0: Default-arm, 1: Wheel-based manipulator, 2: Floating-arm manipulator, 3: Omni-base mobile manipulator -> add a y velocity in the configs below to use this one
+  manipulatorModelType     3      // 0: Default-arm, 1: Wheel-based manipulator, 2: Floating-arm manipulator, 3: Omni-base mobile manipulator -> add a y velocity in the configs below to use this one
   
   ; motion joints in the URDF to consider fixed
   removeJoints {
@@ -115,16 +115,17 @@ inputCost
   {
     scaling 1e-2
 
-    (0,0)  5.0  ; forward velocity
-    (1,1)  5.0  ; turning velocity
-    (2,2)  1.0  ; torso_lift_joint velocity
-    (3,3)  1.0  ; r_shoulder_pan_joint velocity
-    (4,4)  1.0  ; r_shoulder_lift_joint velocity
-    (5,5)  1.0  ; r_upper_arm_roll_joint velocity
-    (6,6)  1.0  ; r_elbow_flex_joint velocity
-    (7,7)  1.0  ; r_forearm_roll_joint velocity
-    (8,8)  1.0  ; r_wrist_flex_joint velocity
-    (9,9)  1.0  ; r_wrist_roll_joint velocity
+    (0,0)  5.0  ; x velocity
+    (1,1)  5.0  ; y velocity
+    (2,2)  5.0  ; angular velocity
+    (3,3)  1.0  ; torso_lift_joint velocity
+    (4,4)  1.0  ; r_shoulder_pan_joint velocity
+    (5,5)  1.0  ; r_shoulder_lift_joint velocity
+    (6,6)  1.0  ; r_upper_arm_roll_joint velocity
+    (7,7)  1.0  ; r_elbow_flex_joint velocity
+    (8,8)  1.0  ; r_forearm_roll_joint velocity
+    (9,9)  1.0  ; r_wrist_flex_joint velocity
+    (10,10)  1.0  ; r_wrist_roll_joint velocity
   }
 }
 
@@ -156,6 +157,7 @@ selfCollision
   {
     [0] "base_link, r_gripper_palm_link"
     [1] "torso_lift_link, r_gripper_palm_link"
+    [2] "torso_lift_link, r_elbow_flex_link"
   }
 
   ; minimum distance allowed between the pairs
@@ -172,30 +174,32 @@ jointVelocityLimits
 {
   lowerBound
   {
-    (0,0) -0.5  ; forward velocity
-    (1,0) -0.5  ; turning velocity
-    (2,0) -0.013  ; torso_lift_joint
-    (3,0) -1.0  ; r_shoulder_pan_joint
-    (4,0) -1.0  ; r_shoulder_lift_joint
-    (5,0) -1.0  ; r_upper_arm_roll_joint
-    (6,0) -1.0  ; r_elbow_flex_joint
-    (7,0) -1.0  ; r_forearm_roll_joint
-    (8,0) -1.0  ; r_wrist_flex_joint
-    (9,0) -1.0  ; r_wrist_roll_joint
+    (0,0) -0.5  ; x velocity
+    (1,0) -0.5  ; y velocity
+    (2,0) -0.5  ; angular velocity
+    (3,0) -0.013  ; torso_lift_joint
+    (4,0) -1.0  ; r_shoulder_pan_joint
+    (5,0) -1.0  ; r_shoulder_lift_joint
+    (6,0) -1.0  ; r_upper_arm_roll_joint
+    (7,0) -1.0  ; r_elbow_flex_joint
+    (8,0) -1.0  ; r_forearm_roll_joint
+    (9,0) -1.0  ; r_wrist_flex_joint
+    (10,0) -1.0  ; r_wrist_roll_joint
   }
 
   upperBound
   {
-    (0,0) 0.5  ; forward velocity
-    (1,0) 0.5  ; turning velocity
-    (2,0) 0.013  ; torso_lift_joint
-    (3,0) 1.0  ; r_shoulder_pan_joint
-    (4,0) 1.0  ; r_shoulder_lift_joint
-    (5,0) 1.0  ; r_upper_arm_roll_joint
-    (6,0) 1.0  ; r_elbow_flex_joint
-    (7,0) 1.0  ; r_forearm_roll_joint
-    (8,0) 1.0  ; r_wrist_flex_joint
-    (9,0) 1.0 ; r_wrist_roll_joint
+    (0,0) 0.5  ; x velocity
+    (1,0) 0.5  ; y velocity
+    (2,0) 0.5  ; angular velocity
+    (3,0) 0.013  ; torso_lift_joint
+    (4,0) 1.0  ; r_shoulder_pan_joint
+    (5,0) 1.0  ; r_shoulder_lift_joint
+    (6,0) 1.0  ; r_upper_arm_roll_joint
+    (7,0) 1.0  ; r_elbow_flex_joint
+    (8,0) 1.0  ; r_forearm_roll_joint
+    (9,0) 1.0  ; r_wrist_flex_joint
+    (10,0) 1.0 ; r_wrist_roll_joint
   }
 
   ; relaxed log barrier mu

@@ -43,6 +43,7 @@ enum class ManipulatorModelType {
   DefaultManipulator = 0,           // default model from the parsed URDF directly
   WheelBasedMobileManipulator = 1,  // adds dummy XY-Y joints to the model parsed from URDF
   FloatingArmManipulator = 2,       // adds dummy XYZ-RPY joints to the model parsed from URDF
+  OmniBaseMobileManipulator = 3,    // adds dummy XY-Y joints to the model parsed from URDF
 };
 
 /**

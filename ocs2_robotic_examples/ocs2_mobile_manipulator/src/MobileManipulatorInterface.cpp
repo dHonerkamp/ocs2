@@ -61,6 +61,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ocs2_mobile_manipulator/dynamics/DefaultManipulatorDynamics.h"
 #include "ocs2_mobile_manipulator/dynamics/FloatingArmManipulatorDynamics.h"
 #include "ocs2_mobile_manipulator/dynamics/WheelBasedMobileManipulatorDynamics.h"
+#include "ocs2_mobile_manipulator/dynamics/OmniBaseMobileManipulatorDynamics.h"
 
 // Boost
 #include <boost/filesystem/operations.hpp>
@@ -187,6 +188,11 @@ MobileManipulatorInterface::MobileManipulatorInterface(const std::string& taskFi
     case ManipulatorModelType::WheelBasedMobileManipulator: {
       problem_.dynamicsPtr.reset(
           new WheelBasedMobileManipulatorDynamics(manipulatorModelInfo_, "dynamics", libraryFolder, recompileLibraries, true));
+      break;
+    }
+    case ManipulatorModelType::OmniBaseMobileManipulator: {
+      problem_.dynamicsPtr.reset(
+          new OmniBaseMobileManipulatorDynamics(manipulatorModelInfo_, "dynamics", libraryFolder, recompileLibraries, true));
       break;
     }
     default:

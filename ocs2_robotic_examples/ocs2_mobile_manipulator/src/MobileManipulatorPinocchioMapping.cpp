@@ -78,6 +78,10 @@ auto MobileManipulatorPinocchioMappingTpl<SCALAR>::getPinocchioJointVelocity(con
       vPinocchio << cos(theta) * v, sin(theta) * v, input(1), input.tail(modelInfo_.armDim);
       break;
     }
+    case ManipulatorModelType::OmniBaseMobileManipulator: {
+      vPinocchio << input(0), input(1), input(2), input.tail(modelInfo_.armDim);
+      break;
+    }
     default: {
       throw std::runtime_error("The chosen manipulator model type is not supported!");
     }
@@ -112,6 +116,18 @@ auto MobileManipulatorPinocchioMappingTpl<SCALAR>::getOcs2Jacobian(const vector_
                    SCALAR(0), SCALAR(1.0);
       // clang-format on
       dfdu.template leftCols<2>() = Jv.template leftCols<3>() * dvdu_base;
+      dfdu.template rightCols(modelInfo_.armDim) = Jv.template rightCols(modelInfo_.armDim);
+      return {Jq, dfdu};
+    }
+    case ManipulatorModelType::OmniBaseMobileManipulator: {
+      matrix_t dfdu(Jv.rows(), modelInfo_.inputDim);
+      Eigen::Matrix<SCALAR, 3, 3> dvdu_base;
+      // clang-format off
+      dvdu_base << SCALAR(1.0), SCALAR(0), SCALAR(0),
+                   SCALAR(0), SCALAR(1.0), SCALAR(0),
+                   SCALAR(0), SCALAR(0), SCALAR(1.0);
+      // clang-format on
+      dfdu.template leftCols<3>() = Jv.template leftCols<3>() * dvdu_base;
       dfdu.template rightCols(modelInfo_.armDim) = Jv.template rightCols(modelInfo_.armDim);
       return {Jq, dfdu};
     }

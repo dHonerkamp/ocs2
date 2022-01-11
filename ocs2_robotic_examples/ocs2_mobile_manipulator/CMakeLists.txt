@@ -85,6 +85,7 @@ add_library(${PROJECT_NAME}
   src/constraint/JointVelocityLimits.cpp
   src/constraint/JointValueLimits.cpp
   src/dynamics/WheelBasedMobileManipulatorDynamics.cpp
+  src/dynamics/OmniBaseMobileManipulatorDynamics.cpp
   src/dynamics/DefaultManipulatorDynamics.cpp
   src/dynamics/FloatingArmManipulatorDynamics.cpp
   src/MobileManipulatorInterface.cpp

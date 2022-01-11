@@ -65,6 +65,15 @@ PinocchioInterface createPinocchioInterface(const std::string& robotUrdfPath, co
       // return pinocchio interface
       return getPinocchioInterfaceFromUrdfFile(robotUrdfPath, jointComposite);
     }
+    case ManipulatorModelType::OmniBaseMobileManipulator: {
+      // add XY-yaw joint for the omni-base
+      pinocchio::JointModelComposite jointComposite(3);
+      jointComposite.addJoint(pinocchio::JointModelPX());
+      jointComposite.addJoint(pinocchio::JointModelPY());
+      jointComposite.addJoint(pinocchio::JointModelRZ());
+      // return pinocchio interface
+      return getPinocchioInterfaceFromUrdfFile(robotUrdfPath, jointComposite);
+    }
     default:
       throw std::invalid_argument("Invalid manipulator model type provided.");
   }
@@ -109,6 +118,15 @@ PinocchioInterface createPinocchioInterface(const std::string& robotUrdfPath, co
       // return pinocchio interface
       return getPinocchioInterfaceFromUrdfModel(newModel, jointComposite);
     }
+    case ManipulatorModelType::OmniBaseMobileManipulator: {
+      // add XY-yaw joint for the omni-base
+      pinocchio::JointModelComposite jointComposite(3);
+      jointComposite.addJoint(pinocchio::JointModelPX());
+      jointComposite.addJoint(pinocchio::JointModelPY());
+      jointComposite.addJoint(pinocchio::JointModelRZ());
+      // return pinocchio interface
+      return getPinocchioInterfaceFromUrdfModel(newModel, jointComposite);
+    }
     default:
       throw std::invalid_argument("Invalid manipulator model type provided.");
   }
@@ -141,6 +159,12 @@ ManipulatorModelInfo createManipulatorModelInfo(const PinocchioInterface& interf
     case ManipulatorModelType::WheelBasedMobileManipulator: {
       // for wheel-based, the input dimension is (v, omega, dq_j) while state dimension is (x, y, psi, q_j).
       info.inputDim = info.stateDim - 1;
+      info.armDim = info.inputDim - 2;
+      break;
+    }
+    case ManipulatorModelType::OmniBaseMobileManipulator: {
+      // for wheel-based, the input dimension is (vel x, vel y, omega, dq_j) while state dimension is (x, y, psi, q_j).
+      info.inputDim = info.stateDim;
       info.armDim = info.inputDim - 2;
       break;
     }
