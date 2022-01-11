@@ -88,6 +88,7 @@ class MobileManipulatorInterface final : public RobotInterface {
                                                         const std::string& urdfFile, bool useCaching, const std::string& libraryFolder,
                                                         bool recompileLibraries);
   std::unique_ptr<StateInputCost> getJointVelocityLimitConstraint(const std::string& taskFile);
+  std::unique_ptr<StateCost> getJointValueLimitConstraint(const std::string& taskFile);
 
   ddp::Settings ddpSettings_;
   mpc::Settings mpcSettings_;

@@ -55,6 +55,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ocs2_mobile_manipulator/MobileManipulatorPreComputation.h"
 #include "ocs2_mobile_manipulator/constraint/EndEffectorConstraint.h"
 #include "ocs2_mobile_manipulator/constraint/JointVelocityLimits.h"
+#include "ocs2_mobile_manipulator/constraint/JointValueLimits.h"
 #include "ocs2_mobile_manipulator/constraint/MobileManipulatorSelfCollisionConstraint.h"
 #include "ocs2_mobile_manipulator/cost/QuadraticInputCost.h"
 #include "ocs2_mobile_manipulator/dynamics/DefaultManipulatorDynamics.h"
@@ -153,6 +154,11 @@ MobileManipulatorInterface::MobileManipulatorInterface(const std::string& taskFi
   // Constraints
   // input limits constraint
   problem_.softConstraintPtr->add("jointVelocityLimit", getJointVelocityLimitConstraint(taskFile));
+  // only add this for the pr2
+  if (baseFrame == "base_link") {
+    problem_.stateSoftConstraintPtr->add("jointValueLimit", getJointValueLimitConstraint(taskFile));
+  }
+
   // end-effector state constraint
   problem_.stateSoftConstraintPtr->add("endEffector", getEndEffectorConstraint(*pinocchioInterfacePtr_, taskFile, "endEffector",
                                                                                usePreComputation, libraryFolder, recompileLibraries));
@@ -336,6 +342,37 @@ std::unique_ptr<StateInputCost> MobileManipulatorInterface::getJointVelocityLimi
   }
 
   return std::unique_ptr<StateInputCost>(new StateInputSoftConstraint(std::move(constraint), std::move(penaltyArray)));
+}
+
+std::unique_ptr<StateCost> MobileManipulatorInterface::getJointValueLimitConstraint(const std::string& taskFile) {
+  vector_t lowerBound(manipulatorModelInfo_.inputDim);
+  vector_t upperBound(manipulatorModelInfo_.inputDim);
+  scalar_t mu = 1e-2;
+  scalar_t delta = 1e-3;
+
+  boost::property_tree::ptree pt;
+  boost::property_tree::read_info(taskFile, pt);
+  const std::string prefix = "jointValueLimits.";
+  std::cerr << "\n #### jointValueLimits Settings: ";
+  std::cerr << "\n #### =============================================================================\n";
+  loadData::loadEigenMatrix(taskFile, "jointValueLimits.lowerBound", lowerBound);
+  std::cerr << " #### 'lowerBound':  " << lowerBound.transpose() << std::endl;
+  loadData::loadEigenMatrix(taskFile, "jointValueLimits.upperBound", upperBound);
+  std::cerr << " #### 'upperBound':  " << upperBound.transpose() << std::endl;
+  loadData::loadPtreeValue(pt, mu, prefix + "mu", true);
+  loadData::loadPtreeValue(pt, delta, prefix + "delta", true);
+  std::cerr << " #### =============================================================================\n";
+
+  std::unique_ptr<StateConstraint> constraint(new JointValueLimits(manipulatorModelInfo_.stateDim));
+
+  std::unique_ptr<PenaltyBase> barrierFunction;
+  std::vector<std::unique_ptr<PenaltyBase>> penaltyArray(manipulatorModelInfo_.stateDim);
+  for (int i = 0; i < manipulatorModelInfo_.stateDim; i++) {
+    barrierFunction.reset(new RelaxedBarrierPenalty({mu, delta}));
+    penaltyArray[i].reset(new DoubleSidedPenalty(lowerBound(i), upperBound(i), std::move(barrierFunction)));
+  }
+
+  return std::unique_ptr<StateCost>(new StateSoftConstraint(std::move(constraint), std::move(penaltyArray)));
 }
 
 }  // namespace mobile_manipulator
