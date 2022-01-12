@@ -165,7 +165,7 @@ ManipulatorModelInfo createManipulatorModelInfo(const PinocchioInterface& interf
     case ManipulatorModelType::OmniBaseMobileManipulator: {
       // for wheel-based, the input dimension is (vel x, vel y, omega, dq_j) while state dimension is (x, y, psi, q_j).
       info.inputDim = info.stateDim;
-      info.armDim = info.inputDim - 2;
+      info.armDim = info.inputDim - 3;
       break;
     }
     default:
