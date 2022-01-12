@@ -81,7 +81,7 @@ bool MPC_BASE::run(scalar_t currentTime, const vector_t& currentState) {
   // check if the current time exceeds the solver final limit
   if (!initRun_ && currentTime >= getSolverPtr()->getFinalTime()) {
     std::cerr << "WARNING: The MPC time-horizon is smaller than the MPC starting time.\n";
-    std::cerr << "currentTime: " << currentTime << "\t Controller finalTime: " << getSolverPtr()->getFinalTime() << '\n';
+    std::cerr << std::fixed << "currentTime: " << currentTime << "\t Controller finalTime: " << getSolverPtr()->getFinalTime() << '\n';
     return false;
   }
 
@@ -100,9 +100,9 @@ bool MPC_BASE::run(scalar_t currentTime, const vector_t& currentState) {
     std::cerr << "\n#####################################################";
     std::cerr << "\n#####################################################";
     std::cerr << "\n#####################################################";
-    std::cerr << "\n### MPC is called at time:  " << currentTime << " [s].";
-    std::cerr << "\n### MPC final Time:         " << finalTime << " [s].";
-    std::cerr << "\n### MPC time horizon:       " << mpcSettings_.timeHorizon_ << " [s].\n";
+    std::cerr << std::fixed << "\n### MPC is called at time:  " << currentTime << " [s].";
+    std::cerr << std::fixed << "\n### MPC final Time:         " << finalTime<< " [s].";
+    std::cerr << std::fixed << "\n### MPC time horizon:       " << mpcSettings_.timeHorizon_ << " [s].\n";
     mpcTimer_.startTimer();
   }
 

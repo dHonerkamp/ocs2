@@ -104,10 +104,10 @@ void MRT_ROS_Dummy_Loop::run(const SystemObservation& initObservation, const Tar
           mrt_.spinMRT();
         }
       }
-      std::cout << "<<< Message received at " << time << "\n";
+      std::cout << std::fixed << "<<< Message received at " << time << "\n";
     }
 
-    std::cout << "### Current time " << time << "\n";
+    std::cout << std::fixed << "### Current time " << time << "\n";
 
     // integrate nominal dynamics if available, otherwise fake simulation
     vector_t stateTemp = observation_.state;
