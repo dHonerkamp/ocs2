@@ -222,69 +222,75 @@
 <!--    <child link="torso_lift_motor_screw_link"/>-->
 <!--    <dynamics damping="0.0001"/>-->
 <!--  </joint>-->
-<!--  <joint name="head_pan_joint" type="revolute">-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.645" lower="-3.007" upper="3.007" velocity="6"/>-->
-<!--    &lt;!&ndash; alpha tested velocity and effort limits &ndash;&gt;-->
-<!--    <safety_controller k_position="100" k_velocity="1.5" soft_lower_limit="-2.857" soft_upper_limit="2.857"/>-->
-<!--    <calibration rising="0.0"/>-->
-<!--    <dynamics damping="0.5"/>-->
-<!--    <origin rpy="0.0 0.0 0.0" xyz="-0.01707 0.0 0.38145"/>-->
-<!--    <parent link="torso_lift_link"/>-->
-<!--    <child link="head_pan_link"/>-->
-<!--  </joint>-->
-<!--  <link name="head_pan_link">-->
-<!--    <inertial>-->
-<!--      <mass value="6.339"/>-->
-<!--      &lt;!&ndash; mass/cog/moi updated per 100505_link_data.xls &ndash;&gt;-->
-<!--      <origin rpy="0 0 0" xyz="0.010907 0.031693 0.090507"/>-->
-<!--      <inertia ixx="0.032497592" ixy="0.00063604088" ixz="0.0025851534" iyy="0.046545627" iyz="-0.0024534295" izz="0.057652724"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0 " xyz="0 0 0.0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pr2_description/meshes/head_v0/head_pan.dae"/>-->
-<!--      </geometry>-->
-<!--      <material name="Blue"/>-->
-<!--    </visual>-->
+  <joint name="head_pan_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <limit effort="2.645" lower="-3.007" upper="3.007" velocity="6"/>
+    <!-- alpha tested velocity and effort limits -->
+    <safety_controller k_position="100" k_velocity="1.5" soft_lower_limit="-2.857" soft_upper_limit="2.857"/>
+    <calibration rising="0.0"/>
+    <dynamics damping="0.5"/>
+    <origin rpy="0.0 0.0 0.0" xyz="-0.01707 0.0 0.38145"/>
+    <parent link="torso_lift_link"/>
+    <child link="head_pan_link"/>
+  </joint>
+  <link name="head_pan_link">
+    <inertial>
+      <mass value="6.339"/>
+      <!-- mass/cog/moi updated per 100505_link_data.xls -->
+      <origin rpy="0 0 0" xyz="0.010907 0.031693 0.090507"/>
+      <inertia ixx="0.032497592" ixy="0.00063604088" ixz="0.0025851534" iyy="0.046545627" iyz="-0.0024534295" izz="0.057652724"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0 " xyz="0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://pr2_description/meshes/head_v0/head_pan.dae"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
 <!--    <collision>-->
 <!--      <geometry>-->
 <!--        <mesh filename="package://pr2_description/meshes/head_v0/head_pan_L.stl"/>-->
 <!--      </geometry>-->
 <!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="head_tilt_joint" type="revolute">-->
-<!--    <axis xyz="0 1 0"/>-->
-<!--    <limit effort="18" lower="-0.471238" upper="1.39626" velocity="5"/>-->
-<!--    &lt;!&ndash; alpha tested velocity and effort limits &ndash;&gt;-->
-<!--    <safety_controller k_position="100" k_velocity="3.0" soft_lower_limit="-0.3712" soft_upper_limit="1.29626"/>-->
-<!--    <calibration falling="0.0"/>-->
-<!--    <dynamics damping="10.0"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.068 0 0"/>-->
-<!--    <parent link="head_pan_link"/>-->
-<!--    <child link="head_tilt_link"/>-->
-<!--  </joint>-->
-<!--  <link name="head_tilt_link">-->
-<!--    <inertial>-->
-<!--      <mass value="4.479"/>-->
-<!--      &lt;!&ndash; mass/cog/moi updated per 100505_link_data.xls &ndash;&gt;-->
-<!--      <origin rpy="0 0 0" xyz="0.001716 -0.019556 0.055002"/>-->
-<!--      <inertia ixx="0.024223222" ixy="0.00062063507" ixz="-0.000096909696" iyy="0.054723086" iyz="0.00279702400" izz="0.067306377"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pr2_description/meshes/head_v0/head_tilt.dae"/>-->
-<!--      </geometry>-->
-<!--      <material name="Green"/>-->
-<!--    </visual>-->
+  </link>
+  <joint name="head_tilt_joint" type="fixed">
+    <axis xyz="0 1 0"/>
+    <limit effort="18" lower="-0.471238" upper="1.39626" velocity="5"/>
+    <!-- alpha tested velocity and effort limits -->
+    <safety_controller k_position="100" k_velocity="3.0" soft_lower_limit="-0.3712" soft_upper_limit="1.29626"/>
+    <calibration falling="0.0"/>
+    <dynamics damping="10.0"/>
+    <origin rpy="0 0 0" xyz="0.068 0 0"/>
+    <parent link="head_pan_link"/>
+    <child link="head_tilt_link"/>
+  </joint>
+  <link name="head_tilt_link">
+    <inertial>
+      <mass value="4.479"/>
+      <!-- mass/cog/moi updated per 100505_link_data.xls -->
+      <origin rpy="0 0 0" xyz="0.001716 -0.019556 0.055002"/>
+      <inertia ixx="0.024223222" ixy="0.00062063507" ixz="-0.000096909696" iyy="0.054723086" iyz="0.00279702400" izz="0.067306377"/>
+    </inertial>
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pr2_description/meshes/head_v0/head_tilt.dae"/>
+      </geometry>
+      <material name="Green"/>
+    </visual>
 <!--    <collision>-->
 <!--      <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>-->
 <!--      <geometry>-->
 <!--        <mesh filename="package://pr2_description/meshes/head_v0/head_tilt_L.stl"/>-->
 <!--      </geometry>-->
 <!--    </collision>-->
-<!--  </link>-->
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.05 0 0.05"/>
+      <geometry>
+        <box size="0.27 0.28 0.27"/>
+      </geometry>
+    </collision>
+  </link>
 <!--  &lt;!&ndash; Head plate frame &ndash;&gt;-->
 <!--  <joint name="head_plate_frame_joint" type="fixed">-->
 <!--    <origin rpy="0 0 0" xyz="0.0232 0 0.0645"/>-->
@@ -338,12 +344,12 @@
       </geometry>
       <material name="Blue"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
-      <geometry>
-        <mesh filename="package://pr2_description/meshes/shoulder_v0/shoulder_pan.stl"/>
-      </geometry>
-    </collision>
+<!--    <collision>-->
+<!--      <origin rpy="0 0 0" xyz="0.0 0 0.0"/>-->
+<!--      <geometry>-->
+<!--        <mesh filename="package://pr2_description/meshes/shoulder_v0/shoulder_pan.stl"/>-->
+<!--      </geometry>-->
+<!--    </collision>-->
   </link>
   <!-- Shoulder lift -->
   <joint name="r_shoulder_lift_joint" type="revolute">
@@ -371,12 +377,12 @@
       </geometry>
       <material name="Grey"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://pr2_description/meshes/shoulder_v0/shoulder_lift.stl"/>
-      </geometry>
-    </collision>
+<!--    <collision>-->
+<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--      <geometry>-->
+<!--        <mesh filename="package://pr2_description/meshes/shoulder_v0/shoulder_lift.stl"/>-->
+<!--      </geometry>-->
+<!--    </collision>-->
   </link>
   <joint name="r_upper_arm_roll_joint" type="revolute">
     <axis xyz="1 0 0"/>
@@ -404,12 +410,12 @@
       </geometry>
       <material name="RollLinks"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://pr2_description/meshes/shoulder_v0/upper_arm_roll_L.stl"/>
-      </geometry>
-    </collision>
+<!--    <collision>-->
+<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--      <geometry>-->
+<!--        <mesh filename="package://pr2_description/meshes/shoulder_v0/upper_arm_roll_L.stl"/>-->
+<!--      </geometry>-->
+<!--    </collision>-->
   </link>
   <joint name="r_upper_arm_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -430,12 +436,12 @@
       </geometry>
       <material name="Green"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://pr2_description/meshes/upper_arm_v0/upper_arm.stl"/>
-      </geometry>
-    </collision>
+<!--    <collision>-->
+<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--      <geometry>-->
+<!--        <mesh filename="package://pr2_description/meshes/upper_arm_v0/upper_arm.stl"/>-->
+<!--      </geometry>-->
+<!--    </collision>-->
   </link>
 <!--  <gazebo reference="r_upper_arm_link">-->
 <!--    <turnGravityOff>true</turnGravityOff>-->
@@ -470,12 +476,12 @@
       <material name="RollLinks"/>
     </visual>
     <!-- TODO: collision tag should be optional -->
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://pr2_description/meshes/upper_arm_v0/forearm_roll_L.stl"/>
-      </geometry>
-    </collision>
+<!--    <collision>-->
+<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--      <geometry>-->
+<!--        <mesh filename="package://pr2_description/meshes/upper_arm_v0/forearm_roll_L.stl"/>-->
+<!--      </geometry>-->
+<!--    </collision>-->
   </link>
   <!-- Elbow flex -->
   <joint name="r_elbow_flex_joint" type="revolute">
@@ -503,12 +509,12 @@
       </geometry>
       <material name="Grey"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://pr2_description/meshes/upper_arm_v0/elbow_flex.stl"/>
-      </geometry>
-    </collision>
+<!--    <collision>-->
+<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--      <geometry>-->
+<!--        <mesh filename="package://pr2_description/meshes/upper_arm_v0/elbow_flex.stl"/>-->
+<!--      </geometry>-->
+<!--    </collision>-->
   </link>
   <joint name="r_forearm_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -529,10 +535,16 @@
       </geometry>
       <material name="Grey"/>
     </visual>
+<!--    <collision>-->
+<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--      <geometry>-->
+<!--        <mesh filename="package://pr2_description/meshes/forearm_v0/forearm.stl"/>-->
+<!--      </geometry>-->
+<!--    </collision>-->
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0.18 0 0"/>
       <geometry>
-        <mesh filename="package://pr2_description/meshes/forearm_v0/forearm.stl"/>
+        <box size="0.21 0.075 0.075"/>
       </geometry>
     </collision>
   </link>
@@ -561,15 +573,15 @@
       </geometry>
       <material name="Grey"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://pr2_description/meshes/forearm_v0/wrist_flex.stl"/>
-      </geometry>
-    </collision>
+<!--    <collision>-->
+<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--      <geometry>-->
+<!--        <mesh filename="package://pr2_description/meshes/forearm_v0/wrist_flex.stl"/>-->
+<!--      </geometry>-->
+<!--    </collision>-->
   </link>
   <!-- Wrist roll -->
-  <joint name="r_wrist_roll_joint" type="continuous">
+  <joint name="r_wrist_roll_joint" type="revolute">
     <axis xyz="1 0 0"/>
     <limit effort="10" velocity="3.6"/>
     <!-- alpha tested velocity and effort limits -->
@@ -594,10 +606,16 @@
       </geometry>
       <material name="RollLinks"/>
     </visual>
+<!--    <collision>-->
+<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--      <geometry>-->
+<!--        <mesh filename="package://pr2_description/meshes/forearm_v0/wrist_roll_L.stl"/>-->
+<!--      </geometry>-->
+<!--    </collision>-->
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://pr2_description/meshes/forearm_v0/wrist_roll_L.stl"/>
+        <box size="0.075 0.075 0.065"/>
       </geometry>
     </collision>
   </link>
@@ -626,9 +644,9 @@
 <!--      </geometry>-->
 <!--    </collision>-->
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0.08 0 0"/>
       <geometry>
-        <box size="0.1 0.1 0.1"/>
+        <box size="0.08 0.095 0.065"/>
       </geometry>
     </collision>
   </link>
@@ -727,74 +745,74 @@
 <!--    <dynamics damping="0.0001"/>-->
 <!--  </joint>-->
   <!-- Finger proximal digit -->
-<!--  <joint name="r_gripper_l_finger_joint" type="revolute">-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    &lt;!&ndash; limits on passive finger and finger top joints without-->
-<!--         transmission are not enforced by safety controllers.-->
-<!--         The lower/upper limits and are enforced in PR2 simulation and-->
-<!--         effort and velocity limits are ignored. This is also needed because-->
-<!--         these joints are declared revolute rather than continuous.&ndash;&gt;-->
-<!--    <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>-->
-<!--    <dynamics damping="0.02"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.07691 0.01 0"/>-->
-<!--    <parent link="r_gripper_palm_link"/>-->
-<!--    <child link="r_gripper_l_finger_link"/>-->
-<!--  </joint>-->
-<!--  <link name="r_gripper_l_finger_link">-->
-<!--    <inertial>-->
-<!--      <mass value="0.17126"/>-->
-<!--      <origin rpy="0 0 0" xyz="0.03598 0.01730 -0.00164"/>-->
-<!--      <inertia ixx="0.00007756198" ixy="0.00000149095" ixz="-0.00000983385" iyy="0.00019708305" iyz="-0.00000306125" izz="0.00018105446"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pr2_description/meshes/gripper_v0/l_finger.dae"/>-->
-<!--      </geometry>-->
-<!--      <material name="Grey"/>-->
-<!--    </visual>-->
+  <joint name="r_gripper_l_finger_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <!-- limits on passive finger and finger top joints without
+         transmission are not enforced by safety controllers.
+         The lower/upper limits and are enforced in PR2 simulation and
+         effort and velocity limits are ignored. This is also needed because
+         these joints are declared revolute rather than continuous.-->
+    <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
+    <dynamics damping="0.02"/>
+    <origin rpy="0 0 0" xyz="0.07691 0.01 0"/>
+    <parent link="r_gripper_palm_link"/>
+    <child link="r_gripper_l_finger_link"/>
+  </joint>
+  <link name="r_gripper_l_finger_link">
+    <inertial>
+      <mass value="0.17126"/>
+      <origin rpy="0 0 0" xyz="0.03598 0.01730 -0.00164"/>
+      <inertia ixx="0.00007756198" ixy="0.00000149095" ixz="-0.00000983385" iyy="0.00019708305" iyz="-0.00000306125" izz="0.00018105446"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pr2_description/meshes/gripper_v0/l_finger.dae"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
 <!--    <collision>-->
 <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
 <!--      <geometry>-->
 <!--        <mesh filename="package://pr2_description/meshes/gripper_v0/l_finger.stl"/>-->
 <!--      </geometry>-->
 <!--    </collision>-->
-<!--  </link>-->
-<!--  &lt;!&ndash; Finger proximal digit &ndash;&gt;-->
-<!--  <joint name="r_gripper_r_finger_joint" type="revolute">-->
-<!--    <axis xyz="0 0 -1"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.07691 -0.01 0"/>-->
-<!--    &lt;!&ndash; limits on passive finger and finger top joints without-->
-<!--         transmission are not enforced by safety controllers.-->
-<!--         The lower/upper limits and are enforced in PR2 simulation and-->
-<!--         effort and velocity limits are ignored. This is also needed because-->
-<!--         these joints are declared revolute rather than continuous.&ndash;&gt;-->
-<!--    <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>-->
-<!--    <dynamics damping="0.02"/>-->
-<!--    <mimic joint="r_gripper_l_finger_joint" multiplier="1" offset="0"/>-->
-<!--    <parent link="r_gripper_palm_link"/>-->
-<!--    <child link="r_gripper_r_finger_link"/>-->
-<!--  </joint>-->
-<!--  <link name="r_gripper_r_finger_link">-->
-<!--    <inertial>-->
-<!--      <mass value="0.17389"/>-->
-<!--      <origin rpy="0 0 0" xyz="0.03576 -0.01736 -0.00095"/>-->
-<!--      <inertia ixx="0.00007738410" ixy="-0.00000209309" ixz="-0.00000836228" iyy="0.00019847383" iyz="0.00000246110" izz="0.00018106988"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="3.14159265359 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pr2_description/meshes/gripper_v0/l_finger.dae"/>-->
-<!--      </geometry>-->
-<!--      <material name="Grey"/>-->
-<!--    </visual>-->
+  </link>
+  <!-- Finger proximal digit -->
+  <joint name="r_gripper_r_finger_joint" type="fixed">
+    <axis xyz="0 0 -1"/>
+    <origin rpy="0 0 0" xyz="0.07691 -0.01 0"/>
+    <!-- limits on passive finger and finger top joints without
+         transmission are not enforced by safety controllers.
+         The lower/upper limits and are enforced in PR2 simulation and
+         effort and velocity limits are ignored. This is also needed because
+         these joints are declared revolute rather than continuous.-->
+    <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
+    <dynamics damping="0.02"/>
+    <mimic joint="r_gripper_l_finger_joint" multiplier="1" offset="0"/>
+    <parent link="r_gripper_palm_link"/>
+    <child link="r_gripper_r_finger_link"/>
+  </joint>
+  <link name="r_gripper_r_finger_link">
+    <inertial>
+      <mass value="0.17389"/>
+      <origin rpy="0 0 0" xyz="0.03576 -0.01736 -0.00095"/>
+      <inertia ixx="0.00007738410" ixy="-0.00000209309" ixz="-0.00000836228" iyy="0.00019847383" iyz="0.00000246110" izz="0.00018106988"/>
+    </inertial>
+    <visual>
+      <origin rpy="3.14159265359 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pr2_description/meshes/gripper_v0/l_finger.dae"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
 <!--    <collision>-->
 <!--      <origin rpy="3.14159265359 0 0" xyz="0 0 0"/>-->
 <!--      <geometry>-->
 <!--        <mesh filename="package://pr2_description/meshes/gripper_v0/l_finger.stl"/>-->
 <!--      </geometry>-->
 <!--    </collision>-->
-<!--  </link>-->
+  </link>
 <!--  &lt;!&ndash; Finger tip &ndash;&gt;-->
 <!--  <joint name="r_gripper_l_finger_tip_joint" type="revolute">-->
 <!--    <axis xyz="0 0 -1"/>-->
