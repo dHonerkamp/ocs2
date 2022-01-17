@@ -158,6 +158,10 @@ selfCollision
     [0] "base_link, r_gripper_palm_link"
     [1] "torso_lift_link, r_gripper_palm_link"
     [2] "torso_lift_link, r_elbow_flex_link"
+    [3] "r_forearm_link, r_gripper_palm_link"
+    [4] "head_tilt_link, r_gripper_palm_link"
+    [5] "l_gripper_palm_link, r_gripper_palm_link"
+    [6] "l_forearm_link, r_gripper_palm_link"
   }
 
   ; minimum distance allowed between the pairs
