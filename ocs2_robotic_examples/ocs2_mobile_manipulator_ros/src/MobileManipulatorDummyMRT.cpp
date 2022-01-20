@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
   SystemObservation initObservation;
   initObservation.state = interface.getInitialState();
   initObservation.input.setZero(interface.getManipulatorModelInfo().inputDim);
-  initObservation.time = 0.0;
+  initObservation.time = ros::Time::now().toSec();
 
   // initial command
   vector_t initTarget(7);
