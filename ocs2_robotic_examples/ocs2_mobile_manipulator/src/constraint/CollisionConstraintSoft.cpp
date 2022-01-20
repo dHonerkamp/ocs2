@@ -95,7 +95,6 @@ vector_t CollisionConstraintSoft::getValue(scalar_t time, const vector_t& state,
   scalar_t current_x = state(0);
   scalar_t current_y = state(1);
 
-//  scalar_t signed_distance = (current_x > 0.0 && current_y > 0.0) ? std::sqrt(std::pow(current_x + current_y, 2)) : 0.0;
   vector_t value_and_gradient = getSdfValueAndGradients(current_x, current_y);
   scalar_t signed_distance = value_and_gradient(0);
 
@@ -112,25 +111,12 @@ vector_t CollisionConstraintSoft::getValue(scalar_t time, const vector_t& state,
 VectorFunctionLinearApproximation CollisionConstraintSoft::getLinearApproximation(scalar_t time, const vector_t& state,
                                                                            const PreComputation& preComputation) const {
   VectorFunctionLinearApproximation limits(getNumConstraints(time), state.rows(), 0);
-//  limits.f = getValue(time, state, preComputation);
-//  std::cout << "limits.f: " << limits.f << std::endl;
 
-//  scalar_t dsdf_dx = 1.0;
-//  scalar_t dsdf_dy = 0.0;
   scalar_t current_x = state(0);
   scalar_t current_y = state(1);
   vector_t value_and_gradient = getSdfValueAndGradients(current_x, current_y);
 
   limits.f(0) = value_and_gradient(0) - radius_;
-
-//  scalar_t dsdf_dx = value_and_gradient(1);
-//  scalar_t dsdf_dy = value_and_gradient(2);
-//
-//  scalar_t dx_dx = 1.0;
-//  scalar_t dy_dy = 1.0;
-//
-//  scalar_t dfdx = dsdf_dx * dx_dx;
-//  scalar_t dfdy = dsdf_dy * dy_dy;
 
   limits.dfdx.setZero();
   limits.dfdx(0, 0) = value_and_gradient(1);
@@ -147,18 +133,10 @@ vector_t CollisionConstraintSoft::getSdfValueAndGradients(const scalar_t &x, con
   values(1) = - (0.01 * sdf_dx_.getCost(x, y) - 0.5) * 0.05;
   values(2) = - (0.01 * sdf_dy_.getCost(x, y) - 0.5) * 0.05;
 
-
+  // TODO: not sure actually needed now
   scalar_t x_rounded = std::round((x - sdf_.origin_x_) / sdf_.resolution_) * sdf_.resolution_ + sdf_.origin_x_;
   scalar_t y_rounded = std::round((y - sdf_.origin_y_) / sdf_.resolution_) * sdf_.resolution_ + sdf_.origin_y_;
-
-
-
-//  scalar_t x_rounded = sdf_.resolution_ * std::round(x / sdf_.resolution_);
-//  scalar_t y_rounded = sdf_.resolution_ * std::round(y / sdf_.resolution_);
-//  std::cout<< "Rounded: " << x << ", " << x_rounded << ", " << (x - x_rounded) << std::endl;
-
   scalar_t sdf_interp = values(0) + (x - x_rounded) * values(1) + (y - y_rounded) * values(2);
-//  std::cout<< "x: " << x << ", x_rounded: " << x_rounded << ", sdf: " << values(0) << ", sdf_interp: " << sdf_interp << ", h: " << sdf_interp - radius_ << ", dx:" << values(1) << ", dy: " << values(2) << std::endl;
   values(0) = sdf_interp;
 
   return values;
