@@ -70,7 +70,7 @@ rollout
 ; MPC settings
 mpc
 {
-  timeHorizon                    1.0
+  timeHorizon                    4.0
   numPartitions                  4
 
   runtimeMaxNumIterations        1
@@ -88,7 +88,7 @@ mpc
 
   solutionTimeWindow             0.2   ; [s]
 
-  mpcDesiredFrequency            100   ; [Hz]
+  mpcDesiredFrequency            30   ; [Hz]
   mrtDesiredFrequency            400   ; [Hz]
 }
 
@@ -174,6 +174,15 @@ selfCollision
   delta  1e-3
 }
 
+collisionSoft
+{
+  ; collision avoidance squared hinge penalty
+  activate  true
+  mu  2000
+  delta 1e-3
+  radius 0.46 ; half diagonal of square with side length 0.65
+}
+
 jointVelocityLimits
 {
   lowerBound
@@ -193,17 +202,17 @@ jointVelocityLimits
 
   upperBound
   {
-    (0,0) 0.5  ; x velocity
-    (1,0) 0.5  ; y velocity
-    (2,0) 0.5  ; angular velocity
+    (0,0) 0.5    ; x velocity
+    (1,0) 0.5    ; y velocity
+    (2,0) 0.5    ; angular velocity
     (3,0) 0.013  ; torso_lift_joint
-    (4,0) 1.0  ; r_shoulder_pan_joint
-    (5,0) 1.0  ; r_shoulder_lift_joint
-    (6,0) 1.0  ; r_upper_arm_roll_joint
-    (7,0) 1.0  ; r_elbow_flex_joint
-    (8,0) 1.0  ; r_forearm_roll_joint
-    (9,0) 1.0  ; r_wrist_flex_joint
-    (10,0) 1.0 ; r_wrist_roll_joint
+    (4,0) 1.0    ; r_shoulder_pan_joint
+    (5,0) 1.0    ; r_shoulder_lift_joint
+    (6,0) 1.0    ; r_upper_arm_roll_joint
+    (7,0) 1.0    ; r_elbow_flex_joint
+    (8,0) 1.0    ; r_forearm_roll_joint
+    (9,0) 1.0    ; r_wrist_flex_joint
+    (10,0) 1.0   ; r_wrist_roll_joint
   }
 
   ; relaxed log barrier mu
@@ -215,6 +224,7 @@ jointVelocityLimits
 
 jointValueLimits
 {
+  activate  true
   lowerBound
   {
     (0,0) -1000.0  ; x

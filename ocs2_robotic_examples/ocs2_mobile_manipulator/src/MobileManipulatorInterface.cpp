@@ -43,6 +43,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <ocs2_core/soft_constraint/penalties/DoubleSidedPenalty.h>
 #include <ocs2_core/soft_constraint/penalties/QuadraticPenalty.h>
 #include <ocs2_core/soft_constraint/penalties/RelaxedBarrierPenalty.h>
+#include <ocs2_core/soft_constraint/penalties/SquaredHingePenalty.h>
 #include <ocs2_oc/synchronized_module/ReferenceManager.h>
 #include <ocs2_pinocchio_interface/PinocchioEndEffectorKinematics.h>
 #include <ocs2_pinocchio_interface/PinocchioEndEffectorKinematicsCppAd.h>
@@ -56,6 +57,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ocs2_mobile_manipulator/constraint/EndEffectorConstraint.h"
 #include "ocs2_mobile_manipulator/constraint/JointVelocityLimits.h"
 #include "ocs2_mobile_manipulator/constraint/JointValueLimits.h"
+#include "ocs2_mobile_manipulator/constraint/CollisionConstraintSoft.h"
 #include "ocs2_mobile_manipulator/constraint/MobileManipulatorSelfCollisionConstraint.h"
 #include "ocs2_mobile_manipulator/cost/QuadraticInputCost.h"
 #include "ocs2_mobile_manipulator/dynamics/DefaultManipulatorDynamics.h"
@@ -156,10 +158,17 @@ MobileManipulatorInterface::MobileManipulatorInterface(const std::string& taskFi
   // input limits constraint
   problem_.softConstraintPtr->add("jointVelocityLimit", getJointVelocityLimitConstraint(taskFile));
   // only add this for the pr2
-  if (baseFrame == "base_link") {
+  bool activateJointValueLimits = true;
+  loadData::loadPtreeValue(pt, activateJointValueLimits, "jointValueLimits.activate", false);
+  if (activateJointValueLimits) {
     problem_.stateSoftConstraintPtr->add("jointValueLimit", getJointValueLimitConstraint(taskFile));
   }
 
+  bool activateCollision = true;
+  loadData::loadPtreeValue(pt, activateCollision, "collisionSoft.activate", false);
+  if (activateCollision) {
+    problem_.stateSoftConstraintPtr->add("collisionConstraintSoft", getCollisionConstraintSoft(taskFile));
+  }
   // end-effector state constraint
   problem_.stateSoftConstraintPtr->add("endEffector", getEndEffectorConstraint(*pinocchioInterfacePtr_, taskFile, "endEffector",
                                                                                usePreComputation, libraryFolder, recompileLibraries));
@@ -381,5 +390,27 @@ std::unique_ptr<StateCost> MobileManipulatorInterface::getJointValueLimitConstra
   return std::unique_ptr<StateCost>(new StateSoftConstraint(std::move(constraint), std::move(penaltyArray)));
 }
 
+std::unique_ptr<StateCost> MobileManipulatorInterface::getCollisionConstraintSoft(const std::string& taskFile) {
+  scalar_t mu = 500.0;
+  scalar_t delta = 1.0e-3;
+  scalar_t radius = 0.0;
+  scalar_t num_constraints = 1;
+
+  boost::property_tree::ptree pt;
+  boost::property_tree::read_info(taskFile, pt);
+  const std::string prefix = "collisionSoft.";
+  std::cerr << "\n #### collisionSoft Settings: ";
+  std::cerr << "\n #### =============================================================================\n";
+  loadData::loadPtreeValue(pt, mu, prefix + "mu", true);
+  loadData::loadPtreeValue(pt, delta, prefix + "delta", true);
+  loadData::loadPtreeValue(pt, radius, prefix + "radius", true);
+  std::cerr << " #### =============================================================================\n";
+
+
+  std::unique_ptr<StateConstraint> constraint(new CollisionConstraintSoft(radius));
+  std::unique_ptr<PenaltyBase> penalty(new SquaredHingePenalty({mu, delta}));
+
+  return  std::unique_ptr<StateCost>(new StateSoftConstraint(std::move(constraint), std::move(penalty)));
+}
 }  // namespace mobile_manipulator
 }  // namespace ocs2
