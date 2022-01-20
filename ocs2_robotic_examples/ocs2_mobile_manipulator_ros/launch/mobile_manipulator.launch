@@ -3,26 +3,53 @@
       <arg name="rviz" default="true" />
       <!-- Set nodes on debug mode -->
       <arg name="debug" default="false" />
+      <arg name="robot" />
 
-      <!-- The URDF model of the robot -->
-<!--      <arg name="urdfFile" default="$(find ocs2_robotic_assets)/resources/mobile_manipulator/urdf/mobile_manipulator.urdf" />-->
-      <arg name="urdfFile" default="$(find ocs2_robotic_assets)/resources/pr2/urdf/pr2.urdf" />
-      <!-- The task file for the mpc. -->
-<!--      <arg name="taskFile" default="$(find ocs2_mobile_manipulator)/config/mpc/task.info" />-->
-      <arg name="taskFile" default="$(find ocs2_mobile_manipulator)/config/mpc/task_pr2.info" />
+      <group if="$(eval robot == 'orig')">
+            <!-- The URDF model of the robot -->
+            <arg name="urdfFile" default="$(find ocs2_robotic_assets)/resources/mobile_manipulator/urdf/mobile_manipulator.urdf" />
+            <!-- The task file for the mpc. -->
+            <arg name="taskFile" default="$(find ocs2_mobile_manipulator)/config/mpc/task.info" />
+            <param name="urdfFile" value="$(arg urdfFile)" />
+            <param name="taskFile" value="$(arg taskFile)" />
+
+            <group if="$(arg rviz)">
+                  <include file="$(find ocs2_mobile_manipulator_ros)/launch/visualize.launch">
+                        <arg name="urdf_file" value="$(arg urdfFile)" />
+                  </include>
+            </group>
+
+      </group>
+      <group if="$(eval robot == 'pr2')">
+            <arg name="urdfFile" default="$(find ocs2_robotic_assets)/resources/pr2/urdf/pr2.urdf" />
+            <arg name="taskFile" default="$(find ocs2_mobile_manipulator)/config/mpc/task_pr2.info" />
+            <param name="urdfFile" value="$(arg urdfFile)" />
+            <param name="taskFile" value="$(arg taskFile)" />
+            <group if="$(arg rviz)">
+                  <include file="$(find ocs2_mobile_manipulator_ros)/launch/visualize.launch">
+                        <arg name="urdf_file" value="$(arg urdfFile)" />
+                  </include>
+            </group>
+      </group>
+      <group if="$(eval robot == 'tiago')">
+            <arg name="urdfFile" default="$(find ocs2_robotic_assets)/resources/tiago/urdf/tiago.urdf" />
+            <arg name="taskFile" default="$(find ocs2_mobile_manipulator)/config/mpc/task_tiago.info" />
+            <param name="urdfFile" value="$(arg urdfFile)" />
+            <param name="taskFile" value="$(arg taskFile)" />
+            <group if="$(arg rviz)">
+                  <include file="$(find ocs2_mobile_manipulator_ros)/launch/visualize.launch">
+                        <arg name="urdf_file" value="$(arg urdfFile)" />
+                  </include>
+            </group>
+      </group>
       <!-- The library folder to generate CppAD codegen into -->
       <arg name="libFolder" default="$(find ocs2_mobile_manipulator)/auto_generated" />
 
       <!-- make the files into global parameters -->
-      <param name="urdfFile" value="$(arg urdfFile)" />
-      <param name="taskFile" value="$(arg taskFile)" />
+<!--      <param name="urdfFile" value="$(arg urdfFile)" />-->
+<!--      <param name="taskFile" value="$(arg taskFile)" />-->
       <param name="libFolder" value="$(arg libFolder)" />
 
-      <group if="$(arg rviz)">
-            <include file="$(find ocs2_mobile_manipulator_ros)/launch/visualize.launch">
-                  <arg name="urdf_file" value="$(arg urdfFile)" />
-            </include>
-      </group>
 
       <node if="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_mpc_node" name="mobile_manipulator_mpc_node" output="screen" launch-prefix="gnome-terminal -- gdb -ex run --args" />
       <node unless="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_mpc_node" name="mobile_manipulator_mpc_node" output="screen" launch-prefix="" />

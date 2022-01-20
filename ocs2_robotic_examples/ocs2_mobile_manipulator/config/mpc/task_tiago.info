@@ -1,0 +1,251 @@
+; robot model meta-information
+model_information {
+  manipulatorModelType     1      // 0: Default-arm, 1: Wheel-based manipulator, 2: Floating-arm manipulator
+  
+  ; motion joints in the URDF to consider fixed
+  removeJoints {
+  }
+
+  ; base frame of the robot (from URDF)
+  baseFrame                "base_link"
+  ; end-effector frame of the robot (from URDF)
+  eeFrame                  "arm_tool_link"
+}
+
+model_settings
+{
+  usePreComputation             true
+  recompileLibraries            true
+}
+
+; DDP settings
+ddp
+{
+  algorithm                     SLQ
+
+  nThreads                      3
+
+  maxNumIterations              10
+  minRelCost                    0.1
+  constraintTolerance           1e-3
+
+  displayInfo                   false
+  displayShortSummary           false
+  checkNumericalStability       false
+
+  AbsTolODE                     1e-5
+  RelTolODE                     1e-3
+  timeStep                      1e-3
+  maxNumStepsPerSecond          100000
+  backwardPassIntegratorType    ODE45
+
+  inequalityConstraintMu        100.0
+  inequalityConstraintDelta     1.1
+
+  preComputeRiccatiTerms        true
+  useNominalTimeForBackwardPass false
+
+  useFeedbackPolicy             false
+
+  strategy                      LINE_SEARCH
+  lineSearch
+  {
+    minStepLength                 1e-2
+    maxStepLength                 1.0
+    hessianCorrectionStrategy     DIAGONAL_SHIFT
+    hessianCorrectionMultiple     1e-3
+  }
+}
+
+; Rollout settings
+rollout
+{
+  AbsTolODE                     1e-5
+  RelTolODE                     1e-3
+  timeStep                      1e-2
+  maxNumStepsPerSecond          100000
+  checkNumericalStability       false
+}
+
+; MPC settings
+mpc
+{
+  timeHorizon                    4.0
+  numPartitions                  4
+
+  runtimeMaxNumIterations        1
+  initMaxNumIterations           10
+
+  runtimeMaxStepLength           1.0
+  runtimeMinStepLength           1e-2
+  initMaxStepLength              1.0
+  initMinStepLength              1e-2
+
+  debugPrint                     false
+  coldStart                      false
+
+  useParallelRiccatiSolver       true  ; use disjoint riccati solver in MP case and recedingHorizon fashion
+
+  solutionTimeWindow             0.2   ; [s]
+
+  mpcDesiredFrequency            30   ; [Hz]
+  mrtDesiredFrequency            400   ; [Hz]
+}
+
+; initial state
+initialState
+{
+  (0,0)  0.0  ; position x
+  (1,0)  0.0  ; position y
+  (2,0)  0.0  ; heading
+  (3,0)  0.19 ; torso_lift_joint
+  (4,0)  1.1  ; arm_1_joint
+  (5,0)  0.0  ; arm_2_joint
+  (6,0)  -1.0 ; arm_3_joint
+  (7,0)  2.0  ; arm_4_joint
+  (8,0)  1.2  ; arm_5_joint
+  (9,0)  0.0  ; arm_6_joint
+  (10,0)  0.0 ; arm_7_joint
+}
+
+inputCost
+{
+  ; control weight matrix
+  R
+  {
+    scaling 1e-2
+
+    (0,0)  5.0  ; forward velocity
+    (1,1)  5.0  ; turning velocity
+    (2,2)  1.0  ; torso_lift_joint velocity
+    (3,3)  1.0  ; arm_1_joint velocity
+    (4,4)  1.0  ; arm_2_joint velocity
+    (5,5)  1.0  ; arm_3_joint velocity
+    (6,6)  1.0  ; arm_4_joint velocity
+    (7,7)  1.0  ; arm_5_joint velocity
+    (8,8)  1.0  ; arm_6_joint velocity
+    (9,9)  1.0  ; arm_7_joint velocity
+  }
+}
+
+endEffector
+{
+  ; end effector quadratic penalty scaling
+  muPosition  10.0
+  muOrientation  5.0
+}
+
+finalEndEffector
+{
+  muPosition  10.0
+  muOrientation  5.0
+}
+
+selfCollision
+{ 
+  ; activate self-collision constraint
+  activate  false
+
+  ; Self Collision pairs
+  collisionLinkPairs
+  {
+    [0] "base_link, arm_tool_link"
+    [1] "torso_lift_link, arm_tool_link"
+  }
+
+  ; minimum distance allowed between the pairs
+  minimumDistance  0.1
+
+  ; relaxed log barrier mu
+  mu     1e-2
+
+  ; relaxed log barrier delta
+  delta  1e-3
+}
+
+collisionSoft
+{
+  ; collision avoidance squared hinge penalty
+  activate  false
+  mu  2000
+  delta 1e-3
+  radius 0.25 ; half diagonal of square with side length 0.65
+}
+
+jointVelocityLimits
+{
+  lowerBound
+  {
+    (0,0) -0.5   ; forward velocity
+    (1,0) -0.4   ; turning velocity
+    (2,0) -0.07  ; torso_lift_joint
+    (3,0) -2.7   ; arm_1_joint
+    (4,0) -3.66  ; arm_2_joint
+    (5,0) -4.58  ; arm_3_joint
+    (6,0) -4.58  ; arm_4_joint
+    (7,0) -1.95  ; arm_5_joint
+    (8,0) -1.76  ; arm_6_joint
+    (9,0) -1.76  ; arm_7_joint
+  }
+
+  upperBound
+  {
+    (0,0) 0.5    ; forward velocity
+    (1,0) 0.4    ; turning velocity
+    (2,0) 0.07   ; torso_lift_joint
+    (3,0) 2.7    ; arm_1_joint
+    (4,0) 3.66   ; arm_2_joint
+    (5,0) 4.58   ; arm_3_joint
+    (6,0) 4.58   ; arm_4_joint
+    (7,0) 1.95   ; arm_5_joint
+    (8,0) 1.76   ; arm_6_joint
+    (9,0) 1.76   ; arm_7_joint
+  }
+
+  ; relaxed log barrier mu
+  mu      0.01
+
+  ; relaxed log barrier delta
+  delta   1e-3
+}
+
+
+jointValueLimits
+{
+  activate  true
+  lowerBound
+  {
+    (0,0) -1000.0  ; x
+    (1,0) -1000.0  ; y
+    (2,0) -1000.0  ; theta
+    (3,0) 0.0      ; torso_lift_joint
+    (4,0) 0.07     ; arm_1_joint
+    (5,0) -1.5     ; arm_2_joint
+    (6,0) -3.46    ; arm_3_joint
+    (7,0) -0.32    ; arm_4_joint
+    (8,0) 2.07     ; arm_5_joint
+    (9,0) -1.39    ; arm_6_joint
+    (10,0) -2.07   ; arm_7_joint
+  }
+
+  upperBound
+  {
+    (0,0) 100.0  ; x
+    (1,0) 100.0  ; y
+    (2,0) 1000.0 ; theta
+    (3,0) 0.35   ; torso_lift_joint
+    (4,0) 2.68   ; arm_1_joint
+    (5,0) 1.02   ; arm_2_joint
+    (6,0) 1.5    ; arm_3_joint
+    (7,0) 2.29   ; arm_4_joint
+    (8,0) 2.07   ; arm_5_joint
+    (9,0) 1.39   ; arm_6_joint
+    (10,0) 1.24  ; arm_7_joint
+  }
+
+  ; relaxed log barrier mu
+  mu      0.01
+
+  ; relaxed log barrier delta
+  delta   1e-3
+}
