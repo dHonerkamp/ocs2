@@ -69,615 +69,577 @@
       <material name="Red"/>
     </collision>
   </link>
-  <gazebo reference="base_link">
-    <material>Gazebo/White</material>
-  </gazebo>
-<!--  &lt;!&ndash; Base footprint &ndash;&gt;-->
-<!--  <link name="base_footprint"/>-->
-<!--  <joint name="base_footprint_joint" type="fixed">-->
-<!--    <origin rpy="0 0 0" xyz="0 0 0.0985"/>-->
-<!--    <child link="base_link"/>-->
-<!--    <parent link="base_footprint"/>-->
-<!--  </joint>-->
-<!--  &lt;!&ndash; gazebo parameters are given here for base_link thru base_footprint &ndash;&gt;-->
-<!--  <gazebo reference="base_footprint">-->
-<!--    <kp>100000000.0</kp>-->
-<!--    <kd>10.0</kd>-->
-<!--    <mu1>0.1</mu1>-->
-<!--    <mu2>0.1</mu2>-->
-<!--    <fdir1>1 0 0</fdir1>-->
-<!--    <maxVel>10.0</maxVel>-->
-<!--    <minDepth>0.0005</minDepth>-->
-<!--    <laserRetro>0</laserRetro>-->
-<!--  </gazebo>-->
-<!--  <link name="base_cover_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.22414000000 0.00002000000 0.04681000000"/>-->
-<!--      <mass value="0.25821000000"/>-->
-<!--      <inertia ixx="0.00023719188" ixy="0.00000006119" ixz="-0.00000011799" iyy="0.00028335052" iyz="0.00000000774" izz="0.00038497063"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/base/base_ring.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Orange"/>-->
-<!--    </visual>-->
-<!--  </link>-->
-<!--  <joint name="cover_joint" type="fixed">-->
-<!--    <parent link="base_footprint"/>-->
-<!--    <child link="base_cover_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0 0 0.13"/>-->
-<!--  </joint>-->
-<!--  <gazebo reference="base_cover_link">-->
-<!--    <material>Gazebo/Orange</material>-->
-<!--  </gazebo>-->
-<!--  <link name="base_antenna_left_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <mass value="0.000001"/>-->
-<!--      <inertia ixx="0.00000002371" ixy="0.00000006119" ixz="0.00000001179" iyy="0.00000002833" iyz="0.00000000774" izz="0.00000003849"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/objects/antenna.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Black"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0.085"/>-->
-<!--      <geometry>-->
-<!--        <cylinder length="0.17" radius="0.005"/>-->
-<!--      </geometry>-->
-<!--      <material name="Black"/>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="base_antenna_left_joint" type="fixed">-->
-<!--    <parent link="base_link"/>-->
-<!--    <child link="base_antenna_left_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="-0.201 0.1062 0.195"/>-->
-<!--  </joint>-->
-<!--  <link name="base_antenna_right_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <mass value="0.000001"/>-->
-<!--      <inertia ixx="0.00000002371" ixy="0.00000006119" ixz="0.00000001179" iyy="0.00000002833" iyz="0.00000000774" izz="0.00000003849"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/objects/antenna.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Black"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0.085"/>-->
-<!--      <geometry>-->
-<!--        <cylinder length="0.17" radius="0.005"/>-->
-<!--      </geometry>-->
-<!--      <material name="Black"/>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="base_antenna_right_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="base_antenna_right_joint" type="fixed">-->
-<!--    <parent link="base_link"/>-->
-<!--    <child link="base_antenna_right_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="-0.201 -0.1062 0.195"/>-->
-<!--  </joint>-->
-<!--  <link name="base_imu_link">-->
-<!--    <inertial>-->
-<!--      <mass value="0.01"/>-->
-<!--      <origin xyz="0 0 0"/>-->
-<!--      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>-->
-<!--    </inertial>-->
-<!--    &lt;!&ndash;visual>-->
-<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--        <geometry>-->
-<!--          <box size="0.01 0.01 0.01"/>-->
-<!--        </geometry>-->
-<!--      </visual&ndash;&gt;-->
-<!--  </link>-->
-<!--  <joint name="base_imu_joint" type="fixed">-->
-<!--    <parent link="base_link"/>-->
-<!--    <child link="base_imu_link"/>-->
-<!--    <origin rpy="0 0 -1.57079632679" xyz="0.10171 0 0.11282"/>-->
-<!--  </joint>-->
-<!--  <gazebo reference="base_imu_link">-->
-<!--    <sensor name="base_imu_sensor" type="imu">-->
-<!--      <always_on>1</always_on>-->
-<!--      <update_rate>100.0</update_rate>-->
-<!--      <imu>-->
-<!--        <noise>-->
-<!--          <type>gaussian</type>-->
-<!--          <rate>-->
-<!--            <mean>0.0</mean>-->
-<!--            <stddev>2e-4</stddev>-->
-<!--            <bias_mean>0.0000075</bias_mean>-->
-<!--            <bias_stddev>0.0000008</bias_stddev>-->
-<!--          </rate>-->
-<!--          <accel>-->
-<!--            <mean>0.0</mean>-->
-<!--            <stddev>1.7e-2</stddev>-->
-<!--            <bias_mean>0.1</bias_mean>-->
-<!--            <bias_stddev>0.001</bias_stddev>-->
-<!--          </accel>-->
-<!--        </noise>-->
-<!--      </imu>-->
-<!--    </sensor>-->
-<!--  </gazebo>-->
-<!--  <link name="wheel_right_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 -0.00207"/>-->
-<!--      <mass value="1.82362"/>-->
-<!--      <inertia ixx="0.00499743171" ixy="4.464e-08" ixz="-0.00000002245" iyy="0.00499741733" iyz="-1.64e-09" izz="0.00839239692"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="-0.0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/wheels/wheel.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <sphere radius="0.0985"/>-->
-<!--        &lt;!&ndash; length="${width}"/> &ndash;&gt;-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <link name="suspension_right_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 -0.02"/>-->
-<!--      <mass value="10"/>-->
-<!--      <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>-->
-<!--    </inertial>-->
-<!--    <kinematic>0</kinematic>-->
-<!--    <gravity>1</gravity>-->
-<!--  </link>-->
-<!--  <joint name="suspension_right_joint" type="prismatic">-->
-<!--    <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="100.0" lower="-0.005" upper="0.005" velocity="1.0"/>-->
-<!--    <child link="suspension_right_link"/>-->
-<!--    <parent link="base_link"/>-->
-<!--    <calibration rising="0.0"/>-->
-<!--    <dynamics damping="100"/>-->
-<!--    <safety_controller k_position="0" k_velocity="10" soft_lower_limit="-0.005" soft_upper_limit="0.005"/>-->
-<!--  </joint>-->
-<!--  <joint name="wheel_right_joint" type="continuous">-->
-<!--    <parent link="suspension_right_link"/>-->
-<!--    <child link="wheel_right_link"/>-->
-<!--    <origin rpy="-1.57079632679 0 0" xyz="0 -0.2022 0.0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="6.0" velocity="10.152284264"/>-->
-<!--  </joint>-->
-<!--  <transmission name="wheel_right_trans">-->
-<!--    <type>transmission_interface/SimpleTransmission</type>-->
-<!--    <actuator name="wheel_right_motor">-->
-<!--      <mechanicalReduction>1.0</mechanicalReduction>-->
-<!--    </actuator>-->
-<!--    <joint name="wheel_right_joint">-->
-<!--      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>-->
-<!--      <hardwareInterface>hardware_interface/JointStateInterface</hardwareInterface>-->
-<!--    </joint>-->
-<!--  </transmission>-->
-<!--  &lt;!&ndash; Contact model for the wheel surface &ndash;&gt;-->
-<!--  <gazebo reference="wheel_right_link">-->
-<!--    <kp>1000000.0</kp>-->
-<!--    <kd>100.0</kd>-->
-<!--    &lt;!&ndash;-->
-<!--      <mu1>10.0</mu1>-->
-<!--      <mu2>10.0</mu2>-->
-<!--      &ndash;&gt;-->
-<!--    <mu1>100000000000000.0</mu1>-->
-<!--    <mu2>100000000000000.0</mu2>-->
-<!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-<!--    <maxVel>1.0</maxVel>-->
-<!--    <minDepth>0.002</minDepth>-->
-<!--    <material>Gazebo/DarkGrey</material>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="wheel_{side}_joint">-->
-<!--    <implicitSpringDamper>1</implicitSpringDamper>-->
-<!--  </gazebo>-->
-<!--  <link name="wheel_left_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0.00207"/>-->
-<!--      <mass value="1.82362"/>-->
-<!--      <inertia ixx="0.00499743171" ixy="-4.464e-08" ixz="-0.00000002245" iyy="0.00499741733" iyz="1.64e-09" izz="0.00839239692"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="-3.14159265359 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/wheels/wheel.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <sphere radius="0.0985"/>-->
-<!--        &lt;!&ndash; length="${width}"/> &ndash;&gt;-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <link name="suspension_left_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 -0.02"/>-->
-<!--      <mass value="10"/>-->
-<!--      <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>-->
-<!--    </inertial>-->
-<!--    <kinematic>0</kinematic>-->
-<!--    <gravity>1</gravity>-->
-<!--  </link>-->
-<!--  <joint name="suspension_left_joint" type="prismatic">-->
-<!--    <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="100.0" lower="-0.005" upper="0.005" velocity="1.0"/>-->
-<!--    <child link="suspension_left_link"/>-->
-<!--    <parent link="base_link"/>-->
-<!--    <calibration rising="0.0"/>-->
-<!--    <dynamics damping="100"/>-->
-<!--    <safety_controller k_position="0" k_velocity="10" soft_lower_limit="-0.005" soft_upper_limit="0.005"/>-->
-<!--  </joint>-->
-<!--  <joint name="wheel_left_joint" type="continuous">-->
-<!--    <parent link="suspension_left_link"/>-->
-<!--    <child link="wheel_left_link"/>-->
-<!--    <origin rpy="-1.57079632679 0 0" xyz="0 0.2022 0.0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="6.0" velocity="10.152284264"/>-->
-<!--  </joint>-->
-<!--  <transmission name="wheel_left_trans">-->
-<!--    <type>transmission_interface/SimpleTransmission</type>-->
-<!--    <actuator name="wheel_left_motor">-->
-<!--      <mechanicalReduction>1.0</mechanicalReduction>-->
-<!--    </actuator>-->
-<!--    <joint name="wheel_left_joint">-->
-<!--      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>-->
-<!--      <hardwareInterface>hardware_interface/JointStateInterface</hardwareInterface>-->
-<!--    </joint>-->
-<!--  </transmission>-->
-<!--  &lt;!&ndash; Contact model for the wheel surface &ndash;&gt;-->
-<!--  <gazebo reference="wheel_left_link">-->
-<!--    <kp>1000000.0</kp>-->
-<!--    <kd>100.0</kd>-->
-<!--    &lt;!&ndash;-->
-<!--      <mu1>10.0</mu1>-->
-<!--      <mu2>10.0</mu2>-->
-<!--      &ndash;&gt;-->
-<!--    <mu1>100000000000000.0</mu1>-->
-<!--    <mu2>100000000000000.0</mu2>-->
-<!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-<!--    <maxVel>1.0</maxVel>-->
-<!--    <minDepth>0.002</minDepth>-->
-<!--    <material>Gazebo/DarkGrey</material>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="wheel_{side}_joint">-->
-<!--    <implicitSpringDamper>1</implicitSpringDamper>-->
-<!--  </gazebo>-->
-<!--  <link name="caster_front_right_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
-<!--      <mass value="0.05144761"/>-->
-<!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Grey"/>-->
-<!--    </visual>-->
-<!--    &lt;!&ndash;collision>-->
-<!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
-<!--        <geometry>-->
-<!--          <cylinder radius="${radius}" length="${width}"/>-->
-<!--        </geometry>-->
-<!--      </collision&ndash;&gt;-->
-<!--  </link>-->
-<!--  <link name="caster_front_right_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <mass value="0.08855784"/>-->
-<!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <sphere radius="0.025"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="caster_front_right_1_joint" type="continuous">-->
-<!--    <parent link="base_link"/>-->
-<!--    <child link="caster_front_right_1_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.1695 -0.102 -0.0335"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <dynamics damping="0.005" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <joint name="caster_front_right_2_joint" type="continuous">-->
-<!--    <parent link="caster_front_right_1_link"/>-->
-<!--    <child link="caster_front_right_2_link"/>-->
-<!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--  </joint>-->
-<!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
-<!--  <gazebo reference="caster_front_right_1_link">-->
-<!--    <kp>100000000.0</kp>-->
-<!--    <kd>10.0</kd>-->
-<!--    <mu1>0.1</mu1>-->
-<!--    <mu2>0.1</mu2>-->
-<!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-<!--    <maxVel>10.0</maxVel>-->
-<!--    <minDepth>0.0005</minDepth>-->
-<!--    <material>Gazebo/DarkGrey</material>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_front_right_2_link">-->
-<!--    <kp>10000000.0</kp>-->
-<!--    <kd>10.0</kd>-->
-<!--    <mu1>0.1</mu1>-->
-<!--    <mu2>0.1</mu2>-->
-<!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-<!--    <maxVel>10.0</maxVel>-->
-<!--    <minDepth>0.0005</minDepth>-->
-<!--    <material>Gazebo/DarkGrey</material>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_{side}_1_joint">-->
-<!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_{side}_2_joint">-->
-<!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-<!--  </gazebo>-->
-<!--  <link name="caster_front_left_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
-<!--      <mass value="0.05144761"/>-->
-<!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Grey"/>-->
-<!--    </visual>-->
-<!--    &lt;!&ndash;collision>-->
-<!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
-<!--        <geometry>-->
-<!--          <cylinder radius="${radius}" length="${width}"/>-->
-<!--        </geometry>-->
-<!--      </collision&ndash;&gt;-->
-<!--  </link>-->
-<!--  <link name="caster_front_left_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <mass value="0.08855784"/>-->
-<!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <sphere radius="0.025"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="caster_front_left_1_joint" type="continuous">-->
-<!--    <parent link="base_link"/>-->
-<!--    <child link="caster_front_left_1_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.1695 0.102 -0.0335"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <dynamics damping="0.005" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <joint name="caster_front_left_2_joint" type="continuous">-->
-<!--    <parent link="caster_front_left_1_link"/>-->
-<!--    <child link="caster_front_left_2_link"/>-->
-<!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--  </joint>-->
-<!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
-<!--  <gazebo reference="caster_front_left_1_link">-->
-<!--    <kp>100000000.0</kp>-->
-<!--    <kd>10.0</kd>-->
-<!--    <mu1>0.1</mu1>-->
-<!--    <mu2>0.1</mu2>-->
-<!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-<!--    <maxVel>10.0</maxVel>-->
-<!--    <minDepth>0.0005</minDepth>-->
-<!--    <material>Gazebo/DarkGrey</material>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_front_left_2_link">-->
-<!--    <kp>10000000.0</kp>-->
-<!--    <kd>10.0</kd>-->
-<!--    <mu1>0.1</mu1>-->
-<!--    <mu2>0.1</mu2>-->
-<!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-<!--    <maxVel>10.0</maxVel>-->
-<!--    <minDepth>0.0005</minDepth>-->
-<!--    <material>Gazebo/DarkGrey</material>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_{side}_1_joint">-->
-<!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_{side}_2_joint">-->
-<!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-<!--  </gazebo>-->
-<!--  <link name="caster_back_right_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
-<!--      <mass value="0.05144761"/>-->
-<!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Grey"/>-->
-<!--    </visual>-->
-<!--    &lt;!&ndash;collision>-->
-<!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
-<!--        <geometry>-->
-<!--          <cylinder radius="${radius}" length="${width}"/>-->
-<!--        </geometry>-->
-<!--      </collision&ndash;&gt;-->
-<!--  </link>-->
-<!--  <link name="caster_back_right_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <mass value="0.08855784"/>-->
-<!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <sphere radius="0.025"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="caster_back_right_1_joint" type="continuous">-->
-<!--    <parent link="base_link"/>-->
-<!--    <child link="caster_back_right_1_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="-0.1735 -0.102 -0.0335"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <dynamics damping="0.005" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <joint name="caster_back_right_2_joint" type="continuous">-->
-<!--    <parent link="caster_back_right_1_link"/>-->
-<!--    <child link="caster_back_right_2_link"/>-->
-<!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--  </joint>-->
-<!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
-<!--  <gazebo reference="caster_back_right_1_link">-->
-<!--    <kp>100000000.0</kp>-->
-<!--    <kd>10.0</kd>-->
-<!--    <mu1>0.1</mu1>-->
-<!--    <mu2>0.1</mu2>-->
-<!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-<!--    <maxVel>10.0</maxVel>-->
-<!--    <minDepth>0.0005</minDepth>-->
-<!--    <material>Gazebo/DarkGrey</material>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_back_right_2_link">-->
-<!--    <kp>10000000.0</kp>-->
-<!--    <kd>10.0</kd>-->
-<!--    <mu1>0.1</mu1>-->
-<!--    <mu2>0.1</mu2>-->
-<!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-<!--    <maxVel>10.0</maxVel>-->
-<!--    <minDepth>0.0005</minDepth>-->
-<!--    <material>Gazebo/DarkGrey</material>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_{side}_1_joint">-->
-<!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_{side}_2_joint">-->
-<!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-<!--  </gazebo>-->
-<!--  <link name="caster_back_left_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
-<!--      <mass value="0.05144761"/>-->
-<!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Grey"/>-->
-<!--    </visual>-->
-<!--    &lt;!&ndash;collision>-->
-<!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
-<!--        <geometry>-->
-<!--          <cylinder radius="${radius}" length="${width}"/>-->
-<!--        </geometry>-->
-<!--      </collision&ndash;&gt;-->
-<!--  </link>-->
-<!--  <link name="caster_back_left_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <mass value="0.08855784"/>-->
-<!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <sphere radius="0.025"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="caster_back_left_1_joint" type="continuous">-->
-<!--    <parent link="base_link"/>-->
-<!--    <child link="caster_back_left_1_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="-0.1735 0.102 -0.0335"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <dynamics damping="0.005" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <joint name="caster_back_left_2_joint" type="continuous">-->
-<!--    <parent link="caster_back_left_1_link"/>-->
-<!--    <child link="caster_back_left_2_link"/>-->
-<!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--  </joint>-->
-<!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
-<!--  <gazebo reference="caster_back_left_1_link">-->
-<!--    <kp>100000000.0</kp>-->
-<!--    <kd>10.0</kd>-->
-<!--    <mu1>0.1</mu1>-->
-<!--    <mu2>0.1</mu2>-->
-<!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-<!--    <maxVel>10.0</maxVel>-->
-<!--    <minDepth>0.0005</minDepth>-->
-<!--    <material>Gazebo/DarkGrey</material>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_back_left_2_link">-->
-<!--    <kp>10000000.0</kp>-->
-<!--    <kd>10.0</kd>-->
-<!--    <mu1>0.1</mu1>-->
-<!--    <mu2>0.1</mu2>-->
-<!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-<!--    <maxVel>10.0</maxVel>-->
-<!--    <minDepth>0.0005</minDepth>-->
-<!--    <material>Gazebo/DarkGrey</material>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_{side}_1_joint">-->
-<!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-<!--  </gazebo>-->
-<!--  <gazebo reference="caster_{side}_2_joint">-->
-<!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-<!--  </gazebo>-->
+  <!--  <gazebo reference="base_link">-->
+  <!--    <material>Gazebo/White</material>-->
+  <!--  </gazebo>-->
+  <!--  &lt;!&ndash; Base footprint &ndash;&gt;-->
+  <!--  <link name="base_footprint"/>-->
+  <!--  <joint name="base_footprint_joint" type="fixed">-->
+  <!--    <origin rpy="0 0 0" xyz="0 0 0.0985"/>-->
+  <!--    <child link="base_link"/>-->
+  <!--    <parent link="base_footprint"/>-->
+  <!--  </joint>-->
+  <!--  &lt;!&ndash; gazebo parameters are given here for base_link thru base_footprint &ndash;&gt;-->
+  <!--  <gazebo reference="base_footprint">-->
+  <!--    <kp>100000000.0</kp>-->
+  <!--    <kd>10.0</kd>-->
+  <!--    <mu1>0.1</mu1>-->
+  <!--    <mu2>0.1</mu2>-->
+  <!--    <fdir1>1 0 0</fdir1>-->
+  <!--    <maxVel>10.0</maxVel>-->
+  <!--    <minDepth>0.0005</minDepth>-->
+  <!--    <laserRetro>0</laserRetro>-->
+  <!--  </gazebo>-->
+  <!--  <link name="base_cover_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.22414000000 0.00002000000 0.04681000000"/>-->
+  <!--      <mass value="0.25821000000"/>-->
+  <!--      <inertia ixx="0.00023719188" ixy="0.00000006119" ixz="-0.00000011799" iyy="0.00028335052" iyz="0.00000000774" izz="0.00038497063"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/base/base_ring.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Orange"/>-->
+  <!--    </visual>-->
+  <!--  </link>-->
+  <!--  <joint name="cover_joint" type="fixed">-->
+  <!--    <parent link="base_footprint"/>-->
+  <!--    <child link="base_cover_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0 0 0.13"/>-->
+  <!--  </joint>-->
+  <!--  <gazebo reference="base_cover_link">-->
+  <!--    <material>Gazebo/Orange</material>-->
+  <!--  </gazebo>-->
+  <!--  <link name="base_antenna_left_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <mass value="0.000001"/>-->
+  <!--      <inertia ixx="0.00000002371" ixy="0.00000006119" ixz="0.00000001179" iyy="0.00000002833" iyz="0.00000000774" izz="0.00000003849"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/objects/antenna.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Black"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0.085"/>-->
+  <!--      <geometry>-->
+  <!--        <cylinder length="0.17" radius="0.005"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Black"/>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="base_antenna_left_joint" type="fixed">-->
+  <!--    <parent link="base_link"/>-->
+  <!--    <child link="base_antenna_left_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="-0.201 0.1062 0.195"/>-->
+  <!--  </joint>-->
+  <!--  <link name="base_antenna_right_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <mass value="0.000001"/>-->
+  <!--      <inertia ixx="0.00000002371" ixy="0.00000006119" ixz="0.00000001179" iyy="0.00000002833" iyz="0.00000000774" izz="0.00000003849"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/objects/antenna.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Black"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0.085"/>-->
+  <!--      <geometry>-->
+  <!--        <cylinder length="0.17" radius="0.005"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Black"/>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="base_antenna_right_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="base_antenna_right_joint" type="fixed">-->
+  <!--    <parent link="base_link"/>-->
+  <!--    <child link="base_antenna_right_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="-0.201 -0.1062 0.195"/>-->
+  <!--  </joint>-->
+  <!--  <link name="base_imu_link">-->
+  <!--    <inertial>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      <origin xyz="0 0 0"/>-->
+  <!--      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>-->
+  <!--    </inertial>-->
+  <!--    &lt;!&ndash;visual>-->
+  <!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--        <geometry>-->
+  <!--          <box size="0.01 0.01 0.01"/>-->
+  <!--        </geometry>-->
+  <!--      </visual&ndash;&gt;-->
+  <!--  </link>-->
+  <!--  <joint name="base_imu_joint" type="fixed">-->
+  <!--    <parent link="base_link"/>-->
+  <!--    <child link="base_imu_link"/>-->
+  <!--    <origin rpy="0 0 -1.57079632679" xyz="0.10171 0 0.11282"/>-->
+  <!--  </joint>-->
+  <!--  <gazebo reference="base_imu_link">-->
+  <!--    <sensor name="base_imu_sensor" type="imu">-->
+  <!--      <always_on>1</always_on>-->
+  <!--      <update_rate>100.0</update_rate>-->
+  <!--      <imu>-->
+  <!--        <noise>-->
+  <!--          <type>gaussian</type>-->
+  <!--          <rate>-->
+  <!--            <mean>0.0</mean>-->
+  <!--            <stddev>2e-4</stddev>-->
+  <!--            <bias_mean>0.0000075</bias_mean>-->
+  <!--            <bias_stddev>0.0000008</bias_stddev>-->
+  <!--          </rate>-->
+  <!--          <accel>-->
+  <!--            <mean>0.0</mean>-->
+  <!--            <stddev>1.7e-2</stddev>-->
+  <!--            <bias_mean>0.1</bias_mean>-->
+  <!--            <bias_stddev>0.001</bias_stddev>-->
+  <!--          </accel>-->
+  <!--        </noise>-->
+  <!--      </imu>-->
+  <!--    </sensor>-->
+  <!--  </gazebo>-->
+  <link name="wheel_right_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 -0.00207"/>
+      <mass value="1.82362"/>
+      <inertia ixx="0.00499743171" ixy="4.464e-08" ixz="-0.00000002245" iyy="0.00499741733" iyz="-1.64e-09" izz="0.00839239692"/>
+    </inertial>
+    <visual>
+      <origin rpy="-0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pmb2_description/meshes/wheels/wheel.stl"/>
+      </geometry>
+      <material name="DarkGrey"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0985"/>
+        <!-- length="${width}"/> -->
+      </geometry>
+    </collision>
+  </link>
+  <link name="suspension_right_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 -0.02"/>
+      <mass value="10"/>
+      <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
+    </inertial>
+    <kinematic>0</kinematic>
+    <gravity>1</gravity>
+  </link>
+  <joint name="suspension_right_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="100.0" lower="-0.005" upper="0.005" velocity="1.0"/>
+    <child link="suspension_right_link"/>
+    <parent link="base_link"/>
+    <calibration rising="0.0"/>
+    <dynamics damping="100"/>
+    <safety_controller k_position="0" k_velocity="10" soft_lower_limit="-0.005" soft_upper_limit="0.005"/>
+  </joint>
+  <joint name="wheel_right_joint" type="fixed">
+    <parent link="suspension_right_link"/>
+    <child link="wheel_right_link"/>
+    <origin rpy="-1.57079632679 0 0" xyz="0 -0.2022 0.0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="6.0" velocity="10.152284264"/>
+  </joint>
+  <link name="wheel_left_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.00207"/>
+      <mass value="1.82362"/>
+      <inertia ixx="0.00499743171" ixy="-4.464e-08" ixz="-0.00000002245" iyy="0.00499741733" iyz="1.64e-09" izz="0.00839239692"/>
+    </inertial>
+    <visual>
+      <origin rpy="-3.14159265359 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pmb2_description/meshes/wheels/wheel.stl"/>
+      </geometry>
+      <material name="DarkGrey"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0985"/>
+        <!-- length="${width}"/> -->
+      </geometry>
+    </collision>
+  </link>
+  <link name="suspension_left_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 -0.02"/>
+      <mass value="10"/>
+      <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0"/>
+    </inertial>
+    <kinematic>0</kinematic>
+    <gravity>1</gravity>
+  </link>
+  <joint name="suspension_left_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="100.0" lower="-0.005" upper="0.005" velocity="1.0"/>
+    <child link="suspension_left_link"/>
+    <parent link="base_link"/>
+    <calibration rising="0.0"/>
+    <dynamics damping="100"/>
+    <safety_controller k_position="0" k_velocity="10" soft_lower_limit="-0.005" soft_upper_limit="0.005"/>
+  </joint>
+  <joint name="wheel_left_joint" type="fixed">
+    <parent link="suspension_left_link"/>
+    <child link="wheel_left_link"/>
+    <origin rpy="-1.57079632679 0 0" xyz="0 0.2022 0.0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="6.0" velocity="10.152284264"/>
+  </joint>
+  <!--  &lt;!&ndash; Contact model for the wheel surface &ndash;&gt;-->
+  <!--  <gazebo reference="wheel_left_link">-->
+  <!--    <kp>1000000.0</kp>-->
+  <!--    <kd>100.0</kd>-->
+  <!--    &lt;!&ndash;-->
+  <!--      <mu1>10.0</mu1>-->
+  <!--      <mu2>10.0</mu2>-->
+  <!--      &ndash;&gt;-->
+  <!--    <mu1>100000000000000.0</mu1>-->
+  <!--    <mu2>100000000000000.0</mu2>-->
+  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
+  <!--    <maxVel>1.0</maxVel>-->
+  <!--    <minDepth>0.002</minDepth>-->
+  <!--    <material>Gazebo/DarkGrey</material>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="wheel_{side}_joint">-->
+  <!--    <implicitSpringDamper>1</implicitSpringDamper>-->
+  <!--  </gazebo>-->
+  <!--  <link name="caster_front_right_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
+  <!--      <mass value="0.05144761"/>-->
+  <!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Grey"/>-->
+  <!--    </visual>-->
+  <!--    &lt;!&ndash;collision>-->
+  <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
+  <!--        <geometry>-->
+  <!--          <cylinder radius="${radius}" length="${width}"/>-->
+  <!--        </geometry>-->
+  <!--      </collision&ndash;&gt;-->
+  <!--  </link>-->
+  <!--  <link name="caster_front_right_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <mass value="0.08855784"/>-->
+  <!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <sphere radius="0.025"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="caster_front_right_1_joint" type="continuous">-->
+  <!--    <parent link="base_link"/>-->
+  <!--    <child link="caster_front_right_1_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.1695 -0.102 -0.0335"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <dynamics damping="0.005" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <joint name="caster_front_right_2_joint" type="continuous">-->
+  <!--    <parent link="caster_front_right_1_link"/>-->
+  <!--    <child link="caster_front_right_2_link"/>-->
+  <!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--  </joint>-->
+  <!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
+  <!--  <gazebo reference="caster_front_right_1_link">-->
+  <!--    <kp>100000000.0</kp>-->
+  <!--    <kd>10.0</kd>-->
+  <!--    <mu1>0.1</mu1>-->
+  <!--    <mu2>0.1</mu2>-->
+  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
+  <!--    <maxVel>10.0</maxVel>-->
+  <!--    <minDepth>0.0005</minDepth>-->
+  <!--    <material>Gazebo/DarkGrey</material>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_front_right_2_link">-->
+  <!--    <kp>10000000.0</kp>-->
+  <!--    <kd>10.0</kd>-->
+  <!--    <mu1>0.1</mu1>-->
+  <!--    <mu2>0.1</mu2>-->
+  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
+  <!--    <maxVel>10.0</maxVel>-->
+  <!--    <minDepth>0.0005</minDepth>-->
+  <!--    <material>Gazebo/DarkGrey</material>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_{side}_1_joint">-->
+  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_{side}_2_joint">-->
+  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
+  <!--  </gazebo>-->
+  <!--  <link name="caster_front_left_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
+  <!--      <mass value="0.05144761"/>-->
+  <!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Grey"/>-->
+  <!--    </visual>-->
+  <!--    &lt;!&ndash;collision>-->
+  <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
+  <!--        <geometry>-->
+  <!--          <cylinder radius="${radius}" length="${width}"/>-->
+  <!--        </geometry>-->
+  <!--      </collision&ndash;&gt;-->
+  <!--  </link>-->
+  <!--  <link name="caster_front_left_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <mass value="0.08855784"/>-->
+  <!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <sphere radius="0.025"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="caster_front_left_1_joint" type="continuous">-->
+  <!--    <parent link="base_link"/>-->
+  <!--    <child link="caster_front_left_1_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.1695 0.102 -0.0335"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <dynamics damping="0.005" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <joint name="caster_front_left_2_joint" type="continuous">-->
+  <!--    <parent link="caster_front_left_1_link"/>-->
+  <!--    <child link="caster_front_left_2_link"/>-->
+  <!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--  </joint>-->
+  <!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
+  <!--  <gazebo reference="caster_front_left_1_link">-->
+  <!--    <kp>100000000.0</kp>-->
+  <!--    <kd>10.0</kd>-->
+  <!--    <mu1>0.1</mu1>-->
+  <!--    <mu2>0.1</mu2>-->
+  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
+  <!--    <maxVel>10.0</maxVel>-->
+  <!--    <minDepth>0.0005</minDepth>-->
+  <!--    <material>Gazebo/DarkGrey</material>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_front_left_2_link">-->
+  <!--    <kp>10000000.0</kp>-->
+  <!--    <kd>10.0</kd>-->
+  <!--    <mu1>0.1</mu1>-->
+  <!--    <mu2>0.1</mu2>-->
+  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
+  <!--    <maxVel>10.0</maxVel>-->
+  <!--    <minDepth>0.0005</minDepth>-->
+  <!--    <material>Gazebo/DarkGrey</material>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_{side}_1_joint">-->
+  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_{side}_2_joint">-->
+  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
+  <!--  </gazebo>-->
+  <!--  <link name="caster_back_right_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
+  <!--      <mass value="0.05144761"/>-->
+  <!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Grey"/>-->
+  <!--    </visual>-->
+  <!--    &lt;!&ndash;collision>-->
+  <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
+  <!--        <geometry>-->
+  <!--          <cylinder radius="${radius}" length="${width}"/>-->
+  <!--        </geometry>-->
+  <!--      </collision&ndash;&gt;-->
+  <!--  </link>-->
+  <!--  <link name="caster_back_right_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <mass value="0.08855784"/>-->
+  <!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <sphere radius="0.025"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="caster_back_right_1_joint" type="continuous">-->
+  <!--    <parent link="base_link"/>-->
+  <!--    <child link="caster_back_right_1_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="-0.1735 -0.102 -0.0335"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <dynamics damping="0.005" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <joint name="caster_back_right_2_joint" type="continuous">-->
+  <!--    <parent link="caster_back_right_1_link"/>-->
+  <!--    <child link="caster_back_right_2_link"/>-->
+  <!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--  </joint>-->
+  <!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
+  <!--  <gazebo reference="caster_back_right_1_link">-->
+  <!--    <kp>100000000.0</kp>-->
+  <!--    <kd>10.0</kd>-->
+  <!--    <mu1>0.1</mu1>-->
+  <!--    <mu2>0.1</mu2>-->
+  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
+  <!--    <maxVel>10.0</maxVel>-->
+  <!--    <minDepth>0.0005</minDepth>-->
+  <!--    <material>Gazebo/DarkGrey</material>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_back_right_2_link">-->
+  <!--    <kp>10000000.0</kp>-->
+  <!--    <kd>10.0</kd>-->
+  <!--    <mu1>0.1</mu1>-->
+  <!--    <mu2>0.1</mu2>-->
+  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
+  <!--    <maxVel>10.0</maxVel>-->
+  <!--    <minDepth>0.0005</minDepth>-->
+  <!--    <material>Gazebo/DarkGrey</material>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_{side}_1_joint">-->
+  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_{side}_2_joint">-->
+  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
+  <!--  </gazebo>-->
+  <!--  <link name="caster_back_left_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
+  <!--      <mass value="0.05144761"/>-->
+  <!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Grey"/>-->
+  <!--    </visual>-->
+  <!--    &lt;!&ndash;collision>-->
+  <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
+  <!--        <geometry>-->
+  <!--          <cylinder radius="${radius}" length="${width}"/>-->
+  <!--        </geometry>-->
+  <!--      </collision&ndash;&gt;-->
+  <!--  </link>-->
+  <!--  <link name="caster_back_left_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <mass value="0.08855784"/>-->
+  <!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <sphere radius="0.025"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="caster_back_left_1_joint" type="continuous">-->
+  <!--    <parent link="base_link"/>-->
+  <!--    <child link="caster_back_left_1_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="-0.1735 0.102 -0.0335"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <dynamics damping="0.005" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <joint name="caster_back_left_2_joint" type="continuous">-->
+  <!--    <parent link="caster_back_left_1_link"/>-->
+  <!--    <child link="caster_back_left_2_link"/>-->
+  <!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--  </joint>-->
+  <!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
+  <!--  <gazebo reference="caster_back_left_1_link">-->
+  <!--    <kp>100000000.0</kp>-->
+  <!--    <kd>10.0</kd>-->
+  <!--    <mu1>0.1</mu1>-->
+  <!--    <mu2>0.1</mu2>-->
+  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
+  <!--    <maxVel>10.0</maxVel>-->
+  <!--    <minDepth>0.0005</minDepth>-->
+  <!--    <material>Gazebo/DarkGrey</material>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_back_left_2_link">-->
+  <!--    <kp>10000000.0</kp>-->
+  <!--    <kd>10.0</kd>-->
+  <!--    <mu1>0.1</mu1>-->
+  <!--    <mu2>0.1</mu2>-->
+  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
+  <!--    <maxVel>10.0</maxVel>-->
+  <!--    <minDepth>0.0005</minDepth>-->
+  <!--    <material>Gazebo/DarkGrey</material>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_{side}_1_joint">-->
+  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
+  <!--  </gazebo>-->
+  <!--  <gazebo reference="caster_{side}_2_joint">-->
+  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
+  <!--  </gazebo>-->
   <!-- Bottom fixed part of column -->
   <link name="torso_fixed_link">
     <inertial>
@@ -756,26 +718,33 @@
       </geometry>
       <material name="White"/>
     </visual>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_core.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--      <material name="LightGrey"/>-->
+    <!--    </collision>-->
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_shoulder.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--      <material name="LightGrey"/>-->
+    <!--    </collision>-->
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_neck.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--      <material name="LightGrey"/>-->
+    <!--    </collision>-->
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.225"/>
       <geometry>
-        <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_core.dae" scale="1 1 1"/>
+        <box size="0.25 0.25 0.45"/>
       </geometry>
-      <material name="LightGrey"/>
-    </collision>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_shoulder.dae" scale="1 1 1"/>
-      </geometry>
-      <material name="LightGrey"/>
-    </collision>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://tiago_description/meshes/torso/torso_lift_collision_neck.dae" scale="1 1 1"/>
-      </geometry>
-      <material name="LightGrey"/>
+      <material name="Green"/>
     </collision>
   </link>
   <joint name="torso_lift_joint" type="prismatic">
@@ -801,13 +770,13 @@
       </geometry>
       <material name="White"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0.0" xyz="0.0 0 0"/>
-      <geometry>
-        <mesh filename="package://tiago_description/meshes/head/head_1_collision.dae" scale="1 1 1"/>
-      </geometry>
-      <material name="White"/>
-    </collision>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0.0" xyz="0.0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/head/head_1_collision.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--      <material name="White"/>-->
+    <!--    </collision>-->
   </link>
   <joint name="head_1_joint" type="fixed">
     <parent link="torso_lift_link"/>
@@ -831,10 +800,16 @@
       </geometry>
       <material name="White"/>
     </visual>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/head/head_2_collision.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--    </collision>-->
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.06"/>
       <geometry>
-        <mesh filename="package://tiago_description/meshes/head/head_2_collision.dae" scale="1 1 1"/>
+        <box size="0.2 0.2 0.25"/>
       </geometry>
     </collision>
   </link>
@@ -865,12 +840,12 @@
       </geometry>
       <material name="White"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_1_collision.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/arm/arm_1_collision.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--    </collision>-->
   </link>
   <joint name="arm_1_joint" type="revolute">
     <parent link="torso_lift_link"/>
@@ -895,13 +870,13 @@
       </geometry>
       <material name="DarkGrey"/>
     </visual>
-    <collision>
-      <!-- <origin xyz="0 0 0" rpy="${180 * deg_to_rad} ${0 * deg_to_rad} ${-90 * deg_to_rad}" /> -->
-      <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_2_collision.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
+    <!--    <collision>-->
+    <!--      &lt;!&ndash; <origin xyz="0 0 0" rpy="${180 * deg_to_rad} ${0 * deg_to_rad} ${-90 * deg_to_rad}" /> &ndash;&gt;-->
+    <!--      <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/arm/arm_2_collision.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--    </collision>-->
   </link>
   <joint name="arm_2_joint" type="revolute">
     <parent link="arm_1_link"/>
@@ -925,12 +900,12 @@
       </geometry>
       <material name="DarkGrey"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_3_collision.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/arm/arm_3_collision.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--    </collision>-->
   </link>
   <joint name="arm_3_joint" type="revolute">
     <parent link="arm_2_link"/>
@@ -957,12 +932,12 @@
       </geometry>
       <material name="DarkGrey"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_4_collision.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/arm/arm_4_collision.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--    </collision>-->
   </link>
   <joint name="arm_4_joint" type="revolute">
     <parent link="arm_3_link"/>
@@ -992,12 +967,12 @@
       </geometry>
       <material name="LightGrey"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_5_collision-wrist-2017.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/arm/arm_5_collision-wrist-2017.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--    </collision>-->
   </link>
   <joint name="arm_5_joint" type="revolute">
     <parent link="arm_4_link"/>
@@ -1021,12 +996,12 @@
       </geometry>
       <material name="LightGrey"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://tiago_description/meshes/arm/arm_6_collision-wrist-2017.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://tiago_description/meshes/arm/arm_6_collision-wrist-2017.dae" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--    </collision>-->
   </link>
   <joint name="arm_6_joint" type="revolute">
     <parent link="arm_5_link"/>
@@ -1068,10 +1043,16 @@
       </geometry>
       <material name="LightGrey"/>
     </visual>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 1.57079632679 0" xyz="0.001 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <cylinder length="0.005" radius="0.005"/>-->
+    <!--      </geometry>-->
+    <!--    </collision>-->
     <collision>
-      <origin rpy="0 1.57079632679 0" xyz="0.001 0 0"/>
+      <origin rpy="0 1.57079632679 0" xyz="0.05 0 0"/>
       <geometry>
-        <cylinder length="0.005" radius="0.005"/>
+        <cylinder length="0.2" radius="0.05"/>
       </geometry>
     </collision>
   </link>
@@ -1113,12 +1094,12 @@
       </geometry>
       <material name="Hey5DarkGrey"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://hey5_description/meshes/palm_collision.stl" scale="1 1 1"/>
-      </geometry>
-    </collision>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <mesh filename="package://hey5_description/meshes/palm_collision.stl" scale="1 1 1"/>-->
+    <!--      </geometry>-->
+    <!--    </collision>-->
   </link>
   <joint name="hand_thumb_joint" type="fixed">
     <parent link="hand_palm_link"/>
@@ -1144,1149 +1125,1149 @@
       </geometry>
       <material name="Hey5DarkGrey"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <sphere radius="0.001"/>
-      </geometry>
-    </collision>
+    <!--    <collision>-->
+    <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+    <!--      <geometry>-->
+    <!--        <sphere radius="0.001"/>-->
+    <!--      </geometry>-->
+    <!--    </collision>-->
   </link>
-<!--  <joint name="hand_index_joint" type="fixed">-->
-<!--    <parent link="hand_palm_link"/>-->
-<!--    <child link="hand_index_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="-3.05432619099" upper="6.80678408278" velocity="3.35"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--    &lt;!&ndash; TODO: Tune &ndash;&gt;-->
-<!--    <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-3.05432619099" soft_upper_limit="6.80678408278"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_index_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <mass value="0.05"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash;To stabilize simulation&ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <sphere radius="0.001"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <sphere radius="0.001"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_mrl_joint" type="fixed">-->
-<!--    <parent link="hand_palm_link"/>-->
-<!--    <child link="hand_mrl_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="-2.53072741539" upper="9.25024503557" velocity="3.56"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--    &lt;!&ndash; TODO: Tune &ndash;&gt;-->
-<!--    <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-2.53072741539" soft_upper_limit="9.25024503557"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_mrl_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <mass value="0.05"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash;To stabilize simulation&ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <sphere radius="0.001"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <sphere radius="0.001"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_thumb_abd_joint" type="fixed">-->
-<!--    <parent link="hand_palm_link"/>-->
-<!--    <child link="hand_thumb_abd_link"/>-->
-<!--    <origin rpy="0 -1.1344640138 0" xyz="0.0901 0.0134 0.038"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="1.57079632679" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_thumb_abd_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="-0.0132 0.0037 -0.0017"/>-->
-<!--      <mass value="0.014"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/thumb_abd_collision.stl" scale="1 1 1"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/thumb_abd_collision.stl" scale="1 1 1"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_thumb_virtual_1_joint" type="fixed">-->
-<!--    <parent link="hand_thumb_abd_link"/>-->
-<!--    <child link="hand_thumb_virtual_1_link"/>-->
-<!--    <origin rpy="-1.14423785761 0 0" xyz="0.0225 0.003 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_thumb_virtual_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_thumb_virtual_1_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_thumb_flex_1_joint" type="revolute">-->
-<!--    <parent link="hand_thumb_virtual_1_link"/>-->
-<!--    <child link="hand_thumb_flex_1_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_thumb_flex_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
-<!--      <mass value="0.009"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_thumb_virtual_2_joint" type="fixed">-->
-<!--    <parent link="hand_thumb_flex_1_link"/>-->
-<!--    <child link="hand_thumb_virtual_2_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_thumb_virtual_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_thumb_flex_2_joint" type="fixed">-->
-<!--    <parent link="hand_thumb_virtual_2_link"/>-->
-<!--    <child link="hand_thumb_flex_2_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_thumb_flex_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0096 0.003 0.0"/>-->
-<!--      <mass value="0.015"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_index_abd_joint" type="fixed">-->
-<!--    <parent link="hand_palm_link"/>-->
-<!--    <child link="hand_index_abd_link"/>-->
-<!--    <origin rpy="-1.57079632679 -0.523598775598 0" xyz="0.1265 0.0042 0.0265"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_index_abd_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="-0.0018 0.0 0.0028"/>-->
-<!--      <mass value="0.018"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_index_virtual_1_joint" type="fixed">-->
-<!--    <parent link="hand_index_abd_link"/>-->
-<!--    <child link="hand_index_virtual_1_link"/>-->
-<!--    <origin rpy="1.57079632679 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_index_virtual_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_index_flex_1_joint" type="fixed">-->
-<!--    <parent link="hand_index_virtual_1_link"/>-->
-<!--    <child link="hand_index_flex_1_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_index_flex_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
-<!--      <mass value="0.009"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_index_virtual_2_joint" type="fixed">-->
-<!--    <parent link="hand_index_flex_1_link"/>-->
-<!--    <child link="hand_index_virtual_2_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_index_virtual_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_index_flex_2_joint" type="fixed">-->
-<!--    <parent link="hand_index_virtual_2_link"/>-->
-<!--    <child link="hand_index_flex_2_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_index_flex_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
-<!--      <mass value="0.009"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_index_virtual_3_joint" type="fixed">-->
-<!--    <parent link="hand_index_flex_2_link"/>-->
-<!--    <child link="hand_index_virtual_3_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_index_virtual_3_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <joint name="hand_index_flex_3_joint" type="fixed">-->
-<!--    <parent link="hand_index_virtual_3_link"/>-->
-<!--    <child link="hand_index_flex_3_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_index_flex_3_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0096 0.003 0.0"/>-->
-<!--      <mass value="0.015"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_index_flex_3_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_middle_abd_joint" type="fixed">-->
-<!--    <parent link="hand_palm_link"/>-->
-<!--    <child link="hand_middle_abd_link"/>-->
-<!--    <origin rpy="-1.57079632679 0 0" xyz="0.1335 0.0042 0.007"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_middle_abd_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="-0.0018 0.0 0.0028"/>-->
-<!--      <mass value="0.018"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_middle_abd_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_middle_virtual_1_joint" type="fixed">-->
-<!--    <parent link="hand_middle_abd_link"/>-->
-<!--    <child link="hand_middle_virtual_1_link"/>-->
-<!--    <origin rpy="1.57079632679 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_middle_virtual_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_middle_virtual_1_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_middle_flex_1_joint" type="revolute">-->
-<!--    <parent link="hand_middle_virtual_1_link"/>-->
-<!--    <child link="hand_middle_flex_1_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_middle_flex_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
-<!--      <mass value="0.009"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_middle_flex_1_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_middle_virtual_2_joint" type="revolute">-->
-<!--    <parent link="hand_middle_flex_1_link"/>-->
-<!--    <child link="hand_middle_virtual_2_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_middle_virtual_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_middle_virtual_2_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_middle_flex_2_joint" type="revolute">-->
-<!--    <parent link="hand_middle_virtual_2_link"/>-->
-<!--    <child link="hand_middle_flex_2_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_middle_flex_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
-<!--      <mass value="0.009"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_middle_flex_2_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_middle_virtual_3_joint" type="revolute">-->
-<!--    <parent link="hand_middle_flex_2_link"/>-->
-<!--    <child link="hand_middle_virtual_3_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_middle_virtual_3_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_middle_virtual_3_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_middle_flex_3_joint" type="revolute">-->
-<!--    <parent link="hand_middle_virtual_3_link"/>-->
-<!--    <child link="hand_middle_flex_3_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_middle_flex_3_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0096 0.003 0.0"/>-->
-<!--      <mass value="0.015"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_middle_flex_3_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_ring_abd_joint" type="revolute">-->
-<!--    <parent link="hand_palm_link"/>-->
-<!--    <child link="hand_ring_abd_link"/>-->
-<!--    <origin rpy="-1.57079632679 0.261799387799 0" xyz="0.1265 0.0042 -0.0125"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_ring_abd_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="-0.0018 0.0 0.0028"/>-->
-<!--      <mass value="0.018"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_ring_abd_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_ring_virtual_1_joint" type="revolute">-->
-<!--    <parent link="hand_ring_abd_link"/>-->
-<!--    <child link="hand_ring_virtual_1_link"/>-->
-<!--    <origin rpy="1.57079632679 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_ring_virtual_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_ring_virtual_1_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_ring_flex_1_joint" type="revolute">-->
-<!--    <parent link="hand_ring_virtual_1_link"/>-->
-<!--    <child link="hand_ring_flex_1_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_ring_flex_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
-<!--      <mass value="0.009"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_ring_flex_1_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_ring_virtual_2_joint" type="revolute">-->
-<!--    <parent link="hand_ring_flex_1_link"/>-->
-<!--    <child link="hand_ring_virtual_2_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_ring_virtual_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_ring_virtual_2_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_ring_flex_2_joint" type="revolute">-->
-<!--    <parent link="hand_ring_virtual_2_link"/>-->
-<!--    <child link="hand_ring_flex_2_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_ring_flex_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
-<!--      <mass value="0.009"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_ring_flex_2_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_ring_virtual_3_joint" type="revolute">-->
-<!--    <parent link="hand_ring_flex_2_link"/>-->
-<!--    <child link="hand_ring_virtual_3_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_ring_virtual_3_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_ring_virtual_3_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_ring_flex_3_joint" type="revolute">-->
-<!--    <parent link="hand_ring_virtual_3_link"/>-->
-<!--    <child link="hand_ring_flex_3_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_ring_flex_3_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0096 0.003 0.0"/>-->
-<!--      <mass value="0.015"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_ring_flex_3_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_little_abd_joint" type="revolute">-->
-<!--    <parent link="hand_palm_link"/>-->
-<!--    <child link="hand_little_abd_link"/>-->
-<!--    <origin rpy="-1.57079632679 0.523598775598 0" xyz="0.1165 0.0042 -0.032"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_little_abd_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="-0.0018 0.0 0.0028"/>-->
-<!--      <mass value="0.018"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_little_abd_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_little_virtual_1_joint" type="revolute">-->
-<!--    <parent link="hand_little_abd_link"/>-->
-<!--    <child link="hand_little_virtual_1_link"/>-->
-<!--    <origin rpy="1.57079632679 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_little_virtual_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_little_virtual_1_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_little_flex_1_joint" type="revolute">-->
-<!--    <parent link="hand_little_virtual_1_link"/>-->
-<!--    <child link="hand_little_flex_1_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_little_flex_1_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
-<!--      <mass value="0.009"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_little_flex_1_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_little_virtual_2_joint" type="revolute">-->
-<!--    <parent link="hand_little_flex_1_link"/>-->
-<!--    <child link="hand_little_virtual_2_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_little_virtual_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_little_virtual_2_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_little_flex_2_joint" type="revolute">-->
-<!--    <parent link="hand_little_virtual_2_link"/>-->
-<!--    <child link="hand_little_flex_2_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_little_flex_2_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
-<!--      <mass value="0.009"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_little_flex_2_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_little_virtual_3_joint" type="revolute">-->
-<!--    <parent link="hand_little_flex_2_link"/>-->
-<!--    <child link="hand_little_virtual_3_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_little_virtual_3_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <mass value="0.01"/>-->
-<!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.013 0.002 0.012"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_little_virtual_3_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  <joint name="hand_little_flex_3_joint" type="revolute">-->
-<!--    <parent link="hand_little_virtual_3_link"/>-->
-<!--    <child link="hand_little_flex_3_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
-<!--    <dynamics damping="0.5" friction="0.0"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_little_flex_3_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0.0096 0.003 0.0"/>-->
-<!--      <mass value="0.015"/>-->
-<!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
-<!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
-<!--    </inertial>-->
-<!--    <visual>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
-<!--      </geometry>-->
-<!--      <material name="Hey5DarkGrey"/>-->
-<!--    </visual>-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
-<!--  <gazebo reference="hand_little_flex_3_link">-->
-<!--    <material>Gazebo/Black</material>-->
-<!--  </gazebo>-->
-<!--  &lt;!&ndash;Abductor&ndash;&gt;-->
-<!--  <link name="hand_grasping_frame"/>-->
-<!--  <joint name="hand_grasping_fixed_joint" type="fixed">-->
-<!--    <parent link="hand_palm_link"/>-->
-<!--    <child link="hand_grasping_frame"/>-->
-<!--    <axis xyz="0 0 1"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.13 0.02 0"/>-->
-<!--  </joint>-->
-<!--  <joint name="hand_safety_box_joint" type="fixed">-->
-<!--    <parent link="wrist_ft_tool_link"/>-->
-<!--    <child link="hand_safety_box"/>-->
-<!--    <origin rpy="0 0 0" xyz="0.1 0.02 0.02"/>-->
-<!--  </joint>-->
-<!--  <link name="hand_safety_box">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <mass value="0.0001"/>-->
-<!--      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>-->
-<!--    </inertial>-->
-<!--    &lt;!&ndash;-->
-<!--      <visual>-->
-<!--        <origin xyz="0 0 0" rpy="0 0 0" />-->
-<!--        <geometry>-->
-<!--          <box size="0.2 0.115 0.18" />-->
-<!--        </geometry>-->
-<!--      </visual>-->
-<!--      &ndash;&gt;-->
-<!--    <collision>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <geometry>-->
-<!--        <box size="0.2 0.115 0.18"/>-->
-<!--      </geometry>-->
-<!--    </collision>-->
-<!--  </link>-->
+  <!--  <joint name="hand_index_joint" type="fixed">-->
+  <!--    <parent link="hand_palm_link"/>-->
+  <!--    <child link="hand_index_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="-3.05432619099" upper="6.80678408278" velocity="3.35"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--    &lt;!&ndash; TODO: Tune &ndash;&gt;-->
+  <!--    <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-3.05432619099" soft_upper_limit="6.80678408278"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_index_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <mass value="0.05"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash;To stabilize simulation&ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <sphere radius="0.001"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <sphere radius="0.001"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_mrl_joint" type="fixed">-->
+  <!--    <parent link="hand_palm_link"/>-->
+  <!--    <child link="hand_mrl_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="-2.53072741539" upper="9.25024503557" velocity="3.56"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--    &lt;!&ndash; TODO: Tune &ndash;&gt;-->
+  <!--    <safety_controller k_position="20" k_velocity="20" soft_lower_limit="-2.53072741539" soft_upper_limit="9.25024503557"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_mrl_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <mass value="0.05"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash;To stabilize simulation&ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <sphere radius="0.001"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <sphere radius="0.001"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_thumb_abd_joint" type="fixed">-->
+  <!--    <parent link="hand_palm_link"/>-->
+  <!--    <child link="hand_thumb_abd_link"/>-->
+  <!--    <origin rpy="0 -1.1344640138 0" xyz="0.0901 0.0134 0.038"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="1.57079632679" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_thumb_abd_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="-0.0132 0.0037 -0.0017"/>-->
+  <!--      <mass value="0.014"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/thumb_abd_collision.stl" scale="1 1 1"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/thumb_abd_collision.stl" scale="1 1 1"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_thumb_virtual_1_joint" type="fixed">-->
+  <!--    <parent link="hand_thumb_abd_link"/>-->
+  <!--    <child link="hand_thumb_virtual_1_link"/>-->
+  <!--    <origin rpy="-1.14423785761 0 0" xyz="0.0225 0.003 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_thumb_virtual_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_thumb_virtual_1_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_thumb_flex_1_joint" type="revolute">-->
+  <!--    <parent link="hand_thumb_virtual_1_link"/>-->
+  <!--    <child link="hand_thumb_flex_1_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_thumb_flex_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
+  <!--      <mass value="0.009"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_thumb_virtual_2_joint" type="fixed">-->
+  <!--    <parent link="hand_thumb_flex_1_link"/>-->
+  <!--    <child link="hand_thumb_virtual_2_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_thumb_virtual_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_thumb_flex_2_joint" type="fixed">-->
+  <!--    <parent link="hand_thumb_virtual_2_link"/>-->
+  <!--    <child link="hand_thumb_flex_2_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_thumb_flex_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0096 0.003 0.0"/>-->
+  <!--      <mass value="0.015"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_index_abd_joint" type="fixed">-->
+  <!--    <parent link="hand_palm_link"/>-->
+  <!--    <child link="hand_index_abd_link"/>-->
+  <!--    <origin rpy="-1.57079632679 -0.523598775598 0" xyz="0.1265 0.0042 0.0265"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_index_abd_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="-0.0018 0.0 0.0028"/>-->
+  <!--      <mass value="0.018"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_index_virtual_1_joint" type="fixed">-->
+  <!--    <parent link="hand_index_abd_link"/>-->
+  <!--    <child link="hand_index_virtual_1_link"/>-->
+  <!--    <origin rpy="1.57079632679 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_index_virtual_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_index_flex_1_joint" type="fixed">-->
+  <!--    <parent link="hand_index_virtual_1_link"/>-->
+  <!--    <child link="hand_index_flex_1_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_index_flex_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
+  <!--      <mass value="0.009"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_index_virtual_2_joint" type="fixed">-->
+  <!--    <parent link="hand_index_flex_1_link"/>-->
+  <!--    <child link="hand_index_virtual_2_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_index_virtual_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_index_flex_2_joint" type="fixed">-->
+  <!--    <parent link="hand_index_virtual_2_link"/>-->
+  <!--    <child link="hand_index_flex_2_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_index_flex_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
+  <!--      <mass value="0.009"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_index_virtual_3_joint" type="fixed">-->
+  <!--    <parent link="hand_index_flex_2_link"/>-->
+  <!--    <child link="hand_index_virtual_3_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_index_virtual_3_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <joint name="hand_index_flex_3_joint" type="fixed">-->
+  <!--    <parent link="hand_index_virtual_3_link"/>-->
+  <!--    <child link="hand_index_flex_3_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_index_flex_3_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0096 0.003 0.0"/>-->
+  <!--      <mass value="0.015"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_index_flex_3_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_middle_abd_joint" type="fixed">-->
+  <!--    <parent link="hand_palm_link"/>-->
+  <!--    <child link="hand_middle_abd_link"/>-->
+  <!--    <origin rpy="-1.57079632679 0 0" xyz="0.1335 0.0042 0.007"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_middle_abd_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="-0.0018 0.0 0.0028"/>-->
+  <!--      <mass value="0.018"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_middle_abd_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_middle_virtual_1_joint" type="fixed">-->
+  <!--    <parent link="hand_middle_abd_link"/>-->
+  <!--    <child link="hand_middle_virtual_1_link"/>-->
+  <!--    <origin rpy="1.57079632679 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_middle_virtual_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_middle_virtual_1_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_middle_flex_1_joint" type="revolute">-->
+  <!--    <parent link="hand_middle_virtual_1_link"/>-->
+  <!--    <child link="hand_middle_flex_1_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_middle_flex_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
+  <!--      <mass value="0.009"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_middle_flex_1_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_middle_virtual_2_joint" type="revolute">-->
+  <!--    <parent link="hand_middle_flex_1_link"/>-->
+  <!--    <child link="hand_middle_virtual_2_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_middle_virtual_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_middle_virtual_2_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_middle_flex_2_joint" type="revolute">-->
+  <!--    <parent link="hand_middle_virtual_2_link"/>-->
+  <!--    <child link="hand_middle_flex_2_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_middle_flex_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
+  <!--      <mass value="0.009"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_middle_flex_2_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_middle_virtual_3_joint" type="revolute">-->
+  <!--    <parent link="hand_middle_flex_2_link"/>-->
+  <!--    <child link="hand_middle_virtual_3_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_middle_virtual_3_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_middle_virtual_3_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_middle_flex_3_joint" type="revolute">-->
+  <!--    <parent link="hand_middle_virtual_3_link"/>-->
+  <!--    <child link="hand_middle_flex_3_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_middle_flex_3_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0096 0.003 0.0"/>-->
+  <!--      <mass value="0.015"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_middle_flex_3_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_ring_abd_joint" type="revolute">-->
+  <!--    <parent link="hand_palm_link"/>-->
+  <!--    <child link="hand_ring_abd_link"/>-->
+  <!--    <origin rpy="-1.57079632679 0.261799387799 0" xyz="0.1265 0.0042 -0.0125"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_ring_abd_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="-0.0018 0.0 0.0028"/>-->
+  <!--      <mass value="0.018"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_ring_abd_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_ring_virtual_1_joint" type="revolute">-->
+  <!--    <parent link="hand_ring_abd_link"/>-->
+  <!--    <child link="hand_ring_virtual_1_link"/>-->
+  <!--    <origin rpy="1.57079632679 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_ring_virtual_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_ring_virtual_1_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_ring_flex_1_joint" type="revolute">-->
+  <!--    <parent link="hand_ring_virtual_1_link"/>-->
+  <!--    <child link="hand_ring_flex_1_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_ring_flex_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
+  <!--      <mass value="0.009"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_ring_flex_1_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_ring_virtual_2_joint" type="revolute">-->
+  <!--    <parent link="hand_ring_flex_1_link"/>-->
+  <!--    <child link="hand_ring_virtual_2_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_ring_virtual_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_ring_virtual_2_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_ring_flex_2_joint" type="revolute">-->
+  <!--    <parent link="hand_ring_virtual_2_link"/>-->
+  <!--    <child link="hand_ring_flex_2_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_ring_flex_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
+  <!--      <mass value="0.009"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_ring_flex_2_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_ring_virtual_3_joint" type="revolute">-->
+  <!--    <parent link="hand_ring_flex_2_link"/>-->
+  <!--    <child link="hand_ring_virtual_3_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_ring_virtual_3_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_ring_virtual_3_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_ring_flex_3_joint" type="revolute">-->
+  <!--    <parent link="hand_ring_virtual_3_link"/>-->
+  <!--    <child link="hand_ring_flex_3_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_ring_flex_3_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0096 0.003 0.0"/>-->
+  <!--      <mass value="0.015"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_ring_flex_3_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_little_abd_joint" type="revolute">-->
+  <!--    <parent link="hand_palm_link"/>-->
+  <!--    <child link="hand_little_abd_link"/>-->
+  <!--    <origin rpy="-1.57079632679 0.523598775598 0" xyz="0.1165 0.0042 -0.032"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="-0.523598775598" upper="0.523598775598" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_little_abd_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="-0.0018 0.0 0.0028"/>-->
+  <!--      <mass value="0.018"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_abd_collision.stl" scale="1 1 1"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_little_abd_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_little_virtual_1_joint" type="revolute">-->
+  <!--    <parent link="hand_little_abd_link"/>-->
+  <!--    <child link="hand_little_virtual_1_link"/>-->
+  <!--    <origin rpy="1.57079632679 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_little_virtual_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_little_virtual_1_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_little_flex_1_joint" type="revolute">-->
+  <!--    <parent link="hand_little_virtual_1_link"/>-->
+  <!--    <child link="hand_little_flex_1_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_little_flex_1_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
+  <!--      <mass value="0.009"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_little_flex_1_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_little_virtual_2_joint" type="revolute">-->
+  <!--    <parent link="hand_little_flex_1_link"/>-->
+  <!--    <child link="hand_little_virtual_2_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_little_virtual_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_little_virtual_2_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_little_flex_2_joint" type="revolute">-->
+  <!--    <parent link="hand_little_virtual_2_link"/>-->
+  <!--    <child link="hand_little_flex_2_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_little_flex_2_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0047 0.0031 0.0"/>-->
+  <!--      <mass value="0.009"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_little_flex_2_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_little_virtual_3_joint" type="revolute">-->
+  <!--    <parent link="hand_little_flex_2_link"/>-->
+  <!--    <child link="hand_little_virtual_3_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.009 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_little_virtual_3_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <mass value="0.01"/>-->
+  <!--      &lt;!&ndash;TODO: can we make it zero and still have a stable dynamic simulation?&ndash;&gt;-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0065 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.013 0.002 0.012"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_little_virtual_3_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  <joint name="hand_little_flex_3_joint" type="revolute">-->
+  <!--    <parent link="hand_little_virtual_3_link"/>-->
+  <!--    <child link="hand_little_flex_3_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.013 0 0"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <limit effort="2.0" lower="0.0" upper="0.785398163397" velocity="2.0"/>-->
+  <!--    <dynamics damping="0.5" friction="0.0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_little_flex_3_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0.0096 0.003 0.0"/>-->
+  <!--      <mass value="0.015"/>-->
+  <!--      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>-->
+  <!--      &lt;!&ndash; To stabilize simulation &ndash;&gt;-->
+  <!--    </inertial>-->
+  <!--    <visual>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--      <material name="Hey5DarkGrey"/>-->
+  <!--    </visual>-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <mesh filename="package://hey5_description/meshes/finger_flex_tip_collision.stl"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
+  <!--  <gazebo reference="hand_little_flex_3_link">-->
+  <!--    <material>Gazebo/Black</material>-->
+  <!--  </gazebo>-->
+  <!--  &lt;!&ndash;Abductor&ndash;&gt;-->
+  <!--  <link name="hand_grasping_frame"/>-->
+  <!--  <joint name="hand_grasping_fixed_joint" type="fixed">-->
+  <!--    <parent link="hand_palm_link"/>-->
+  <!--    <child link="hand_grasping_frame"/>-->
+  <!--    <axis xyz="0 0 1"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.13 0.02 0"/>-->
+  <!--  </joint>-->
+  <!--  <joint name="hand_safety_box_joint" type="fixed">-->
+  <!--    <parent link="wrist_ft_tool_link"/>-->
+  <!--    <child link="hand_safety_box"/>-->
+  <!--    <origin rpy="0 0 0" xyz="0.1 0.02 0.02"/>-->
+  <!--  </joint>-->
+  <!--  <link name="hand_safety_box">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <mass value="0.0001"/>-->
+  <!--      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>-->
+  <!--    </inertial>-->
+  <!--    &lt;!&ndash;-->
+  <!--      <visual>-->
+  <!--        <origin xyz="0 0 0" rpy="0 0 0" />-->
+  <!--        <geometry>-->
+  <!--          <box size="0.2 0.115 0.18" />-->
+  <!--        </geometry>-->
+  <!--      </visual>-->
+  <!--      &ndash;&gt;-->
+  <!--    <collision>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <geometry>-->
+  <!--        <box size="0.2 0.115 0.18"/>-->
+  <!--      </geometry>-->
+  <!--    </collision>-->
+  <!--  </link>-->
   <!--************************-->
   <!--        ft sensor       -->
   <!--************************-->
@@ -2341,18 +2322,18 @@
     <child link="wrist_ft_tool_link"/>
     <origin rpy="-1.57079632679 -1.57079632679 0" xyz="0 0 0.012725"/>
   </joint>
-<!--  &lt;!&ndash; RGBD Laser Link &ndash;&gt;-->
-<!--  <joint name="rgbd_laser_joint" type="fixed">-->
-<!--    <parent link="base_footprint"/>-->
-<!--    <child link="rgbd_laser_link"/>-->
-<!--    <origin rpy="0 0 0" xyz="-0.9 0 0"/>-->
-<!--  </joint>-->
-<!--  <link name="rgbd_laser_link">-->
-<!--    <inertial>-->
-<!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-<!--      <mass value="0.0001"/>-->
-<!--      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>-->
-<!--    </inertial>-->
-<!--  </link>-->
+  <!--  &lt;!&ndash; RGBD Laser Link &ndash;&gt;-->
+  <!--  <joint name="rgbd_laser_joint" type="fixed">-->
+  <!--    <parent link="base_footprint"/>-->
+  <!--    <child link="rgbd_laser_link"/>-->
+  <!--    <origin rpy="0 0 0" xyz="-0.9 0 0"/>-->
+  <!--  </joint>-->
+  <!--  <link name="rgbd_laser_link">-->
+  <!--    <inertial>-->
+  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
+  <!--      <mass value="0.0001"/>-->
+  <!--      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>-->
+  <!--    </inertial>-->
+  <!--  </link>-->
 </robot>
 

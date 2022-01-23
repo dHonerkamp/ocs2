@@ -144,7 +144,7 @@ finalEndEffector
 selfCollision
 { 
   ; activate self-collision constraint
-  activate  false
+  activate  true
 
   ; Self Collision raw object pairs
   collisionObjectPairs
@@ -156,6 +156,8 @@ selfCollision
   {
     [0] "base_link, arm_tool_link"
     [1] "torso_lift_link, arm_tool_link"
+    [2] "torso_fixed_column_link, arm_tool_link"
+    [3] "head_2_link, arm_tool_link"
   }
 
   ; minimum distance allowed between the pairs
@@ -171,7 +173,7 @@ selfCollision
 collisionSoft
 {
   ; collision avoidance squared hinge penalty
-  activate        false
+  activate        true
   mu              1000
   delta           1e-3
   radius          0.265
