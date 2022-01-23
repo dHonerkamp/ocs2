@@ -55,22 +55,6 @@ int main(int argc, char** argv) {
   std::cerr << "Loading task file: " << taskFile << std::endl;
   std::cerr << "Loading library folder: " << libFolder << std::endl;
   std::cerr << "Loading urdf file: " << urdfFile << std::endl;
-
-  std::vector<double> initialState, initialTarget(7);
-  nodeHandle.getParam("/initialState", initialState);
-  nodeHandle.getParam("/initialTarget", initialTarget);
-
-  vector_t initState(initialState.size());
-  vector_t initTarget(initialTarget.size());
-  for (int i = 0; i < initialState.size(); i++) {
-    initState(i) = initialState[i];
-  }
-  for (int i = 0; i < initialTarget.size(); i++) {
-    initTarget(i) = initialTarget[i];
-  }
-  std::cerr << "initialState: " << initState << std::endl;
-  std::cerr << "initialTarget: " << initTarget << std::endl;
-
   // Robot Interface
   mobile_manipulator::MobileManipulatorInterface interface(taskFile, libFolder, urdfFile);
 
@@ -89,15 +73,41 @@ int main(int argc, char** argv) {
 
   // initial state
   SystemObservation initObservation;
-//  initObservation.state = interface.getInitialState();
-  initObservation.state = initState;
+
+  std::vector<double> initialState, initialTarget;
+  nodeHandle.getParam("/initialState", initialState);
+  nodeHandle.getParam("/initialTarget", initialTarget);
+
+  if (initialState.size()){
+    if (initialState.size() != interface.getInitialState().size()){
+      throw std::runtime_error("Initial state has wrong size");
+    }
+    vector_t initState(initialState.size());
+    for (int i = 0; i < initialState.size(); i++) {
+      initState(i) = initialState[i];
+    }
+    initObservation.state = initState;
+  } else {
+    initObservation.state = interface.getInitialState();
+  };
+  std::cerr << "initialState: " << initObservation.state << std::endl;
   initObservation.input.setZero(interface.getManipulatorModelInfo().inputDim);
   initObservation.time = 0.0;
 
   // initial command
-//  vector_t initTarget(7);
-//  initTarget.head(3) << 0, 1, 1;
-//  initTarget.tail(4) << Eigen::Quaternion<scalar_t>(1, 0, 0, 0).coeffs();
+  vector_t initTarget(7);
+  if (initialTarget.size()){
+    if (initialTarget.size() != 7){
+      throw std::runtime_error("Initial target has wrong size");
+    }
+    for (int i = 0; i < initialTarget.size(); i++) {
+      initTarget(i) = initialTarget[i];
+    }
+  } else {
+    initTarget.head(3) << 0, 1, 1;
+    initTarget.tail(4) << Eigen::Quaternion<scalar_t>(1, 0, 0, 0).coeffs();
+  }
+  std::cerr << "initialTarget: " << initTarget << std::endl;
   const vector_t zeroInput = vector_t::Zero(interface.getManipulatorModelInfo().inputDim);
   const TargetTrajectories initTargetTrajectories({initObservation.time}, {initTarget}, {zeroInput});
 

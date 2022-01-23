@@ -1,6 +1,6 @@
 ; robot model meta-information
 model_information {
-  manipulatorModelType     1      // 0: Default-arm, 1: Wheel-based manipulator, 2: Floating-arm manipulator
+  manipulatorModelType     1      // 0: Default-arm, 1: Wheel-based manipulator, 2: Floating-arm manipulator, 3: Omni-base mobile manipulator -> add a y velocity in the configs below to use this one
   
   ; motion joints in the URDF to consider fixed
   removeJoints {
@@ -146,6 +146,11 @@ selfCollision
   ; activate self-collision constraint
   activate  false
 
+  ; Self Collision raw object pairs
+  collisionObjectPairs
+  {
+  }
+
   ; Self Collision pairs
   collisionLinkPairs
   {
@@ -166,10 +171,13 @@ selfCollision
 collisionSoft
 {
   ; collision avoidance squared hinge penalty
-  activate  false
-  mu  2000
-  delta 1e-3
-  radius 0.25 ; half diagonal of square with side length 0.65
+  activate        false
+  mu              1000
+  delta           1e-3
+  radius          0.265
+  square_base     false
+  diagonal_radius 0.0
+  corner_radius   0.0
 }
 
 jointVelocityLimits
@@ -209,7 +217,6 @@ jointVelocityLimits
   delta   1e-3
 }
 
-
 jointValueLimits
 {
   activate  true
@@ -230,8 +237,8 @@ jointValueLimits
 
   upperBound
   {
-    (0,0) 100.0  ; x
-    (1,0) 100.0  ; y
+    (0,0) 1000.0  ; x
+    (1,0) 1000.0  ; y
     (2,0) 1000.0 ; theta
     (3,0) 0.35   ; torso_lift_joint
     (4,0) 2.68   ; arm_1_joint

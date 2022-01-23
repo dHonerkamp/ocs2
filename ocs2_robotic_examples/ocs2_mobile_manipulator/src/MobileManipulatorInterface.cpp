@@ -157,18 +157,21 @@ MobileManipulatorInterface::MobileManipulatorInterface(const std::string& taskFi
   // Constraints
   // input limits constraint
   problem_.softConstraintPtr->add("jointVelocityLimit", getJointVelocityLimitConstraint(taskFile));
-  // only add this for the pr2
+
+  // joint value limits
   bool activateJointValueLimits = true;
   loadData::loadPtreeValue(pt, activateJointValueLimits, "jointValueLimits.activate", false);
   if (activateJointValueLimits) {
     problem_.stateSoftConstraintPtr->add("jointValueLimit", getJointValueLimitConstraint(taskFile));
   }
 
+  // collision constraint
   bool activateCollision = true;
   loadData::loadPtreeValue(pt, activateCollision, "collisionSoft.activate", false);
   if (activateCollision) {
     problem_.stateSoftConstraintPtr->add("collisionConstraintSoft", getCollisionConstraintSoft(taskFile));
   }
+
   // end-effector state constraint
   problem_.stateSoftConstraintPtr->add("endEffector", getEndEffectorConstraint(*pinocchioInterfacePtr_, taskFile, "endEffector",
                                                                                usePreComputation, libraryFolder, recompileLibraries));
