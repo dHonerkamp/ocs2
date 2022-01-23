@@ -79,8 +79,11 @@ scalar_t MyMap::getCost(scalar_t wx, scalar_t wy) const {
   return static_cast<scalar_t>(costmap_[getIndex(mx, my)]);
 }
 
-CollisionConstraintSoft::CollisionConstraintSoft(scalar_t radius) : StateConstraint(ConstraintOrder::Linear),
+CollisionConstraintSoft::CollisionConstraintSoft(scalar_t radius, bool square_base, scalar_t corner_radius, scalar_t diagonal_radius) : StateConstraint(ConstraintOrder::Linear),
                                                                     radius_{radius},
+                                                                    square_base_{square_base},
+                                                                    corner_radius_{corner_radius},
+                                                                    diagonal_radius_{diagonal_radius},
                                                                     sdf_{"/sdf", 10.0},
                                                                     sdf_dx_{"/sdf_dx", 10.0},
                                                                     sdf_dy_{"/sdf_dy", 10.0}
@@ -100,8 +103,20 @@ vector_t CollisionConstraintSoft::getValue(scalar_t time, const vector_t& state,
 
   scalar_t z = signed_distance - radius_;
 
-  vector_t value(1);
+  vector_t value(getNumConstraints(time));
   value(0) = z;
+
+  if (square_base_){
+    scalar_t current_theta = state(2);
+    std::vector<std::vector<scalar_t>> corners = getSquareBaseCorners(current_x, current_y, current_theta);
+    value(1) = getSdfValueAndGradients(corners[0][0], corners[0][1])(0) - corner_radius_;
+    value(2) = getSdfValueAndGradients(corners[1][0], corners[1][1])(0) - corner_radius_;
+    value(3) = getSdfValueAndGradients(corners[2][0], corners[2][1])(0) - corner_radius_;
+    value(4) = getSdfValueAndGradients(corners[3][0], corners[3][1])(0) - corner_radius_;
+  }
+
+//  std::cout << "value: " << value << std::endl;
+
   return value;
 }
 
@@ -122,6 +137,36 @@ VectorFunctionLinearApproximation CollisionConstraintSoft::getLinearApproximatio
   limits.dfdx(0, 0) = value_and_gradient(1);
   limits.dfdx(0, 1) = value_and_gradient(2);
 
+  if (square_base_){
+    scalar_t current_theta = state(2);
+    std::vector<std::vector<scalar_t>> corners = getSquareBaseCorners(current_x, current_y, current_theta);
+    vector_t value_and_gradient1 = getSdfValueAndGradients(corners[0][0], corners[0][1]);
+    vector_t value_and_gradient2 = getSdfValueAndGradients(corners[1][0], corners[1][1]);
+    vector_t value_and_gradient3 = getSdfValueAndGradients(corners[2][0], corners[2][1]);
+    vector_t value_and_gradient4 = getSdfValueAndGradients(corners[3][0], corners[3][1]);
+
+    limits.f(1) = value_and_gradient1(0) - corner_radius_;
+    limits.f(2) = value_and_gradient2(0) - corner_radius_;
+    limits.f(3) = value_and_gradient3(0) - corner_radius_;
+    limits.f(4) = value_and_gradient4(0) - corner_radius_;
+
+    limits.dfdx(1, 0) = value_and_gradient1(1) ;
+    limits.dfdx(1, 1) = value_and_gradient1(2) ;
+    scalar_t r = diagonal_radius_;
+    limits.dfdx(1, 2) = (- r * std::sin(current_theta + 0.25 * M_PI) * value_and_gradient1(1) + r * std::cos(current_theta + 0.25 * M_PI) * value_and_gradient1(2));
+    limits.dfdx(2, 0) = value_and_gradient2(1);
+    limits.dfdx(2, 1) = value_and_gradient2(2);
+    limits.dfdx(2, 2) = (- r * std::sin(current_theta + 0.75 * M_PI) * value_and_gradient2(1) + r * std::cos(current_theta + 0.75 * M_PI) * value_and_gradient2(2));
+    limits.dfdx(3, 0) = value_and_gradient3(1);
+    limits.dfdx(3, 1) = value_and_gradient3(2);
+    limits.dfdx(3, 2) = (- r * std::sin(current_theta + 1.25 * M_PI) * value_and_gradient3(1) + r * std::cos(current_theta + 1.25 * M_PI) * value_and_gradient3(2));
+    limits.dfdx(4, 0) = value_and_gradient4(1);
+    limits.dfdx(4, 1) = value_and_gradient4(2);
+    limits.dfdx(4, 2) = (- r * std::sin(current_theta + 1.75 * M_PI) * value_and_gradient4(1) + r * std::cos(current_theta + 1.75 * M_PI) * value_and_gradient4(2));
+  }
+
+//  std::cout << "limits: " << limits << std::endl;
+
   return limits;
 }
 
@@ -140,6 +185,19 @@ vector_t CollisionConstraintSoft::getSdfValueAndGradients(const scalar_t &x, con
   values(0) = sdf_interp;
 
   return values;
+}
+
+std::vector<std::vector<scalar_t>> CollisionConstraintSoft::getSquareBaseCorners(scalar_t &current_x, scalar_t &current_y, scalar_t &current_theta) const{
+  std::vector<std::vector<scalar_t>> corners(4);
+  scalar_t r = diagonal_radius_;
+  corners[0] = std::vector<scalar_t>{current_x + r * std::cos(current_theta + 0.25 * M_PI), current_y + r * std::sin(current_theta + 0.25 * M_PI)};
+  corners[1] = std::vector<scalar_t>{current_x + r * std::cos(current_theta + 0.75 * M_PI), current_y + r * std::sin(current_theta + 0.75 * M_PI)};
+  corners[2] = std::vector<scalar_t>{current_x + r * std::cos(current_theta + 1.25 * M_PI), current_y + r * std::sin(current_theta + 1.25 * M_PI)};
+  corners[3] = std::vector<scalar_t>{current_x + r * std::cos(current_theta + 1.75 * M_PI), current_y + r * std::sin(current_theta + 1.75 * M_PI)};
+
+//  std::cout<< "current_x: " << current_x << ", current_y: " << current_y << ", current_theta: " << current_theta << ", c0: (" << corners[0][0] << "," << corners[0][1] << ")" << ", c1: (" << corners[1][0] << "," << corners[1][1] << ")" << ", c2: (" << corners[2][0] << "," << corners[2][1] << ")" << ", c0: (" << corners[3][0] << "," << corners[3][1] << ")" << std::endl;
+
+  return corners;
 }
 
 

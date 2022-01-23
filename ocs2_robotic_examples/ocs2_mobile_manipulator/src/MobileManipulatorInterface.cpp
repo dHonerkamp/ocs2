@@ -176,7 +176,7 @@ MobileManipulatorInterface::MobileManipulatorInterface(const std::string& taskFi
                                                                                     usePreComputation, libraryFolder, recompileLibraries));
   // self-collision avoidance constraint
   bool activateSelfCollision = true;
-  loadData::loadPtreeValue(pt, activateSelfCollision, "selfCollision.activate", true);
+  loadData::loadPtreeValue(pt, activateSelfCollision, "selfCollision.activate", false);
   if (activateSelfCollision) {
     problem_.stateSoftConstraintPtr->add("selfCollision", getSelfCollisionConstraint(*pinocchioInterfacePtr_, taskFile, urdfFile,
                                                                                      usePreComputation, libraryFolder, recompileLibraries));
@@ -395,19 +395,25 @@ std::unique_ptr<StateCost> MobileManipulatorInterface::getCollisionConstraintSof
   scalar_t delta = 1.0e-3;
   scalar_t radius = 0.0;
   scalar_t num_constraints = 1;
+  bool square_base = false;
+  scalar_t corner_radius = 0.0;
+  scalar_t diagonal_radius = 0.0;
 
   boost::property_tree::ptree pt;
   boost::property_tree::read_info(taskFile, pt);
   const std::string prefix = "collisionSoft.";
   std::cerr << "\n #### collisionSoft Settings: ";
   std::cerr << "\n #### =============================================================================\n";
+  loadData::loadPtreeValue(pt, square_base, prefix + "square_base", true);
+  loadData::loadPtreeValue(pt, corner_radius, prefix + "corner_radius", true);
+  loadData::loadPtreeValue(pt, diagonal_radius, prefix + "diagonal_radius", true);
   loadData::loadPtreeValue(pt, mu, prefix + "mu", true);
   loadData::loadPtreeValue(pt, delta, prefix + "delta", true);
   loadData::loadPtreeValue(pt, radius, prefix + "radius", true);
   std::cerr << " #### =============================================================================\n";
 
 
-  std::unique_ptr<StateConstraint> constraint(new CollisionConstraintSoft(radius));
+  std::unique_ptr<StateConstraint> constraint(new CollisionConstraintSoft(radius, square_base, corner_radius, diagonal_radius));
   std::unique_ptr<PenaltyBase> penalty(new SquaredHingePenalty({mu, delta}));
 
   return  std::unique_ptr<StateCost>(new StateSoftConstraint(std::move(constraint), std::move(penalty)));

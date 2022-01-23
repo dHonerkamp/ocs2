@@ -54,11 +54,11 @@ public:
 
 class CollisionConstraintSoft final : public StateConstraint {
  public:
-  explicit CollisionConstraintSoft(scalar_t radius);
+  explicit CollisionConstraintSoft(scalar_t radius, bool square_base, scalar_t corner_radius, scalar_t diagonal_radius);
   ~CollisionConstraintSoft() override = default;
   CollisionConstraintSoft* clone() const override { return new CollisionConstraintSoft(*this); }
 
-  size_t getNumConstraints(scalar_t time) const override { return 1; }
+  size_t getNumConstraints(scalar_t time) const override { return square_base_ ? 5 : 1; }
   vector_t getValue(scalar_t time, const vector_t& state, const PreComputation& preComputation) const override;
   VectorFunctionLinearApproximation getLinearApproximation(scalar_t time, const vector_t& state,
                                                            const PreComputation& preComputation) const override;
@@ -66,7 +66,11 @@ class CollisionConstraintSoft final : public StateConstraint {
  private:
   CollisionConstraintSoft(const CollisionConstraintSoft& other) = default;
   vector_t getSdfValueAndGradients(const scalar_t &x, const scalar_t &y) const ;
+  std::vector<std::vector<scalar_t>> getSquareBaseCorners(scalar_t &current_x, scalar_t &current_y, scalar_t &current_theta) const;
 
+  bool square_base_;
+  scalar_t corner_radius_;
+  scalar_t diagonal_radius_;
   scalar_t radius_;
   MyMap sdf_;
   MyMap sdf_dx_;

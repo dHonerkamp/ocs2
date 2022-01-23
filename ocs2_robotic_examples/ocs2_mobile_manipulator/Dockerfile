@@ -25,9 +25,10 @@ catkin config -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=/home/honerkam/mini
 catkin config --blacklist ocs2_raisim ocs2_raisim_ros ocs2_doc ocs2_legged_robot
 
 # add tiago meshes etc.
-ln -s /home/daniel/ros/catkin_ws_modulation_tiago/src/pmb2_robot/pmb2_description/ src/
-ln -s /home/daniel/ros/catkin_ws_modulation_tiago/src/tiago_robot/tiago_description/ src/
-ln -s /home/daniel/ros/catkin_ws_modulation_tiago/src/hey5_description/ src/
+ln -s /home/honerkam/ros/catkin_ws_tiago2/src/pmb2_robot/pmb2_description/ src/
+ln -s /home/honerkam/ros/catkin_ws_tiago2/src/tiago_robot/tiago_description/ src/
+ln -s /home/honerkam/ros/catkin_ws_tiago2/src/hey5_description/ src/
+ln -s /home/honerkam/ros/catkin_ws_tiago2/src/pal_gripper/pal_gripper_description/ src/
 
 catkin build
 source devel/setup.bash
