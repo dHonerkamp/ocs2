@@ -232,7 +232,7 @@ jointValueLimits
     (5,0) -1.5     ; arm_2_joint
     (6,0) -3.46    ; arm_3_joint
     (7,0) -0.32    ; arm_4_joint
-    (8,0) 2.07     ; arm_5_joint
+    (8,0) -2.07     ; arm_5_joint
     (9,0) -1.39    ; arm_6_joint
     (10,0) -2.07   ; arm_7_joint
   }
