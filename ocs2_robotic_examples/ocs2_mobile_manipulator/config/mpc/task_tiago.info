@@ -186,7 +186,7 @@ jointVelocityLimits
 {
   lowerBound
   {
-    (0,0) -0.5   ; forward velocity
+    (0,0) -0.2   ; forward velocity
     (1,0) -0.4   ; turning velocity
     (2,0) -0.07  ; torso_lift_joint
     (3,0) -2.7   ; arm_1_joint
@@ -200,7 +200,7 @@ jointVelocityLimits
 
   upperBound
   {
-    (0,0) 0.5    ; forward velocity
+    (0,0) 0.2    ; forward velocity
     (1,0) 0.4    ; turning velocity
     (2,0) 0.07   ; torso_lift_joint
     (3,0) 2.7    ; arm_1_joint
@@ -232,7 +232,7 @@ jointValueLimits
     (5,0) -1.5     ; arm_2_joint
     (6,0) -3.46    ; arm_3_joint
     (7,0) -0.32    ; arm_4_joint
-    (8,0) -2.07     ; arm_5_joint
+    (8,0) -2.07    ; arm_5_joint
     (9,0) -1.39    ; arm_6_joint
     (10,0) -2.07   ; arm_7_joint
   }

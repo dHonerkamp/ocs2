@@ -363,8 +363,8 @@ std::unique_ptr<StateInputCost> MobileManipulatorInterface::getJointVelocityLimi
 }
 
 std::unique_ptr<StateCost> MobileManipulatorInterface::getJointValueLimitConstraint(const std::string& taskFile) {
-  vector_t lowerBound(manipulatorModelInfo_.inputDim);
-  vector_t upperBound(manipulatorModelInfo_.inputDim);
+  vector_t lowerBound(manipulatorModelInfo_.stateDim);
+  vector_t upperBound(manipulatorModelInfo_.stateDim);
   scalar_t mu = 1e-2;
   scalar_t delta = 1e-3;
 
