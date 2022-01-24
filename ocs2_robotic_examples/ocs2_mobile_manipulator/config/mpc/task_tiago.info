@@ -176,7 +176,7 @@ collisionSoft
   activate        true
   mu              1000
   delta           1e-3
-  radius          0.265
+  radius          0.4
   square_base     false
   diagonal_radius 0.0
   corner_radius   0.0

@@ -178,12 +178,12 @@ collisionSoft
 {
   ; collision avoidance squared hinge penalty
   activate        true
-  mu              1000
-  delta           1e-3
-  radius          0.37 ; square with side length 0.65
+  mu              1000  ; paper: 500
+  delta           1e-3  ; paper: 1e-3
+  radius          0.41  ; square with side length 0.65
   square_base     true
-  diagonal_radius 0.46
-  corner_radius   0.03
+  diagonal_radius 0.42  ; 0.46 would be centered on the actual corner
+  corner_radius   0.13
 }
 
 jointVelocityLimits
