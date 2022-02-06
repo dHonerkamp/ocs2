@@ -9,7 +9,7 @@ model_information {
   ; base frame of the robot (from URDF)
   baseFrame                "base_link"
   ; end-effector frame of the robot (from URDF)
-  eeFrame                  "r_wrist_roll_link"
+  eeFrame                  "hand_palm_link"
 }
 
 model_settings
@@ -98,14 +98,11 @@ initialState
   (0,0)  0.0  ; position x
   (1,0)  0.0  ; position y
   (2,0)  0.0  ; heading
-  (3,0)  0.01 ; torso_lift_joint
-  (4,0)  0.0  ; r_shoulder_pan_joint
-  (5,0)  0.0  ; r_shoulder_lift_joint
-  (6,0)  0.0  ; r_upper_arm_roll_joint
-  (7,0)  -0.3 ; r_elbow_flex_joint
-  (8,0)  0.0  ; r_forearm_roll_joint
-  (9,0) -0.4  ; r_wrist_flex_joint
-  (10,0) 0.0  ; r_wrist_roll_joint
+  (3,0)  0.2  ; arm_lift_joint
+  (4,0)  -0.7 ; arm_flex_joint
+  (5,0)  0.0  ; arm_roll_joint
+  (6,0)  -1.2 ; wrist_flex_joint
+  (7,0)  0.0  ; wrist_roll_joint
 }
 
 inputCost
@@ -118,14 +115,11 @@ inputCost
     (0,0)  5.0  ; x velocity
     (1,1)  5.0  ; y velocity
     (2,2)  5.0  ; angular velocity
-    (3,3)  1.0  ; torso_lift_joint velocity
-    (4,4)  1.0  ; r_shoulder_pan_joint velocity
-    (5,5)  1.0  ; r_shoulder_lift_joint velocity
-    (6,6)  1.0  ; r_upper_arm_roll_joint velocity
-    (7,7)  1.0  ; r_elbow_flex_joint velocity
-    (8,8)  1.0  ; r_forearm_roll_joint velocity
-    (9,9)  1.0  ; r_wrist_flex_joint velocity
-    (10,10)  1.0  ; r_wrist_roll_joint velocity
+    (3,3)  1.0  ; arm_lift_joint
+    (4,4)  1.0  ; arm_flex_joint
+    (5,5)  1.0  ; arm_roll_joint
+    (6,6)  1.0  ; wrist_flex_joint
+    (7,7)  1.0  ; wrist_roll_joint
   }
 }
 
@@ -155,13 +149,9 @@ selfCollision
   ; Self Collision pairs
   collisionLinkPairs
   {
-    [0] "base_link, r_gripper_palm_link"
-    [1] "torso_lift_link, r_gripper_palm_link"
-    [2] "torso_lift_link, r_elbow_flex_link"
-    [3] "r_forearm_link, r_gripper_palm_link"
-    [4] "head_tilt_link, r_gripper_palm_link"
-    [5] "l_gripper_palm_link, r_gripper_palm_link"
-    [6] "l_forearm_link, r_gripper_palm_link"
+    [0] "base_link, hand_palm_link"
+    [1] "torso_lift_link, hand_palm_link"
+    [2] "head_tilt_link, hand_palm_link"
   }
 
   ; minimum distance allowed between the pairs
@@ -177,30 +167,27 @@ selfCollision
 collisionSoft
 {
   ; collision avoidance squared hinge penalty
-  activate        true
+  activate        false
   mu              1000  ; paper: 500
   delta           1e-3  ; paper: 1e-3
-  radius          0.41  ; square with side length 0.65
-  square_base     true
-  diagonal_radius 0.42  ; 0.46 would be centered on the actual corner
-  corner_radius   0.13
+  radius          0.30  ;
+  square_base     false
+  diagonal_radius 0.0
+  corner_radius   0.0
 }
 
 jointVelocityLimits
 {
   lowerBound
   {
-    (0,0) -0.2  ; x velocity
-    (1,0) -0.2  ; y velocity
-    (2,0) -1.0  ; angular velocity
-    (3,0) -0.013  ; torso_lift_joint
-    (4,0) -1.0  ; r_shoulder_pan_joint
-    (5,0) -1.0  ; r_shoulder_lift_joint
-    (6,0) -1.0  ; r_upper_arm_roll_joint
-    (7,0) -1.0  ; r_elbow_flex_joint
-    (8,0) -1.0  ; r_forearm_roll_joint
-    (9,0) -1.0  ; r_wrist_flex_joint
-    (10,0) -1.0  ; r_wrist_roll_joint
+    (0,0) -0.2    ; x velocity
+    (1,0) -0.2    ; y velocity
+    (2,0) -1.0    ; angular velocity
+    (3,0) -0.2    ; arm_lift_joint
+    (4,0) -1.0    ; arm_flex_joint
+    (5,0) -1.0    ; arm_roll_joint
+    (6,0) -1.0    ; wrist_flex_joint
+    (7,0) -1.0    ; wrist_roll_joint
   }
 
   upperBound
@@ -208,14 +195,11 @@ jointVelocityLimits
     (0,0) 0.2    ; x velocity
     (1,0) 0.2    ; y velocity
     (2,0) 1.0    ; angular velocity
-    (3,0) 0.013  ; torso_lift_joint
-    (4,0) 1.0    ; r_shoulder_pan_joint
-    (5,0) 1.0    ; r_shoulder_lift_joint
-    (6,0) 1.0    ; r_upper_arm_roll_joint
-    (7,0) 1.0    ; r_elbow_flex_joint
-    (8,0) 1.0    ; r_forearm_roll_joint
-    (9,0) 1.0    ; r_wrist_flex_joint
-    (10,0) 1.0   ; r_wrist_roll_joint
+    (3,0) 0.2    ; arm_lift_joint
+    (4,0) 1.0    ; arm_flex_joint
+    (5,0) 1.0    ; arm_roll_joint
+    (6,0) 1.0    ; wrist_flex_joint
+    (7,0) 1.0    ; wrist_roll_joint
   }
 
   ; relaxed log barrier mu
@@ -232,32 +216,24 @@ jointValueLimits
   {
     (0,0) -1000.0  ; x
     (1,0) -1000.0  ; y
-    (2,0) -1000.0 ; theta
-    (3,0) 0.0  ; torso_lift_joint
-    (4,0) -2.2853981634  ; r_shoulder_pan_joint
-    (5,0) -0.5236  ; r_shoulder_lift_joint
-    (6,0) -3.9  ; r_upper_arm_roll_joint
-    (7,0) -2.3213  ; r_elbow_flex_joint
-    (8,0) -100000.0  ; r_forearm_roll_joint TODO: INFINITE
-    (9,0) -2.18  ; r_wrist_flex_joint
-    (10,0) -100000.0  ; r_wrist_roll_joint TODO: INFINITE
-    (11,0) -100000.0  ; blub
+    (2,0) -1000.0  ; theta
+    (3,0) 0.0      ; arm_lift_joint
+    (4,0) -2.2853  ; arm_flex_joint
+    (5,0) -0.5236  ; arm_roll_joint
+    (6,0) -3.9     ; wrist_flex_joint
+    (7,0) -2.3213  ; wrist_roll_joint
   }
 
   upperBound
   {
     (0,0) 1000.0  ; x
     (1,0) 1000.0  ; y
-    (2,0) 1000.0 ; theta
-    (3,0) 0.33  ; torso_lift_joint
-    (4,0) 0.714601836603  ; r_shoulder_pan_joint
-    (5,0) 1.3963  ; r_shoulder_lift_joint
-    (6,0) 0.8  ; r_upper_arm_roll_joint
-    (7,0) 0.00  ; r_elbow_flex_joint
-    (8,0) 100000.0  ; r_forearm_roll_joint TODO: INFINITE
-    (9,0) 0.0  ; r_wrist_flex_joint
-    (10,0) 100000.0 ; r_wrist_roll_joint TODO: INFINITE
-    (11,0) 100000.0  ; blub
+    (2,0) 1000.0  ; theta
+    (3,0) 0.33    ; arm_lift_joint
+    (4,0) 0.7146  ; arm_flex_joint
+    (5,0) 1.3963  ; arm_roll_joint
+    (6,0) 0.8     ; wrist_flex_joint
+    (7,0) 0.00    ; wrist_roll_joint
   }
 
   ; relaxed log barrier mu

@@ -225,7 +225,6 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <sphere radius="0.0985"/>
-        <!-- length="${width}"/> -->
       </geometry>
     </collision>
   </link>
@@ -272,7 +271,6 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <sphere radius="0.0985"/>
-        <!-- length="${width}"/> -->
       </geometry>
     </collision>
   </link>
@@ -336,7 +334,6 @@
   <!--    &lt;!&ndash;collision>-->
   <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
   <!--        <geometry>-->
-  <!--          <cylinder radius="${radius}" length="${width}"/>-->
   <!--        </geometry>-->
   <!--      </collision&ndash;&gt;-->
   <!--  </link>-->
@@ -416,7 +413,6 @@
   <!--    &lt;!&ndash;collision>-->
   <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
   <!--        <geometry>-->
-  <!--          <cylinder radius="${radius}" length="${width}"/>-->
   <!--        </geometry>-->
   <!--      </collision&ndash;&gt;-->
   <!--  </link>-->
@@ -496,7 +492,6 @@
   <!--    &lt;!&ndash;collision>-->
   <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
   <!--        <geometry>-->
-  <!--          <cylinder radius="${radius}" length="${width}"/>-->
   <!--        </geometry>-->
   <!--      </collision&ndash;&gt;-->
   <!--  </link>-->
@@ -576,7 +571,6 @@
   <!--    &lt;!&ndash;collision>-->
   <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
   <!--        <geometry>-->
-  <!--          <cylinder radius="${radius}" length="${width}"/>-->
   <!--        </geometry>-->
   <!--      </collision&ndash;&gt;-->
   <!--  </link>-->
@@ -827,7 +821,6 @@
   <!--************************-->
   <link name="arm_1_link">
     <inertial>
-      <!--<origin xyz="0.061191 ${reflect * -0.022397} -0.012835" rpy="0.00000 0.00000 0.00000"/>-->
       <origin rpy="0.00000 0.00000 0.00000" xyz="0.061191 -0.022397 -0.012835"/>
       <mass value="1.563428"/>
       <inertia ixx="0.002471" ixy="-0.001809" ixz="-0.001202" iyy="0.006132" iyz="0.000494" izz="0.006704"/>
@@ -863,7 +856,6 @@
       <inertia ixx="0.001809" ixy="1.5e-05" ixz="0.000254" iyy="0.004333" iyz="1.4e-05" izz="0.004341"/>
     </inertial>
     <visual>
-      <!-- <origin xyz="0 0 0" rpy="${180 * deg_to_rad} ${0 * deg_to_rad} ${-90 * deg_to_rad}" /> -->
       <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://tiago_description/meshes/arm/arm_2.stl" scale="1 1 1"/>
@@ -871,7 +863,6 @@
       <material name="DarkGrey"/>
     </visual>
     <!--    <collision>-->
-    <!--      &lt;!&ndash; <origin xyz="0 0 0" rpy="${180 * deg_to_rad} ${0 * deg_to_rad} ${-90 * deg_to_rad}" /> &ndash;&gt;-->
     <!--      <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>-->
     <!--      <geometry>-->
     <!--        <mesh filename="package://tiago_description/meshes/arm/arm_2_collision.dae" scale="1 1 1"/>-->

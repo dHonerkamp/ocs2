@@ -86,7 +86,7 @@ mpc
 
   useParallelRiccatiSolver       true  ; use disjoint riccati solver in MP case and recedingHorizon fashion
 
-  solutionTimeWindow             0.2   ; [s]
+  solutionTimeWindow             0.3   ; [s]
 
   mpcDesiredFrequency            30   ; [Hz]
   mrtDesiredFrequency            400   ; [Hz]
@@ -187,7 +187,7 @@ jointVelocityLimits
   lowerBound
   {
     (0,0) -0.2   ; forward velocity
-    (1,0) -0.4   ; turning velocity
+    (1,0) -1.0   ; turning velocity
     (2,0) -0.07  ; torso_lift_joint
     (3,0) -2.7   ; arm_1_joint
     (4,0) -3.66  ; arm_2_joint
@@ -201,7 +201,7 @@ jointVelocityLimits
   upperBound
   {
     (0,0) 0.2    ; forward velocity
-    (1,0) 0.4    ; turning velocity
+    (1,0) 1.0    ; turning velocity
     (2,0) 0.07   ; torso_lift_joint
     (3,0) 2.7    ; arm_1_joint
     (4,0) 3.66   ; arm_2_joint
