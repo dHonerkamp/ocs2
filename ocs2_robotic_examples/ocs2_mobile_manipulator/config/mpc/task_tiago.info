@@ -176,7 +176,7 @@ collisionSoft
   activate        true
   mu              1000
   delta           1e-3
-  radius          0.4
+  radius          0.32
   square_base     false
   diagonal_radius 0.0
   corner_radius   0.0
@@ -229,12 +229,12 @@ jointValueLimits
     (2,0) -1000.0  ; theta
     (3,0) 0.0      ; torso_lift_joint
     (4,0) 0.07     ; arm_1_joint
-    (5,0) -1.5     ; arm_2_joint
-    (6,0) -3.46    ; arm_3_joint
-    (7,0) -0.32    ; arm_4_joint
-    (8,0) -2.07    ; arm_5_joint
-    (9,0) -1.39    ; arm_6_joint
-    (10,0) -2.07   ; arm_7_joint
+    (5,0) -1.50079632679    ; arm_2_joint
+    (6,0) -3.46429173529    ; arm_3_joint
+    (7,0) -0.322699081699   ; arm_4_joint
+    (8,0) -2.07439510239    ; arm_5_joint
+    (9,0) -1.39371669412    ; arm_6_joint
+    (10,0) -2.07439510239   ; arm_7_joint
   }
 
   upperBound
@@ -243,13 +243,13 @@ jointValueLimits
     (1,0) 1000.0  ; y
     (2,0) 1000.0 ; theta
     (3,0) 0.35   ; torso_lift_joint
-    (4,0) 2.68   ; arm_1_joint
-    (5,0) 1.02   ; arm_2_joint
-    (6,0) 1.5    ; arm_3_joint
-    (7,0) 2.29   ; arm_4_joint
-    (8,0) 2.07   ; arm_5_joint
-    (9,0) 1.39   ; arm_6_joint
-    (10,0) 1.24  ; arm_7_joint
+    (4,0) 2.67889357189   ; arm_1_joint
+    (5,0) 1.0208307825    ; arm_2_joint
+    (6,0) 1.50079632679   ; arm_3_joint
+    (7,0) 2.28619449019   ; arm_4_joint
+    (8,0) 2.07439510239   ; arm_5_joint
+    (9,0) 1.39371669412   ; arm_6_joint
+    (10,0) 2.07439510239  ; arm_7_joint
   }
 
   ; relaxed log barrier mu

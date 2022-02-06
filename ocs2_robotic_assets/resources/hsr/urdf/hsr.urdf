@@ -319,7 +319,7 @@
 <!--      </geometry>-->
 <!--    </collision>-->
 <!--  </link>-->
-  <joint name="torso_lift_joint" type="prismatic">
+  <joint name="torso_lift_joint" type="fixed">
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.752"/>
     <!-- <origin xyz="0.0 0.0 0.752" rpy="0.0 0.0 0.0" /> -->
     <axis xyz="0.0 0.0 1.0"/>
@@ -731,6 +731,13 @@
         <cylinder length="0.19" radius="0.065"/>
       </geometry>
     </collision>
+  </link>
+  <joint name="myfakejoint" type="fixed">
+    <origin rpy="3.1415927 -1.5707963 0" xyz="0.0 0.0 0.0"/>
+    <parent link="hand_palm_link"/>
+    <child link="myfakepalmlink"/>
+  </joint>
+  <link name="myfakepalmlink">
   </link>
   <joint name="hand_motor_joint" type="fixed">
     <axis xyz="1.0 0.0 0.0"/>

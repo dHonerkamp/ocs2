@@ -300,340 +300,215 @@
     <axis xyz="0 0 1"/>
     <limit effort="6.0" velocity="10.152284264"/>
   </joint>
-  <!--  &lt;!&ndash; Contact model for the wheel surface &ndash;&gt;-->
-  <!--  <gazebo reference="wheel_left_link">-->
-  <!--    <kp>1000000.0</kp>-->
-  <!--    <kd>100.0</kd>-->
-  <!--    &lt;!&ndash;-->
-  <!--      <mu1>10.0</mu1>-->
-  <!--      <mu2>10.0</mu2>-->
-  <!--      &ndash;&gt;-->
-  <!--    <mu1>100000000000000.0</mu1>-->
-  <!--    <mu2>100000000000000.0</mu2>-->
-  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-  <!--    <maxVel>1.0</maxVel>-->
-  <!--    <minDepth>0.002</minDepth>-->
-  <!--    <material>Gazebo/DarkGrey</material>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="wheel_{side}_joint">-->
-  <!--    <implicitSpringDamper>1</implicitSpringDamper>-->
-  <!--  </gazebo>-->
-  <!--  <link name="caster_front_right_1_link">-->
-  <!--    <inertial>-->
-  <!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
-  <!--      <mass value="0.05144761"/>-->
-  <!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
-  <!--    </inertial>-->
-  <!--    <visual>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
-  <!--      </geometry>-->
-  <!--      <material name="Grey"/>-->
-  <!--    </visual>-->
-  <!--    &lt;!&ndash;collision>-->
-  <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
-  <!--        <geometry>-->
-  <!--        </geometry>-->
-  <!--      </collision&ndash;&gt;-->
-  <!--  </link>-->
-  <!--  <link name="caster_front_right_2_link">-->
-  <!--    <inertial>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <mass value="0.08855784"/>-->
-  <!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
-  <!--    </inertial>-->
-  <!--    <visual>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
-  <!--      </geometry>-->
-  <!--      <material name="DarkGrey"/>-->
-  <!--    </visual>-->
-  <!--    <collision>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <sphere radius="0.025"/>-->
-  <!--      </geometry>-->
-  <!--    </collision>-->
-  <!--  </link>-->
-  <!--  <joint name="caster_front_right_1_joint" type="continuous">-->
-  <!--    <parent link="base_link"/>-->
-  <!--    <child link="caster_front_right_1_link"/>-->
-  <!--    <origin rpy="0 0 0" xyz="0.1695 -0.102 -0.0335"/>-->
-  <!--    <axis xyz="0 0 1"/>-->
-  <!--    <dynamics damping="0.005" friction="0.0"/>-->
-  <!--  </joint>-->
-  <!--  <joint name="caster_front_right_2_joint" type="continuous">-->
-  <!--    <parent link="caster_front_right_1_link"/>-->
-  <!--    <child link="caster_front_right_2_link"/>-->
-  <!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
-  <!--    <axis xyz="0 0 1"/>-->
-  <!--  </joint>-->
-  <!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
-  <!--  <gazebo reference="caster_front_right_1_link">-->
-  <!--    <kp>100000000.0</kp>-->
-  <!--    <kd>10.0</kd>-->
-  <!--    <mu1>0.1</mu1>-->
-  <!--    <mu2>0.1</mu2>-->
-  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-  <!--    <maxVel>10.0</maxVel>-->
-  <!--    <minDepth>0.0005</minDepth>-->
-  <!--    <material>Gazebo/DarkGrey</material>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_front_right_2_link">-->
-  <!--    <kp>10000000.0</kp>-->
-  <!--    <kd>10.0</kd>-->
-  <!--    <mu1>0.1</mu1>-->
-  <!--    <mu2>0.1</mu2>-->
-  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-  <!--    <maxVel>10.0</maxVel>-->
-  <!--    <minDepth>0.0005</minDepth>-->
-  <!--    <material>Gazebo/DarkGrey</material>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_{side}_1_joint">-->
-  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_{side}_2_joint">-->
-  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-  <!--  </gazebo>-->
-  <!--  <link name="caster_front_left_1_link">-->
-  <!--    <inertial>-->
-  <!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
-  <!--      <mass value="0.05144761"/>-->
-  <!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
-  <!--    </inertial>-->
-  <!--    <visual>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
-  <!--      </geometry>-->
-  <!--      <material name="Grey"/>-->
-  <!--    </visual>-->
-  <!--    &lt;!&ndash;collision>-->
-  <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
-  <!--        <geometry>-->
-  <!--        </geometry>-->
-  <!--      </collision&ndash;&gt;-->
-  <!--  </link>-->
-  <!--  <link name="caster_front_left_2_link">-->
-  <!--    <inertial>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <mass value="0.08855784"/>-->
-  <!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
-  <!--    </inertial>-->
-  <!--    <visual>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
-  <!--      </geometry>-->
-  <!--      <material name="DarkGrey"/>-->
-  <!--    </visual>-->
-  <!--    <collision>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <sphere radius="0.025"/>-->
-  <!--      </geometry>-->
-  <!--    </collision>-->
-  <!--  </link>-->
-  <!--  <joint name="caster_front_left_1_joint" type="continuous">-->
-  <!--    <parent link="base_link"/>-->
-  <!--    <child link="caster_front_left_1_link"/>-->
-  <!--    <origin rpy="0 0 0" xyz="0.1695 0.102 -0.0335"/>-->
-  <!--    <axis xyz="0 0 1"/>-->
-  <!--    <dynamics damping="0.005" friction="0.0"/>-->
-  <!--  </joint>-->
-  <!--  <joint name="caster_front_left_2_joint" type="continuous">-->
-  <!--    <parent link="caster_front_left_1_link"/>-->
-  <!--    <child link="caster_front_left_2_link"/>-->
-  <!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
-  <!--    <axis xyz="0 0 1"/>-->
-  <!--  </joint>-->
-  <!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
-  <!--  <gazebo reference="caster_front_left_1_link">-->
-  <!--    <kp>100000000.0</kp>-->
-  <!--    <kd>10.0</kd>-->
-  <!--    <mu1>0.1</mu1>-->
-  <!--    <mu2>0.1</mu2>-->
-  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-  <!--    <maxVel>10.0</maxVel>-->
-  <!--    <minDepth>0.0005</minDepth>-->
-  <!--    <material>Gazebo/DarkGrey</material>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_front_left_2_link">-->
-  <!--    <kp>10000000.0</kp>-->
-  <!--    <kd>10.0</kd>-->
-  <!--    <mu1>0.1</mu1>-->
-  <!--    <mu2>0.1</mu2>-->
-  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-  <!--    <maxVel>10.0</maxVel>-->
-  <!--    <minDepth>0.0005</minDepth>-->
-  <!--    <material>Gazebo/DarkGrey</material>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_{side}_1_joint">-->
-  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_{side}_2_joint">-->
-  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-  <!--  </gazebo>-->
-  <!--  <link name="caster_back_right_1_link">-->
-  <!--    <inertial>-->
-  <!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
-  <!--      <mass value="0.05144761"/>-->
-  <!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
-  <!--    </inertial>-->
-  <!--    <visual>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
-  <!--      </geometry>-->
-  <!--      <material name="Grey"/>-->
-  <!--    </visual>-->
-  <!--    &lt;!&ndash;collision>-->
-  <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
-  <!--        <geometry>-->
-  <!--        </geometry>-->
-  <!--      </collision&ndash;&gt;-->
-  <!--  </link>-->
-  <!--  <link name="caster_back_right_2_link">-->
-  <!--    <inertial>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <mass value="0.08855784"/>-->
-  <!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
-  <!--    </inertial>-->
-  <!--    <visual>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
-  <!--      </geometry>-->
-  <!--      <material name="DarkGrey"/>-->
-  <!--    </visual>-->
-  <!--    <collision>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <sphere radius="0.025"/>-->
-  <!--      </geometry>-->
-  <!--    </collision>-->
-  <!--  </link>-->
-  <!--  <joint name="caster_back_right_1_joint" type="continuous">-->
-  <!--    <parent link="base_link"/>-->
-  <!--    <child link="caster_back_right_1_link"/>-->
-  <!--    <origin rpy="0 0 0" xyz="-0.1735 -0.102 -0.0335"/>-->
-  <!--    <axis xyz="0 0 1"/>-->
-  <!--    <dynamics damping="0.005" friction="0.0"/>-->
-  <!--  </joint>-->
-  <!--  <joint name="caster_back_right_2_joint" type="continuous">-->
-  <!--    <parent link="caster_back_right_1_link"/>-->
-  <!--    <child link="caster_back_right_2_link"/>-->
-  <!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
-  <!--    <axis xyz="0 0 1"/>-->
-  <!--  </joint>-->
-  <!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
-  <!--  <gazebo reference="caster_back_right_1_link">-->
-  <!--    <kp>100000000.0</kp>-->
-  <!--    <kd>10.0</kd>-->
-  <!--    <mu1>0.1</mu1>-->
-  <!--    <mu2>0.1</mu2>-->
-  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-  <!--    <maxVel>10.0</maxVel>-->
-  <!--    <minDepth>0.0005</minDepth>-->
-  <!--    <material>Gazebo/DarkGrey</material>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_back_right_2_link">-->
-  <!--    <kp>10000000.0</kp>-->
-  <!--    <kd>10.0</kd>-->
-  <!--    <mu1>0.1</mu1>-->
-  <!--    <mu2>0.1</mu2>-->
-  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-  <!--    <maxVel>10.0</maxVel>-->
-  <!--    <minDepth>0.0005</minDepth>-->
-  <!--    <material>Gazebo/DarkGrey</material>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_{side}_1_joint">-->
-  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_{side}_2_joint">-->
-  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-  <!--  </gazebo>-->
-  <!--  <link name="caster_back_left_1_link">-->
-  <!--    <inertial>-->
-  <!--      <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
-  <!--      <mass value="0.05144761"/>-->
-  <!--      <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
-  <!--    </inertial>-->
-  <!--    <visual>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
-  <!--      </geometry>-->
-  <!--      <material name="Grey"/>-->
-  <!--    </visual>-->
-  <!--    &lt;!&ndash;collision>-->
-  <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
-  <!--        <geometry>-->
-  <!--        </geometry>-->
-  <!--      </collision&ndash;&gt;-->
-  <!--  </link>-->
-  <!--  <link name="caster_back_left_2_link">-->
-  <!--    <inertial>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <mass value="0.08855784"/>-->
-  <!--      <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
-  <!--    </inertial>-->
-  <!--    <visual>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
-  <!--      </geometry>-->
-  <!--      <material name="DarkGrey"/>-->
-  <!--    </visual>-->
-  <!--    <collision>-->
-  <!--      <origin rpy="0 0 0" xyz="0 0 0"/>-->
-  <!--      <geometry>-->
-  <!--        <sphere radius="0.025"/>-->
-  <!--      </geometry>-->
-  <!--    </collision>-->
-  <!--  </link>-->
-  <!--  <joint name="caster_back_left_1_joint" type="continuous">-->
-  <!--    <parent link="base_link"/>-->
-  <!--    <child link="caster_back_left_1_link"/>-->
-  <!--    <origin rpy="0 0 0" xyz="-0.1735 0.102 -0.0335"/>-->
-  <!--    <axis xyz="0 0 1"/>-->
-  <!--    <dynamics damping="0.005" friction="0.0"/>-->
-  <!--  </joint>-->
-  <!--  <joint name="caster_back_left_2_joint" type="continuous">-->
-  <!--    <parent link="caster_back_left_1_link"/>-->
-  <!--    <child link="caster_back_left_2_link"/>-->
-  <!--    <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
-  <!--    <axis xyz="0 0 1"/>-->
-  <!--  </joint>-->
-  <!--  &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
-  <!--  <gazebo reference="caster_back_left_1_link">-->
-  <!--    <kp>100000000.0</kp>-->
-  <!--    <kd>10.0</kd>-->
-  <!--    <mu1>0.1</mu1>-->
-  <!--    <mu2>0.1</mu2>-->
-  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-  <!--    <maxVel>10.0</maxVel>-->
-  <!--    <minDepth>0.0005</minDepth>-->
-  <!--    <material>Gazebo/DarkGrey</material>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_back_left_2_link">-->
-  <!--    <kp>10000000.0</kp>-->
-  <!--    <kd>10.0</kd>-->
-  <!--    <mu1>0.1</mu1>-->
-  <!--    <mu2>0.1</mu2>-->
-  <!--    &lt;!&ndash;<fdir1>1 0 0</fdir1>&ndash;&gt;-->
-  <!--    <maxVel>10.0</maxVel>-->
-  <!--    <minDepth>0.0005</minDepth>-->
-  <!--    <material>Gazebo/DarkGrey</material>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_{side}_1_joint">-->
-  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-  <!--  </gazebo>-->
-  <!--  <gazebo reference="caster_{side}_2_joint">-->
-  <!--    <implicitSpringDamper>0</implicitSpringDamper>-->
-  <!--  </gazebo>-->
+<!--    <link name="caster_front_right_1_link">-->
+<!--      <inertial>-->
+<!--        <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
+<!--        <mass value="0.05144761"/>-->
+<!--        <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
+<!--      </inertial>-->
+<!--      <visual>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
+<!--        </geometry>-->
+<!--        <material name="Grey"/>-->
+<!--      </visual>-->
+<!--      &lt;!&ndash;collision>-->
+<!--          <origin xyz="0 0 0" rpy="0 0 0"/>-->
+<!--          <geometry>-->
+<!--          </geometry>-->
+<!--        </collision&ndash;&gt;-->
+<!--    </link>-->
+<!--    <link name="caster_front_right_2_link">-->
+<!--      <inertial>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <mass value="0.08855784"/>-->
+<!--        <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
+<!--      </inertial>-->
+<!--      <visual>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
+<!--        </geometry>-->
+<!--        <material name="DarkGrey"/>-->
+<!--      </visual>-->
+<!--      <collision>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <sphere radius="0.025"/>-->
+<!--        </geometry>-->
+<!--      </collision>-->
+<!--    </link>-->
+<!--    <joint name="caster_front_right_1_joint" type="fixed">-->
+<!--      <parent link="base_link"/>-->
+<!--      <child link="caster_front_right_1_link"/>-->
+<!--      <origin rpy="0 0 0" xyz="0.1695 -0.102 -0.0335"/>-->
+<!--      <axis xyz="0 0 1"/>-->
+<!--      <dynamics damping="0.005" friction="0.0"/>-->
+<!--    </joint>-->
+<!--    <joint name="caster_front_right_2_joint" type="fixed">-->
+<!--      <parent link="caster_front_right_1_link"/>-->
+<!--      <child link="caster_front_right_2_link"/>-->
+<!--      <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
+<!--      <axis xyz="0 0 1"/>-->
+<!--    </joint>-->
+<!--    &lt;!&ndash; Contact model for the caster wheel surface &ndash;&gt;-->
+<!--    <link name="caster_front_left_1_link">-->
+<!--      <inertial>-->
+<!--        <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
+<!--        <mass value="0.05144761"/>-->
+<!--        <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
+<!--      </inertial>-->
+<!--      <visual>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
+<!--        </geometry>-->
+<!--        <material name="Grey"/>-->
+<!--      </visual>-->
+<!--      &lt;!&ndash;collision>-->
+<!--          <origin xyz="0 0 0" rpy="0 0 0"/>-->
+<!--          <geometry>-->
+<!--          </geometry>-->
+<!--        </collision&ndash;&gt;-->
+<!--    </link>-->
+<!--    <link name="caster_front_left_2_link">-->
+<!--      <inertial>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <mass value="0.08855784"/>-->
+<!--        <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
+<!--      </inertial>-->
+<!--      <visual>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
+<!--        </geometry>-->
+<!--        <material name="DarkGrey"/>-->
+<!--      </visual>-->
+<!--      <collision>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <sphere radius="0.025"/>-->
+<!--        </geometry>-->
+<!--      </collision>-->
+<!--    </link>-->
+<!--    <joint name="caster_front_left_1_joint" type="fixed">-->
+<!--      <parent link="base_link"/>-->
+<!--      <child link="caster_front_left_1_link"/>-->
+<!--      <origin rpy="0 0 0" xyz="0.1695 0.102 -0.0335"/>-->
+<!--      <axis xyz="0 0 1"/>-->
+<!--      <dynamics damping="0.005" friction="0.0"/>-->
+<!--    </joint>-->
+<!--    <joint name="caster_front_left_2_joint" type="fixed">-->
+<!--      <parent link="caster_front_left_1_link"/>-->
+<!--      <child link="caster_front_left_2_link"/>-->
+<!--      <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
+<!--      <axis xyz="0 0 1"/>-->
+<!--    </joint>-->
+<!--    <link name="caster_back_right_1_link">-->
+<!--      <inertial>-->
+<!--        <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
+<!--        <mass value="0.05144761"/>-->
+<!--        <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
+<!--      </inertial>-->
+<!--      <visual>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
+<!--        </geometry>-->
+<!--        <material name="Grey"/>-->
+<!--      </visual>-->
+<!--      &lt;!&ndash;collision>-->
+<!--          <origin xyz="0 0 0" rpy="0 0 0"/>-->
+<!--          <geometry>-->
+<!--          </geometry>-->
+<!--        </collision&ndash;&gt;-->
+<!--    </link>-->
+<!--    <link name="caster_back_right_2_link">-->
+<!--      <inertial>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <mass value="0.08855784"/>-->
+<!--        <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
+<!--      </inertial>-->
+<!--      <visual>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
+<!--        </geometry>-->
+<!--        <material name="DarkGrey"/>-->
+<!--      </visual>-->
+<!--      <collision>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <sphere radius="0.025"/>-->
+<!--        </geometry>-->
+<!--      </collision>-->
+<!--    </link>-->
+<!--    <joint name="caster_back_right_1_joint" type="fixed">-->
+<!--      <parent link="base_link"/>-->
+<!--      <child link="caster_back_right_1_link"/>-->
+<!--      <origin rpy="0 0 0" xyz="-0.1735 -0.102 -0.0335"/>-->
+<!--      <axis xyz="0 0 1"/>-->
+<!--      <dynamics damping="0.005" friction="0.0"/>-->
+<!--    </joint>-->
+<!--    <joint name="caster_back_right_2_joint" type="fixed">-->
+<!--      <parent link="caster_back_right_1_link"/>-->
+<!--      <child link="caster_back_right_2_link"/>-->
+<!--      <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
+<!--      <axis xyz="0 0 1"/>-->
+<!--    </joint>-->
+<!--    <link name="caster_back_left_1_link">-->
+<!--      <inertial>-->
+<!--        <origin rpy="0 0 0" xyz="-0.00634599 0.00005347 -0.02037519"/>-->
+<!--        <mass value="0.05144761"/>-->
+<!--        <inertia ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267" iyy="0.00001309" iyz="-0.00000005" izz="0.00001198"/>-->
+<!--      </inertial>-->
+<!--      <visual>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <mesh filename="package://pmb2_description/meshes/wheels/caster_1.stl"/>-->
+<!--        </geometry>-->
+<!--        <material name="Grey"/>-->
+<!--      </visual>-->
+<!--      &lt;!&ndash;collision>-->
+<!--          <origin xyz="0 0 0" rpy="0 0 0"/>-->
+<!--          <geometry>-->
+<!--          </geometry>-->
+<!--        </collision&ndash;&gt;-->
+<!--    </link>-->
+<!--    <link name="caster_back_left_2_link">-->
+<!--      <inertial>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <mass value="0.08855784"/>-->
+<!--        <inertia ixx="0.00001075" ixy="0" ixz="0" iyy="0.00001541" iyz="0" izz="0.00001075"/>-->
+<!--      </inertial>-->
+<!--      <visual>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>-->
+<!--        </geometry>-->
+<!--        <material name="DarkGrey"/>-->
+<!--      </visual>-->
+<!--      <collision>-->
+<!--        <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--        <geometry>-->
+<!--          <sphere radius="0.025"/>-->
+<!--        </geometry>-->
+<!--      </collision>-->
+<!--    </link>-->
+<!--    <joint name="caster_back_left_1_joint" type="fixed">-->
+<!--      <parent link="base_link"/>-->
+<!--      <child link="caster_back_left_1_link"/>-->
+<!--      <origin rpy="0 0 0" xyz="-0.1735 0.102 -0.0335"/>-->
+<!--      <axis xyz="0 0 1"/>-->
+<!--      <dynamics damping="0.005" friction="0.0"/>-->
+<!--    </joint>-->
+<!--    <joint name="caster_back_left_2_joint" type="fixed">-->
+<!--      <parent link="caster_back_left_1_link"/>-->
+<!--      <child link="caster_back_left_2_link"/>-->
+<!--      <origin rpy="-1.57079632679 0 0" xyz="-0.016 0.0000 -0.040"/>-->
+<!--      <axis xyz="0 0 1"/>-->
+<!--    </joint>-->
   <!-- Bottom fixed part of column -->
   <link name="torso_fixed_link">
     <inertial>
