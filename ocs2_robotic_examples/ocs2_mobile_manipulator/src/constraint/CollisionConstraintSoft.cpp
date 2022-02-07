@@ -32,13 +32,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <ros/topic.h>
 #include "std_msgs/Header.h"
 #include "nav_msgs/MapMetaData.h"
+#include <ocs2_msgs/mysdfgrid.h>
 
 namespace ocs2 {
 namespace mobile_manipulator {
 
 MyMap::MyMap(const std::string topic, scalar_t timeout){
   std::cout << "Waiting for " << topic << std::endl;
-  const nav_msgs::OccupancyGrid::ConstPtr& map = ros::topic::waitForMessage<nav_msgs::OccupancyGrid>(topic);
+  const ocs2_msgs::mysdfgrid::ConstPtr& map = ros::topic::waitForMessage<ocs2_msgs::mysdfgrid>(topic);
 
   size_x_ = map->info.width;
   size_y_ = map->info.height;
@@ -46,7 +47,7 @@ MyMap::MyMap(const std::string topic, scalar_t timeout){
   origin_x_ = map->info.origin.position.x;
   origin_y_ = map->info.origin.position.y;
 
-  costmap_ = new unsigned char[size_x_ * size_y_];
+  costmap_ = new float[size_x_ * size_y_];
 
   for (unsigned int it = 0; it < size_x_ * size_y_; it++) {
     costmap_[it] = map->data[it];
@@ -173,10 +174,9 @@ VectorFunctionLinearApproximation CollisionConstraintSoft::getLinearApproximatio
 vector_t CollisionConstraintSoft::getSdfValueAndGradients(const scalar_t &x, const scalar_t &y) const {
   vector_t values(3);
   // NOTE: rescale matching the scaling map.py
-  // TODO: rm if we use another way to get the sdf
-  values(0) = 0.01 * sdf_.getCost(x, y);
-  values(1) = - (0.01 * sdf_dx_.getCost(x, y) - 0.5) * 0.05;
-  values(2) = - (0.01 * sdf_dy_.getCost(x, y) - 0.5) * 0.05;
+  values(0) = sdf_.getCost(x, y);
+  values(1) = sdf_dx_.getCost(x, y);
+  values(2) = sdf_dy_.getCost(x, y);
 
   // TODO: not sure actually needed now
   scalar_t x_rounded = std::round((x - sdf_.origin_x_) / sdf_.resolution_) * sdf_.resolution_ + sdf_.origin_x_;

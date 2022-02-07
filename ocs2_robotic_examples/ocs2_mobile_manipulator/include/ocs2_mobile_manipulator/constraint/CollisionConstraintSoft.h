@@ -44,7 +44,7 @@ public:
     int getIndex(int mx, int my) const;
     scalar_t getCost(scalar_t wx, scalar_t wy) const;
 
-    unsigned char* costmap_;
+    float* costmap_;
     int size_x_;
     int size_y_;
     scalar_t resolution_;

@@ -277,7 +277,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: Map
-      Topic: /sdf
+      Topic: /sdf_rviz
       Unreliable: false
       Use Timestamp: false
       Value: true
