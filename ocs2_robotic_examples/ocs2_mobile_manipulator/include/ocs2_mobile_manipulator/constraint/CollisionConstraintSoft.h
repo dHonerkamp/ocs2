@@ -33,17 +33,23 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <ocs2_core/constraint/StateConstraint.h>
 #include "nav_msgs/OccupancyGrid.h"
+#include <ocs2_msgs/mysdfgrid.h>
+#include <ros/ros.h>
 
 namespace ocs2 {
 namespace mobile_manipulator {
 
 class MyMap {
+private:
+    void updateCallback(const ocs2_msgs::mysdfgrid::ConstPtr& map);
+
 public:
-    explicit MyMap(std::string topic, scalar_t timeout);
+    explicit MyMap(std::string topic, scalar_t timeout, ros::NodeHandle& nodeHandle);
     bool worldToMap(scalar_t wx, scalar_t wy, int &mx, int &my) const;
     int getIndex(int mx, int my) const;
     scalar_t getCost(scalar_t wx, scalar_t wy) const;
 
+    ros::Subscriber sub_;
     float* costmap_;
     int size_x_;
     int size_y_;
@@ -54,7 +60,7 @@ public:
 
 class CollisionConstraintSoft final : public StateConstraint {
  public:
-  explicit CollisionConstraintSoft(scalar_t radius, bool square_base, scalar_t corner_radius, scalar_t diagonal_radius);
+  explicit CollisionConstraintSoft(scalar_t radius, bool square_base, scalar_t corner_radius, scalar_t diagonal_radius, ros::NodeHandle& nodeHandle);
   ~CollisionConstraintSoft() override = default;
   CollisionConstraintSoft* clone() const override { return new CollisionConstraintSoft(*this); }
 

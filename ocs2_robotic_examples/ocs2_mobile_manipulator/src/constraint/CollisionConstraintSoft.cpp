@@ -32,12 +32,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <ros/topic.h>
 #include "std_msgs/Header.h"
 #include "nav_msgs/MapMetaData.h"
-#include <ocs2_msgs/mysdfgrid.h>
 
 namespace ocs2 {
 namespace mobile_manipulator {
 
-MyMap::MyMap(const std::string topic, scalar_t timeout){
+MyMap::MyMap(const std::string topic, scalar_t timeout, ros::NodeHandle& nodeHandle){
   std::cout << "Waiting for " << topic << std::endl;
   const ocs2_msgs::mysdfgrid::ConstPtr& map = ros::topic::waitForMessage<ocs2_msgs::mysdfgrid>(topic);
 
@@ -53,6 +52,23 @@ MyMap::MyMap(const std::string topic, scalar_t timeout){
     costmap_[it] = map->data[it];
   }
   std::cout << topic << " received" << std::endl;
+
+  sub_ = nodeHandle.subscribe(topic, 1, &MyMap::updateCallback, this);
+}
+
+void MyMap::updateCallback(const ocs2_msgs::mysdfgrid::ConstPtr& map){
+  size_x_ = map->info.width;
+  size_y_ = map->info.height;
+  resolution_ = map->info.resolution;
+  origin_x_ = map->info.origin.position.x;
+  origin_y_ = map->info.origin.position.y;
+
+  costmap_ = new float[size_x_ * size_y_];
+
+  for (unsigned int it = 0; it < size_x_ * size_y_; it++) {
+    costmap_[it] = map->data[it];
+  }
+  std::cout << "SDF map received" << std::endl;
 }
 
 
@@ -76,19 +92,31 @@ int MyMap::getIndex(int mx, int my) const {
 
 scalar_t MyMap::getCost(scalar_t wx, scalar_t wy) const {
   int mx, my;
-  worldToMap(wx, wy, mx, my);
+  bool success = worldToMap(wx, wy, mx, my);
+  if (!success){
+    std::cout << "Location outside of map, returning 0: wx: " << wx << ", wy: " << wy << ", origin_x_: " << origin_x_ << ", origin_y_: " << origin_y_ << std::endl;
+    return 0.0;
+  }
   return static_cast<scalar_t>(costmap_[getIndex(mx, my)]);
 }
 
-CollisionConstraintSoft::CollisionConstraintSoft(scalar_t radius, bool square_base, scalar_t corner_radius, scalar_t diagonal_radius) : StateConstraint(ConstraintOrder::Linear),
+CollisionConstraintSoft::CollisionConstraintSoft(scalar_t radius, bool square_base, scalar_t corner_radius, scalar_t diagonal_radius, ros::NodeHandle& nodeHandle) : StateConstraint(ConstraintOrder::Linear),
                                                                     radius_{radius},
                                                                     square_base_{square_base},
                                                                     corner_radius_{corner_radius},
                                                                     diagonal_radius_{diagonal_radius},
-                                                                    sdf_{"/sdf", 10.0},
-                                                                    sdf_dx_{"/sdf_dx", 10.0},
-                                                                    sdf_dy_{"/sdf_dy", 10.0}
+                                                                    sdf_{"/sdf", 10.0, nodeHandle},
+                                                                    sdf_dx_{"/sdf_dx", 10.0, nodeHandle},
+                                                                    sdf_dy_{"/sdf_dy", 10.0, nodeHandle}
                                                                     {
+
+//    std::vector<double> values = {-5., -4., -3., -2., -1., 0.0, 1., 2., 3., 4., 5.};
+//    for (auto x : values){
+//      for (auto y : values){
+//        getSdfValueAndGradients(x, y);
+//      }
+//    }
+
 }
 
 
@@ -131,6 +159,7 @@ VectorFunctionLinearApproximation CollisionConstraintSoft::getLinearApproximatio
   scalar_t current_x = state(0);
   scalar_t current_y = state(1);
   vector_t value_and_gradient = getSdfValueAndGradients(current_x, current_y);
+  // std::cout << "current_x: " << current_x << ", current_y: " << current_y << std::endl;
 
   limits.f(0) = value_and_gradient(0) - radius_;
 
@@ -177,6 +206,10 @@ vector_t CollisionConstraintSoft::getSdfValueAndGradients(const scalar_t &x, con
   values(0) = sdf_.getCost(x, y);
   values(1) = sdf_dx_.getCost(x, y);
   values(2) = sdf_dy_.getCost(x, y);
+
+  // if (values(0) < 1e-3){
+  //   std::cout << "x: " << x << ", y: " << y << ", cost: " << values(0) << ", dx: " << values(1) << ", dy: " << values(2) << std::endl;
+  // }
 
   // TODO: not sure actually needed now
   scalar_t x_rounded = std::round((x - sdf_.origin_x_) / sdf_.resolution_) * sdf_.resolution_ + sdf_.origin_x_;

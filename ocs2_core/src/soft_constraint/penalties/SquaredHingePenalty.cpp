@@ -28,6 +28,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
 #include <ocs2_core/soft_constraint/penalties/SquaredHingePenalty.h>
+#include <iostream>
 
 namespace ocs2 {
 
@@ -37,6 +38,7 @@ namespace ocs2 {
 scalar_t SquaredHingePenalty::getValue(scalar_t t, scalar_t h) const {
   if (h < config_.delta) {
     const scalar_t delta_h = h - config_.delta;
+    // std::cout<< "delta_h: " << delta_h << ", p: " << config_.mu * 0.5 * delta_h * delta_h << std::endl;
     return config_.mu * 0.5 * delta_h * delta_h;
   } else {
     return 0;

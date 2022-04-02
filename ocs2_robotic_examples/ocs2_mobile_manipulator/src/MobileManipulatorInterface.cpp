@@ -76,7 +76,7 @@ namespace mobile_manipulator {
 /******************************************************************************************************/
 /******************************************************************************************************/
 MobileManipulatorInterface::MobileManipulatorInterface(const std::string& taskFile, const std::string& libraryFolder,
-                                                       const std::string& urdfFile) {
+                                                       const std::string& urdfFile, ros::NodeHandle& nodeHandle) {
   // check that task file exists
   boost::filesystem::path taskFilePath(taskFile);
   if (boost::filesystem::exists(taskFilePath)) {
@@ -169,7 +169,7 @@ MobileManipulatorInterface::MobileManipulatorInterface(const std::string& taskFi
   bool activateCollision = true;
   loadData::loadPtreeValue(pt, activateCollision, "collisionSoft.activate", false);
   if (activateCollision) {
-    problem_.stateSoftConstraintPtr->add("collisionConstraintSoft", getCollisionConstraintSoft(taskFile));
+    problem_.stateSoftConstraintPtr->add("collisionConstraintSoft", getCollisionConstraintSoft(taskFile, nodeHandle));
   }
 
   // end-effector state constraint
@@ -393,7 +393,7 @@ std::unique_ptr<StateCost> MobileManipulatorInterface::getJointValueLimitConstra
   return std::unique_ptr<StateCost>(new StateSoftConstraint(std::move(constraint), std::move(penaltyArray)));
 }
 
-std::unique_ptr<StateCost> MobileManipulatorInterface::getCollisionConstraintSoft(const std::string& taskFile) {
+std::unique_ptr<StateCost> MobileManipulatorInterface::getCollisionConstraintSoft(const std::string& taskFile, ros::NodeHandle& nodeHandle) {
   scalar_t mu = 500.0;
   scalar_t delta = 1.0e-3;
   scalar_t radius = 0.0;
@@ -416,7 +416,7 @@ std::unique_ptr<StateCost> MobileManipulatorInterface::getCollisionConstraintSof
   std::cerr << " #### =============================================================================\n";
 
 
-  std::unique_ptr<StateConstraint> constraint(new CollisionConstraintSoft(radius, square_base, corner_radius, diagonal_radius));
+  std::unique_ptr<StateConstraint> constraint(new CollisionConstraintSoft(radius, square_base, corner_radius, diagonal_radius, nodeHandle));
   std::unique_ptr<PenaltyBase> penalty(new SquaredHingePenalty({mu, delta}));
 
   return  std::unique_ptr<StateCost>(new StateSoftConstraint(std::move(constraint), std::move(penalty)));

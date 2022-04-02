@@ -29,6 +29,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #pragma once
 
+#include <ros/ros.h>
+
 // OCS2
 #include <ocs2_core/Types.h>
 #include <ocs2_core/initialization/Initializer.h>
@@ -59,7 +61,7 @@ class MobileManipulatorInterface final : public RobotInterface {
    * @param [in] libraryFolder: The absolute path to the directory to generate CppAD library into.
    * @param [in] urdfFile: The absolute path to the URDF file for the robot.
    */
-  MobileManipulatorInterface(const std::string& taskFile, const std::string& libraryFolder, const std::string& urdfFile);
+  MobileManipulatorInterface(const std::string& taskFile, const std::string& libraryFolder, const std::string& urdfFile, ros::NodeHandle& nodeHandle);
 
   const vector_t& getInitialState() { return initialState_; }
 
@@ -89,7 +91,7 @@ class MobileManipulatorInterface final : public RobotInterface {
                                                         bool recompileLibraries);
   std::unique_ptr<StateInputCost> getJointVelocityLimitConstraint(const std::string& taskFile);
   std::unique_ptr<StateCost> getJointValueLimitConstraint(const std::string& taskFile);
-  std::unique_ptr<StateCost> getCollisionConstraintSoft(const std::string& taskFile);
+  std::unique_ptr<StateCost> getCollisionConstraintSoft(const std::string& taskFile, ros::NodeHandle& nodeHandle);
 
   ddp::Settings ddpSettings_;
   mpc::Settings mpcSettings_;
