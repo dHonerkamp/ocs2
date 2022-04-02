@@ -90,7 +90,7 @@ class MobileManipulatorInterface final : public RobotInterface {
                                                         const std::string& urdfFile, bool useCaching, const std::string& libraryFolder,
                                                         bool recompileLibraries);
   std::unique_ptr<StateInputCost> getJointVelocityLimitConstraint(const std::string& taskFile);
-  std::unique_ptr<StateCost> getJointValueLimitConstraint(const std::string& taskFile);
+  std::unique_ptr<StateCost> getJointValueLimitConstraint(const std::string& taskFile, ros::NodeHandle& nodeHandle);
   std::unique_ptr<StateCost> getCollisionConstraintSoft(const std::string& taskFile, ros::NodeHandle& nodeHandle);
 
   ddp::Settings ddpSettings_;

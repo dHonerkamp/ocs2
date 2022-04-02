@@ -162,7 +162,7 @@ MobileManipulatorInterface::MobileManipulatorInterface(const std::string& taskFi
   bool activateJointValueLimits = true;
   loadData::loadPtreeValue(pt, activateJointValueLimits, "jointValueLimits.activate", false);
   if (activateJointValueLimits) {
-    problem_.stateSoftConstraintPtr->add("jointValueLimit", getJointValueLimitConstraint(taskFile));
+    problem_.stateSoftConstraintPtr->add("jointValueLimit", getJointValueLimitConstraint(taskFile, nodeHandle));
   }
 
   // collision constraint
@@ -362,7 +362,7 @@ std::unique_ptr<StateInputCost> MobileManipulatorInterface::getJointVelocityLimi
   return std::unique_ptr<StateInputCost>(new StateInputSoftConstraint(std::move(constraint), std::move(penaltyArray)));
 }
 
-std::unique_ptr<StateCost> MobileManipulatorInterface::getJointValueLimitConstraint(const std::string& taskFile) {
+std::unique_ptr<StateCost> MobileManipulatorInterface::getJointValueLimitConstraint(const std::string& taskFile, ros::NodeHandle& nodeHandle) {
   vector_t lowerBound(manipulatorModelInfo_.stateDim);
   vector_t upperBound(manipulatorModelInfo_.stateDim);
   scalar_t mu = 1e-2;
@@ -380,6 +380,16 @@ std::unique_ptr<StateCost> MobileManipulatorInterface::getJointValueLimitConstra
   loadData::loadPtreeValue(pt, mu, prefix + "mu", true);
   loadData::loadPtreeValue(pt, delta, prefix + "delta", true);
   std::cerr << " #### =============================================================================\n";
+
+  if (!nodeHandle.hasParam("articulated_jv_mu")){
+    throw std::runtime_error("Pls set articulated_jv_mu");
+  }
+  if (!nodeHandle.hasParam("articulated_jv_delta")){
+    throw std::runtime_error("Pls set articulated_jv_delta");
+  }
+  nodeHandle.getParam("/articulated_jv_mu", mu);
+  nodeHandle.getParam("/articulated_jv_delta", delta);
+
 
   std::unique_ptr<StateConstraint> constraint(new JointValueLimits(manipulatorModelInfo_.stateDim));
 
@@ -415,6 +425,14 @@ std::unique_ptr<StateCost> MobileManipulatorInterface::getCollisionConstraintSof
   loadData::loadPtreeValue(pt, radius, prefix + "radius", true);
   std::cerr << " #### =============================================================================\n";
 
+  if (!nodeHandle.hasParam("articulated_collision_mu")){
+    throw std::runtime_error("Pls set articulated_collision_mu");
+  }
+  if (!nodeHandle.hasParam("articulated_collision_delta")){
+    throw std::runtime_error("Pls set articulated_collision_delta");
+  }
+  nodeHandle.getParam("/articulated_collision_mu", mu);
+  nodeHandle.getParam("/articulated_collision_delta", delta);
 
   std::unique_ptr<StateConstraint> constraint(new CollisionConstraintSoft(radius, square_base, corner_radius, diagonal_radius, nodeHandle));
   std::unique_ptr<PenaltyBase> penalty(new SquaredHingePenalty({mu, delta}));
