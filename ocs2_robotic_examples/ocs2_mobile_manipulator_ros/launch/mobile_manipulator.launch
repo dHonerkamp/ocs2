@@ -63,13 +63,16 @@
       <param name="libFolder" value="$(arg libFolder)" />
 
 
-      <node if="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_mpc_node" name="mobile_manipulator_mpc_node" output="screen" launch-prefix="gnome-terminal -- gdb -ex run --args" />
-      <node unless="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_mpc_node" name="mobile_manipulator_mpc_node" output="screen" launch-prefix="" />
+<!--      <node if="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_mpc_node" name="mobile_manipulator_mpc_node" output="screen" launch-prefix="gnome-terminal &#45;&#45; gdb -ex run &#45;&#45;args" />-->
+<!--      <node unless="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_mpc_node" name="mobile_manipulator_mpc_node" output="screen" launch-prefix="" />-->
 
-      <group if="$(arg mrt)">
-            <node if="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_dummy_mrt_node" name="mobile_manipulator_dummy_mrt_node" output="screen" launch-prefix="gnome-terminal -- gdb -ex run --args" />
-            <node unless="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_dummy_mrt_node" name="mobile_manipulator_dummy_mrt_node" output="screen" launch-prefix="gnome-terminal --" />
-      </group>
+<!--      <group if="$(arg mrt)">-->
+<!--            <node if="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_dummy_mrt_node" name="mobile_manipulator_dummy_mrt_node" output="screen" launch-prefix="gnome-terminal &#45;&#45; gdb -ex run &#45;&#45;args" />-->
+<!--            <node unless="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_dummy_mrt_node" name="mobile_manipulator_dummy_mrt_node" output="screen" launch-prefix="gnome-terminal &#45;&#45;" />-->
+<!--      </group>-->
+
+      <node if="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_mpc_mrt_node" name="mobile_manipulator_mpc_mrt_node" output="screen" launch-prefix="gnome-terminal -- gdb -ex run --args" />
+      <node unless="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_mpc_mrt_node" name="mobile_manipulator_mpc_mrt_node" output="screen" launch-prefix="" />
 
       <!-- TODO: remove if running with gazebo execution     -->
       <node pkg="tf" type="static_transform_publisher" name="static_map_tf_publisher" args="0 0 0 0 0 0 1 'world' 'map' 100"/>

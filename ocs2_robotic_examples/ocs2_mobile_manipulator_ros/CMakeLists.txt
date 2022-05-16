@@ -115,6 +115,20 @@ target_link_libraries(mobile_manipulator_dummy_mrt_node
 )
 target_compile_options(mobile_manipulator_dummy_mrt_node PUBLIC ${FLAGS})
 
+# MPC-MRT Node
+add_executable(mobile_manipulator_mpc_mrt_node
+        src/MobileManipulatorDummyVisualization.cpp
+        src/MobileManipulatorMpcMrtNode.cpp
+        )
+add_dependencies(mobile_manipulator_mpc_mrt_node
+        ${catkin_EXPORTED_TARGETS}
+        )
+target_link_libraries(mobile_manipulator_mpc_mrt_node
+        ${catkin_LIBRARIES}
+        )
+target_compile_options(mobile_manipulator_mpc_mrt_node PUBLIC ${FLAGS})
+
+
 # Target node
 add_executable(mobile_manipulator_target
   src/MobileManipulatorTarget.cpp
