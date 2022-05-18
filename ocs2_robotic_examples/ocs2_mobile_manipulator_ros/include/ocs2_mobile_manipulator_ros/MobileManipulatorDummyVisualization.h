@@ -43,9 +43,11 @@ namespace mobile_manipulator {
 
 class MobileManipulatorDummyVisualization final : public DummyObserver {
  public:
-  MobileManipulatorDummyVisualization(ros::NodeHandle& nodeHandle, const MobileManipulatorInterface& interface)
+  MobileManipulatorDummyVisualization(ros::NodeHandle& nodeHandle, const MobileManipulatorInterface& interface, bool do_not_initialise=false)
       : pinocchioInterface_(interface.getPinocchioInterface()), modelInfo_(interface.getManipulatorModelInfo()) {
-    launchVisualizerNode(nodeHandle);
+    if (!do_not_initialise){
+      launchVisualizerNode(nodeHandle);
+    }
   }
 
   ~MobileManipulatorDummyVisualization() override = default;

@@ -5,6 +5,7 @@
       <arg name="debug" default="false" />
       <arg name="robot" />
       <arg name="mrt" default="false" />
+      <arg name="is_analytical" default="true" />
 
       <group if="$(eval robot == 'orig')">
             <!-- The URDF model of the robot -->
@@ -17,6 +18,7 @@
             <group if="$(arg rviz)">
                   <include file="$(find ocs2_mobile_manipulator_ros)/launch/visualize.launch">
                         <arg name="urdf_file" value="$(arg urdfFile)" />
+                        <arg name="is_analytical" value="$(arg is_analytical)" />
                   </include>
             </group>
 
@@ -29,6 +31,7 @@
             <group if="$(arg rviz)">
                   <include file="$(find ocs2_mobile_manipulator_ros)/launch/visualize.launch">
                         <arg name="urdf_file" value="$(arg urdfFile)" />
+                        <arg name="is_analytical" value="$(arg is_analytical)" />
                   </include>
             </group>
       </group>
@@ -40,6 +43,7 @@
             <group if="$(arg rviz)">
                   <include file="$(find ocs2_mobile_manipulator_ros)/launch/visualize.launch">
                         <arg name="urdf_file" value="$(arg urdfFile)" />
+                        <arg name="is_analytical" value="$(arg is_analytical)" />
                   </include>
             </group>
       </group>
@@ -51,6 +55,7 @@
             <group if="$(arg rviz)">
                   <include file="$(find ocs2_mobile_manipulator_ros)/launch/visualize.launch">
                         <arg name="urdf_file" value="$(arg urdfFile)" />
+                        <arg name="is_analytical" value="$(arg is_analytical)" />
                   </include>
             </group>
       </group>
@@ -74,7 +79,6 @@
       <node if="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_mpc_mrt_node" name="mobile_manipulator_mpc_mrt_node" output="screen" launch-prefix="gnome-terminal -- gdb -ex run --args" />
       <node unless="$(arg debug)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_mpc_mrt_node" name="mobile_manipulator_mpc_mrt_node" output="screen" launch-prefix="" />
 
-      <!-- TODO: remove if running with gazebo execution     -->
       <node pkg="tf" type="static_transform_publisher" name="static_map_tf_publisher" args="0 0 0 0 0 0 1 'world' 'map' 100"/>
 
       <node if="$(arg rviz)" pkg="ocs2_mobile_manipulator_ros" type="mobile_manipulator_target" name="mobile_manipulator_target" output="screen" />

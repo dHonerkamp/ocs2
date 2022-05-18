@@ -117,6 +117,7 @@ target_compile_options(mobile_manipulator_dummy_mrt_node PUBLIC ${FLAGS})
 
 # MPC-MRT Node
 add_executable(mobile_manipulator_mpc_mrt_node
+        src/RobotInterface.cpp
         src/MobileManipulatorDummyVisualization.cpp
         src/MobileManipulatorMpcMrtNode.cpp
         )

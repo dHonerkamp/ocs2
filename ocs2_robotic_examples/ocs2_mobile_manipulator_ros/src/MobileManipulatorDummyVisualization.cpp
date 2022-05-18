@@ -78,7 +78,7 @@ void assignIncreasingId(It firstIt, It lastIt, int startId = 0) {
 /******************************************************************************************************/
 void MobileManipulatorDummyVisualization::launchVisualizerNode(ros::NodeHandle& nodeHandle) {
   // load a kdl-tree from the urdf robot description and initialize the robot state publisher
-  const std::string urdfName = "robot_description";
+  const std::string urdfName = "robot_description_osc2";
   urdf::Model model;
   if (!model.initParam(urdfName)) {
     ROS_ERROR("URDF model load was NOT successful");
