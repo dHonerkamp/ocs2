@@ -4,7 +4,7 @@
             <remap from="command_result" to="/filter_result"/>
             <param name="joint_state_update_delay_from_last_command" value="0.5" />
 <!--            <param name="time_from_start" value="0.1" />-->
-            <param name="time_from_start" value="0.1" />
+            <param name="time_from_start" value="0.05" />
             <param name="num_of_allowable_queued_points" value="4" />
             <param name="num_of_command_queue" value="1" />
             <rosparam param="joint_trajectory_topics">["arm_trajectory_controller/command", "head_trajectory_controller/command", "gripper_controller/command"]</rosparam>
