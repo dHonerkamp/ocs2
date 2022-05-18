@@ -48,6 +48,7 @@
             </group>
       </group>
       <group if="$(eval robot == 'hsr')">
+            <include file="$(find ocs2_mobile_manipulator_ros)/launch/hsr_pseudo_velocity_controller.launch"/>
             <arg name="urdfFile" default="$(find ocs2_robotic_assets)/resources/hsr/urdf/hsr.urdf" />
             <arg name="taskFile" default="$(find ocs2_mobile_manipulator)/config/mpc/task_hsr.info" />
             <param name="urdfFile" value="$(arg urdfFile)" />

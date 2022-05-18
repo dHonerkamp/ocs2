@@ -6,39 +6,10 @@
 #include "std_msgs/Float64.h"
 
 
-RobotInterface::RobotInterface(std::string base_cmd_topic, ros::NodeHandle &nodeHandle){
+RobotInterface::RobotInterface(std::string base_cmd_topic, ros::NodeHandle &nodeHandle, std::vector<std::string>arm_joint_names) :
+        arm_joint_names_{arm_joint_names}{
       base_cmd_pub_ = nodeHandle.advertise<geometry_msgs::Twist>(base_cmd_topic, 1);
 }
-
-//void RobotInterface::getObservationCallback(const sensor_msgs::JointState::ConstPtr &joint_states) {
-//    currentObservation_.time = joint_states->header.stamp.toSec();
-//
-//    std::vector <std::string> joint_names{"torso_lift_joint",
-//                                          "r_shoulder_pan_joint",
-//                                          "r_shoulder_lift_joint",
-//                                          "r_upper_arm_roll_joint",
-//                                          "r_elbow_flex_joint",
-//                                          "r_forearm_roll_joint",
-//                                          "r_wrist_flex_joint",
-//                                          "r_wrist_roll_joint"};
-//
-//    //  currentObservation.state[0] = base_x;
-//    //  currentObservation.state[1] = base_y;
-//    //  currentObservation.state[2] = base_theta;
-//
-//  int idx = 3;
-//  for (int i = 0; i < joint_names.size(); i++) {
-//    for (int j = 0; j < joint_states->name.size(); j++) {
-//      if (joint_states->name[j] == joint_names[i]) {
-//        currentObservation_.state[idx] = joint_states->position[j];
-//        idx += i;
-//        std::cout << idx << " " << joint_states->name[j] << ": " << currentObservation_.state[idx] << std::endl;
-//        break;
-//      }
-//    }
-//  }
-//  std::cout << "New observation" << std::endl;
-//}
 
 void RobotInterface::sendBaseCommand(const ocs2::vector_t &systemInput, const tf::Transform &base_tf){
     tf::Transform cmd_world;
@@ -68,19 +39,28 @@ void RobotInterface::sendArmCommands(const ocs2::vector_t &joint_values, const d
 // PR2Interface
 /////////////////////////////
 PR2Interface::PR2Interface(ros::NodeHandle &nodeHandle)
-  : RobotInterface("/base_controller/command", nodeHandle){
-    for (auto jn: arm_joint_names_){
-      std::string controller_name = jn.substr(0, jn.size() - 6) + "_velocity_controller/command";
-      std::cout << controller_name << std::endl;
-      pubs_.push_back(nodeHandle.advertise<std_msgs::Float64>(controller_name, 1));
-    }
+        : RobotInterface("/base_controller/command", nodeHandle, {"torso_lift_joint",
+                                                                  "r_shoulder_pan_joint",
+                                                                  "r_shoulder_lift_joint",
+                                                                  "r_upper_arm_roll_joint",
+                                                                  "r_elbow_flex_joint",
+                                                                  "r_forearm_roll_joint",
+                                                                  "r_wrist_flex_joint",
+                                                                  "r_wrist_roll_joint"}) {
+  for (auto jn: arm_joint_names_) {
+    std::string controller_name = jn.substr(0, jn.size() - 6) + "_velocity_controller/command";
+    std::cout << controller_name << std::endl;
+    pubs_.push_back(nodeHandle.advertise<std_msgs::Float64>(controller_name, 1));
+
+    ;
+  }
 }
 
 void PR2Interface::sendArmCommands(const ocs2::vector_t &joint_values, const double &timestamp) {
     // NOTE: 0-2 are base commands!
     if (joint_values.size() != 3 + arm_joint_names_.size()){
       std::cout<< "joint_values size: " << joint_values.size() << std::endl;
-      throw std::runtime_error("Initial target has wrong size");
+      throw std::runtime_error("joint_values has wrong size");
     }
 
     int next_controller = 0;
@@ -91,4 +71,37 @@ void PR2Interface::sendArmCommands(const ocs2::vector_t &joint_values, const dou
       pubs_[next_controller].publish(msg);
       next_controller ++;
     }
+}
+
+
+/////////////////////////////
+// HSRInterface
+/////////////////////////////
+#include "tmc_msgs/JointVelocity.h"
+
+HSRInterface::HSRInterface(ros::NodeHandle &nodeHandle)
+        : RobotInterface("/hsrb/command_velocity", nodeHandle, {"arm_lift_joint",
+                                                                "arm_flex_joint",
+                                                                "arm_roll_joint",
+                                                                "wrist_flex_joint",
+                                                                "wrist_roll_joint"}) {
+  pub_ = nodeHandle.advertise<tmc_msgs::JointVelocity>("/hsrb/pseudo_velocity_controller/ref_joint_velocity", 1);
+}
+
+void HSRInterface::sendArmCommands(const ocs2::vector_t &joint_values, const double &timestamp) {
+  // NOTE: 0-2 are base commands!
+  if (joint_values.size() != 3 + arm_joint_names_.size()) {
+    std::cout << "joint_values size: " << joint_values.size() << std::endl;
+    throw std::runtime_error("joint_values has wrong size");
+  }
+
+  tmc_msgs::JointVelocity msg;
+  msg.header.stamp = ros::Time::now();
+  int next_jn = 0;
+  for (int j = 3; j < joint_values.size(); j++) {
+    msg.name.push_back(arm_joint_names_[next_jn]);
+    msg.velocity.push_back(joint_values[j]);
+    next_jn++;
+  }
+  pub_.publish(msg);
 }

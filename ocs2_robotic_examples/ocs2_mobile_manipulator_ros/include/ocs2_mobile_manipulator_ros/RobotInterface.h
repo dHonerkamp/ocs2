@@ -16,9 +16,11 @@
 
 class RobotInterface {
 public:
-    RobotInterface(std::string base_cmd_topic, ros::NodeHandle &nodeHandle);
+    RobotInterface(std::string base_cmd_topic, ros::NodeHandle &nodeHandle, std::vector<std::string>arm_joint_names);
+    virtual ~RobotInterface(){};
     ocs2::SystemObservation currentObservation_;
     ros::Publisher base_cmd_pub_;
+    std::vector<std::string> arm_joint_names_;
 
     void sendBaseCommand(const ocs2::vector_t &systemInput, const tf::Transform &base_tf);
     virtual void sendArmCommands(const ocs2::vector_t &joint_values, const double &timestamp) = 0;
@@ -29,18 +31,18 @@ public:
 class PR2Interface : public RobotInterface{
 private:
     std::vector<ros::Publisher>pubs_;
-    std::vector<std::string> arm_joint_names_ = {"torso_lift_joint",
-                                                 "r_shoulder_pan_joint",
-                                                 "r_shoulder_lift_joint",
-                                                 "r_upper_arm_roll_joint",
-                                                 "r_elbow_flex_joint",
-                                                 "r_forearm_roll_joint",
-                                                 "r_wrist_flex_joint",
-                                                 "r_wrist_roll_joint"};
 public:
     PR2Interface(ros::NodeHandle &nodeHandle);
     void sendArmCommands(const ocs2::vector_t &joint_values, const double &timestamp) override;
 };
 
+
+class HSRInterface : public RobotInterface{
+private:
+    ros::Publisher pub_;
+public:
+    HSRInterface(ros::NodeHandle &nodeHandle);
+    void sendArmCommands(const ocs2::vector_t &joint_values, const double &timestamp) override;
+};
 
 #endif //OCS2_MOBILE_MANIPULATOR_ROBOTINTERFACE_H

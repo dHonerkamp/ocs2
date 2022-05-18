@@ -1,0 +1,18 @@
+<launch>
+    <group ns="hsrb">
+        <node name="pseudo_velocity_controller" pkg="tmc_pseudo_velocity_controller" type="pseudo_velocity_controller" >
+            <remap from="command_result" to="/filter_result"/>
+            <param name="joint_state_update_delay_from_last_command" value="0.5" />
+<!--            <param name="time_from_start" value="0.1" />-->
+            <param name="time_from_start" value="0.1" />
+            <param name="num_of_allowable_queued_points" value="4" />
+            <param name="num_of_command_queue" value="1" />
+            <rosparam param="joint_trajectory_topics">["arm_trajectory_controller/command", "head_trajectory_controller/command", "gripper_controller/command"]</rosparam>
+            <rosparam param="arm_trajectory_controller/command/joints">["arm_lift_joint", "arm_flex_joint", "arm_roll_joint", "wrist_flex_joint", "wrist_roll_joint"]</rosparam>
+            <rosparam param="head_trajectory_controller/command/joints">["head_pan_joint", "head_tilt_joint"]</rosparam>
+            <rosparam param="gripper_controller/command/joints">["hand_motor_joint"]</rosparam>
+            <rosparam param="max_velocity_joint_names">['head_pan_joint', 'head_tilt_joint', 'base_l_passive_wheel_y_joint', 'base_l_drive_wheel_joint', 'base_l_passive_wheel_x_joint', 'torso_lift_joint', 'base_r_passive_wheel_x_joint', 'wrist_roll_joint', 'base_l_passive_wheel_z_joint', 'base_r_passive_wheel_y_joint', 'arm_lift_joint', 'base_r_passive_wheel_z_joint', 'left_proximal_joint', 'arm_flex_joint', 'hand_r_distal_joint', 'right_proximal_joint', 'hand_l_distal_joint', 'wrist_flex_joint', 'base_r_drive_wheel_joint', 'arm_roll_joint', 'base_roll_joint', 'hand_motor_joint']</rosparam>
+            <rosparam param="max_velocity">[0.8, 0.6, 0.2, 0.2, 0.2, 0.2, 0.2, 0.8, 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.6, 0.2, 0.6, 0.2, 0.5]</rosparam>
+        </node>
+    </group>
+</launch>

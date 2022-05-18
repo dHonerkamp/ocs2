@@ -58,6 +58,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <tf/transform_listener.h>
 #include <sensor_msgs/JointState.h>
 #include <ros/subscribe_options.h>
+#include <memory>
 
 /**
  * This function implements the evaluation of the MPC policy
@@ -84,29 +85,22 @@ class ObservationCallback {
 public:
     ocs2::SystemObservation currentObservation_;
     bool has_received_msg_ = false;
-    ObservationCallback(ocs2::scalar_t state_dim, ocs2::scalar_t inputDim){
+    std::vector <std::string> joint_names_;
+    ObservationCallback(ocs2::scalar_t state_dim, ocs2::scalar_t inputDim, std::vector <std::string> joint_names){
       currentObservation_.state.setZero(state_dim);
       currentObservation_.input.setZero(inputDim);
+      joint_names_ = joint_names;
     };
 
   void getObservationCallback(const sensor_msgs::JointState::ConstPtr &joint_states) {
     currentObservation_.time = joint_states->header.stamp.toSec();
     // std::cout << "Observation time: " << currentObservation_.time << std::endl;
 
-    std::vector <std::string> joint_names{"torso_lift_joint",
-                                          "r_shoulder_pan_joint",
-                                          "r_shoulder_lift_joint",
-                                          "r_upper_arm_roll_joint",
-                                          "r_elbow_flex_joint",
-                                          "r_forearm_roll_joint",
-                                          "r_wrist_flex_joint",
-                                          "r_wrist_roll_joint"};
-
     //  currentObservation.state[0] = base_x;
     //  currentObservation.state[1] = base_y;
     //  currentObservation.state[2] = base_theta;
     int idx = 3;
-    for (auto jn : joint_names) {
+    for (auto jn : joint_names_) {
       for (int j = 0; j < joint_states->name.size(); j++) {
         if (joint_states->name[j] == jn) {
           currentObservation_.state[idx] = joint_states->position[j];
@@ -120,6 +114,17 @@ public:
     // std::cout << "New observation" << std::endl;
   }
 };
+
+
+std::unique_ptr<RobotInterface> getRobotInterface(const std::string &robot_name, ros::NodeHandle &nodeHandle){
+  if (robot_name == "pr2"){
+    return std::unique_ptr<RobotInterface>(new PR2Interface(nodeHandle));
+  } else if (robot_name == "hsr") {
+    return std::unique_ptr<RobotInterface>(new HSRInterface(nodeHandle));
+  } else {
+    throw std::runtime_error("Unknown robot_name");
+  }
+}
 
 
 int main(int argc, char** argv) {
@@ -138,8 +143,9 @@ int main(int argc, char** argv) {
 
   // Robot interface
   // Get node parameters
-  std::string taskFile, libFolder, urdfFile, world_type;
+  std::string taskFile, libFolder, urdfFile, world_type, robot_name;
   nodeHandle.getParam("/ocs2_world_type", world_type);
+  nodeHandle.getParam("/ocs2_robotname", robot_name);
   nodeHandle.getParam("/taskFile", taskFile);
   nodeHandle.getParam("/libFolder", libFolder);
   nodeHandle.getParam("/urdfFile", urdfFile);
@@ -202,8 +208,8 @@ int main(int argc, char** argv) {
   ros::Subscriber joint_states_sub;
 
   ROS_INFO("initialising robot_interface");
-  PR2Interface robot_interface = PR2Interface(nodeHandle);
-  ObservationCallback callback(interface.getInitialState().size(), interface.getManipulatorModelInfo().inputDim);
+  std::unique_ptr<RobotInterface> robot_interface = getRobotInterface(robot_name, nodeHandle);
+  ObservationCallback callback(interface.getInitialState().size(), interface.getManipulatorModelInfo().inputDim, robot_interface->arm_joint_names_);
   if (world_type != "sim") {
     ROS_INFO("initialising gazebo stuff");
     joint_states_sub = nodeHandle.subscribe("/joint_states", 1, &ObservationCallback::getObservationCallback, &callback);
@@ -325,8 +331,8 @@ int main(int argc, char** argv) {
                   tf::Transform base_tf;
                   base_tf.setOrigin(tf::Vector3(currentObservation.state[0], currentObservation.state[1], 0.0));
                   base_tf.setRotation(tf::Quaternion(currentObservation.state[2], 0.0, 0.0));
-                  robot_interface.sendBaseCommand(systemInput, base_tf);
-                  robot_interface.sendArmCommands(systemInput, 0.01);
+                  robot_interface->sendBaseCommand(systemInput, base_tf);
+                  robot_interface->sendArmCommands(systemInput, 0.01);
                 } else {
                   // Forward simulation
                   ocs2::SystemObservation nextObservation;
