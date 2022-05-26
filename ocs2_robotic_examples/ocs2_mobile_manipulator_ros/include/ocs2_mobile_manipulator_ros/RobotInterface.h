@@ -45,4 +45,11 @@ public:
     void sendArmCommands(const ocs2::vector_t &joint_values, const double &timestamp) override;
 };
 
+
+class TiagoInterface : public RobotInterface{
+public:
+    TiagoInterface(ros::NodeHandle &nodeHandle);
+    void sendArmCommands(const ocs2::vector_t &joint_values, const double &timestamp) override;
+};
+
 #endif //OCS2_MOBILE_MANIPULATOR_ROBOTINTERFACE_H

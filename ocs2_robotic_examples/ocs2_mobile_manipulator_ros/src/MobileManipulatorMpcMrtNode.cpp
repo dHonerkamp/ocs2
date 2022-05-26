@@ -121,6 +121,8 @@ std::unique_ptr<RobotInterface> getRobotInterface(const std::string &robot_name,
     return std::unique_ptr<RobotInterface>(new PR2Interface(nodeHandle));
   } else if (robot_name == "hsr") {
     return std::unique_ptr<RobotInterface>(new HSRInterface(nodeHandle));
+  } else if (robot_name == "tiago") {
+    return std::unique_ptr<RobotInterface>(new TiagoInterface(nodeHandle));
   } else {
     throw std::runtime_error("Unknown robot_name");
   }

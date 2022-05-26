@@ -105,3 +105,22 @@ void HSRInterface::sendArmCommands(const ocs2::vector_t &joint_values, const dou
   }
   pub_.publish(msg);
 }
+
+
+/////////////////////////////
+// TiagoInterface
+/////////////////////////////
+TiagoInterface::TiagoInterface(ros::NodeHandle &nodeHandle)
+        : RobotInterface("does_not_exist", nodeHandle, {"torso_lift_joint",
+                                                        "arm_1_joint",
+                                                        "arm_2_joint",
+                                                        "arm_3_joint",
+                                                        "arm_4_joint",
+                                                        "arm_5_joint",
+                                                        "arm_6_joint",
+                                                        "arm_7_joint"}) {
+}
+
+void TiagoInterface::sendArmCommands(const ocs2::vector_t &joint_values, const double &timestamp) {
+  throw std::runtime_error("Tiago does not have velocity controllers");
+}
