@@ -63,12 +63,18 @@ void MyMap::updateCallback(const ocs2_msgs::mysdfgrid::ConstPtr& map){
   origin_x_ = map->info.origin.position.x;
   origin_y_ = map->info.origin.position.y;
 
-  costmap_ = new float[size_x_ * size_y_];
+//  if (sizeof(costmap_)/sizeof(costmap_[0]) != (size_x_ * size_y_)){
+//    throw std::runtime_error("map changed size");
+//  }
+  // costmap_ = new float[size_x_ * size_y_];
 
   for (unsigned int it = 0; it < size_x_ * size_y_; it++) {
     costmap_[it] = map->data[it];
   }
-  std::cout << "SDF map received" << std::endl;
+//  if (sub_.getTopic() == "/sdf") {
+//    std::cout << "costCB: " << getCost(0., 0.) << std::endl;
+//  }
+  // std::cout << sub_.getTopic() << " map received" << std::endl;
 }
 
 
@@ -155,6 +161,8 @@ vector_t CollisionConstraintSoft::getValue(scalar_t time, const vector_t& state,
 VectorFunctionLinearApproximation CollisionConstraintSoft::getLinearApproximation(scalar_t time, const vector_t& state,
                                                                            const PreComputation& preComputation) const {
   VectorFunctionLinearApproximation limits(getNumConstraints(time), state.rows(), 0);
+
+  // std::cout << "costMain: " << sdf_.getCost(0., 0.) << std::endl;
 
   scalar_t current_x = state(0);
   scalar_t current_y = state(1);
